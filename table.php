@@ -1,5 +1,9 @@
 <?php
 require_once 'Class/DatabaseHandler.php';
+require_once 'Class/dbCheck.php';
+
+
+
 
 var_dump($_POST['column_name']);
 
@@ -107,6 +111,45 @@ function r() {
         }
          }';
     // remove JS 
+
+
+
+
+
+
+
+        // add JS 
+        $phpConte__nt_js_add .= "\n";
+        $phpConte__nt_js_add .= '    function ' . $columnName . '_add(_this) {
+            var ok = new Information("' . $source_file[0] . $columnName . '_add.php"); // création de la classe 
+            ok.add("' . $columnName . '", _this.title); // ajout de l\'information pour lenvoi 
+            console.log(ok.info());  
+            ok.push(); // envoie l\'information au code php 
+        }';
+        $phpConte__nt_js_add .= "\n";
+        $phpConte__nt_js_add .= '    function ' . $columnName . '_add_r(_this) {
+            var ok = new Information("' . $source_file[0] . $columnName . '_add.php"); // création de la classe 
+            ok.add("' . $columnName . '", _this.title); // ajout de l\'information pour lenvoi 
+            console.log(ok.info());  
+            ok.push(); // envoie l\'information au code php
+            const myTimeout = setTimeout(r, 250);
+            function r() {
+            location.reload(); 
+            }
+             }';
+        // add JS 
+
+
+
+
+
+
+
+
+
+
+
+    
     if ($i == 0) {
         $phpContent_1 .= '
 $databaseHandler = new DatabaseHandler($dbname, $username);
@@ -273,6 +316,8 @@ if ($file) {
 } else {
     echo "Impossible d'ouvrir le fichier pour l'écriture.";
 }
+
+
 $phpConte__nt_js_remove .= "\n";
 // Définir le chemin et le nom du fichier à créer
 $filePath = $source_file[0] . $mainTableName . '_remove.js';
@@ -289,6 +334,28 @@ if ($file) {
 } else {
     echo "Impossible d'ouvrir le fichier pour l'écriture.";
 }
+
+// add 
+$phpConte__nt_js_add .= "\n";
+// Définir le chemin et le nom du fichier à créer
+$filePath = $source_file[0] . $mainTableName . '_add.js';
+// Créer ou ouvrir le fichier en mode écriture
+$file = fopen($filePath, 'w');
+// Vérifier si le fichier a bien été ouvert
+if ($file) {
+    // Écrire le contenu dans le fichier
+    fwrite($file, $phpConte__nt_js_add);
+    // Fermer le fichier après l'écriture
+    fclose($file);
+    echo "Le fichier a été créé avec succès.";
+    echo "<br/>";
+} else {
+    echo "Impossible d'ouvrir le fichier pour l'écriture.";
+}
+// add
+
+
+
 $phpContent_00 = "<?php";
 $phpContent_00 .= "\n";
 $phpContent_00 .= '$src_general="Class/";';
