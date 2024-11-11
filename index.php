@@ -28,7 +28,7 @@ session_start();
 $path = "Class/dbCheck.php";
 if (checkFileExists($path)) {
   require_once  'Class/dbCheck.php' ; 
- require_once 'test2.php' ;  
+   require_once 'test2.php' ;  
 }
 else {
 
