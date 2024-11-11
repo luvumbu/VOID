@@ -10,10 +10,10 @@ $source_file = array(
     "Toyota"
 );
 
- 
- 
 
-$permissions = 0755;
+
+
+$permissions = 0777;
 
 foreach ($source_file as $dossier) {
     if (!file_exists($dossier)) {
@@ -26,7 +26,7 @@ foreach ($source_file as $dossier) {
         echo "Le dossier '$dossier' existe déjà.<br>";
     }
 }
- 
+
 
 
 echo "<br/>";
@@ -70,7 +70,7 @@ $phpContent_1 = "<?php \n";
 
 
 
-$phpContent_1 .= "session_start();"; 
+$phpContent_1 .= "session_start();";
 
 
 $phpContent_1 .= "\n";
@@ -85,24 +85,24 @@ $phpContent_1 .= "\n";
 
 // !
 
-$phpContent_1 .= 'require_once "src_general.php";'; 
+$phpContent_1 .= 'require_once "src_general.php";';
 $phpContent_1 .= "\n";
 
-$phpContent_1 .= 'require_once $src_general."dbCheck.php";';    
+$phpContent_1 .= 'require_once $src_general."dbCheck.php";';
 $phpContent_1 .= "\n";
 
-$phpContent_1 .= 'require_once $src_general."DatabaseHandler.php";';  
+$phpContent_1 .= 'require_once $src_general."DatabaseHandler.php";';
 
- 
+
 $phpContent_1 .= "\n";
 
 
 $phpContent_1 .= 'require_once $src_general."Give_url.php";';
 $phpContent_1 .= "\n";
 
-$phpContent_1 .= 'require_once $src_general."AsciiConverter.php";';  
+$phpContent_1 .= 'require_once $src_general."AsciiConverter.php";';
 
-  
+
 
 
 
@@ -144,7 +144,7 @@ foreach ($columnNames as $columnName) {
     $phpConte__nt_js .= "\n";
 
     $phpConte__nt_js .= '    function ' . $columnName . '(_this) {
-        var ok = new Information("' . $source_file[0] . $columnName . '.php"); // création de la classe 
+        var ok = new Information("' . $source_file[0] . $columnName . '_up.php"); // création de la classe 
         ok.add("' . $columnName . '", _this.title); // ajout de l\'information pour lenvoi 
         ok.add("' . $columnNames[0] . '", _this.className); // ajout de l\'information pour lenvoi 
         
@@ -158,8 +158,9 @@ foreach ($columnNames as $columnName) {
 
 
     $phpConte__nt_js .= '    function ' . $columnName . '_r(_this) {
-        var ok = new Information("' . $source_file[0] . $columnName . '.php"); // création de la classe 
+        var ok = new Information("' . $source_file[0] . $columnName . '_up.php"); // création de la classe 
         ok.add("' . $columnName . '", _this.title); // ajout de l\'information pour lenvoi 
+        ok.add("' . $columnNames[0] . '", _this.className); // ajout de l\'information pour lenvoi 
          
         console.log(ok.info());  
         ok.push(); // envoie l\'information au code php
@@ -171,6 +172,38 @@ function r() {
 }
     }';
 
+
+
+
+    // remove JS 
+
+    $phpConte__nt_js_remove .= "\n";
+
+    $phpConte__nt_js_remove .= '    function ' . $columnName . '_remove(_this) {
+        var ok = new Information("' . $source_file[0] . $columnName . '_remove.php"); // création de la classe 
+        ok.add("' . $columnName . '", _this.title); // ajout de l\'information pour lenvoi 
+        console.log(ok.info());  
+        ok.push(); // envoie l\'information au code php 
+    }';
+
+    $phpConte__nt_js_remove .= "\n";
+
+
+
+    $phpConte__nt_js_remove .= '    function ' . $columnName . '_remove_r(_this) {
+        var ok = new Information("' . $source_file[0] . $columnName . '_remove.php"); // création de la classe 
+        ok.add("' . $columnName . '", _this.title); // ajout de l\'information pour lenvoi 
+        console.log(ok.info());  
+        ok.push(); // envoie l\'information au code php
+        const myTimeout = setTimeout(r, 250);
+
+function r() {
+  location.reload(); 
+}
+    }';
+
+
+    // remove JS 
 
     if ($i == 0) {
 
@@ -189,18 +222,25 @@ $' . $columnName . '_req_sql_url__' . $columnName . '_' . $i . ' = $databaseHand
 
     $php__Content_update = "<?php \n";
 
-    $php__Content_update .= "\n";   
-    $php__Content_update .= "session_start();";  
-    $php__Content_update .= "\n";    
-    $php__Content_update .= 'header("Access-Control-Allow-Origin: *");';    
-    $php__Content_update .= "\n";   
-    
-    
+    $php__Content_update .= "\n";
+    $php__Content_update .= "session_start();";
+    $php__Content_update .= "\n";
+    $php__Content_update .= 'header("Access-Control-Allow-Origin: *");';
+    $php__Content_update .= "\n";
+
+
     $php__Content_update .= '$servername = "localhost";';
     $php__Content_update .= "\n";
-    $php__Content_update .= '$id = $_POST["id"];';
 
 
+    
+
+
+
+
+
+
+    
     $php__Content_update .= "\n";
     $php__Content_update .= '$' . $columnNames[0] . ' = $_POST["' . $columnNames[0] . '"];';
 
@@ -208,11 +248,6 @@ $' . $columnName . '_req_sql_url__' . $columnName . '_' . $i . ' = $databaseHand
 
     $php__Content_update .= '$' . $columnName . ' = $_POST["' . $columnName . '"];';
     $php__Content_update .= "\n";
-
-
-
-
-
 
     $php__Content_update .= 'require_once "src_general.php";';
     $php__Content_update .= "\n";
@@ -241,25 +276,6 @@ $' . $columnName . '_req_sql_url__' . $columnName . '_' . $i . ' = $databaseHand
 
     $php__Content_update .= "\n";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     $php__Content_update .= '$databaseHandler->action_sql("UPDATE  `' . $mainTableName . '` SET `' . $columnName . '` = ".$' . $columnName . '."   WHERE  `' . $columnNames[0] . '` =".$' . $columnNames[0] . '." ");';
 
     $php__Content_update .= "\n";
@@ -267,7 +283,7 @@ $' . $columnName . '_req_sql_url__' . $columnName . '_' . $i . ' = $databaseHand
     $php__Content_update .= "?>";
 
     // Définir le chemin et le nom du fichier à créer
-    $filePath = $source_file[1] . $columnName . '.php';
+    $filePath = $source_file[1] . $columnName . '_up.php';
 
     // Créer ou ouvrir le fichier en mode écriture
     $file = fopen($filePath, 'w');
@@ -284,6 +300,218 @@ $' . $columnName . '_req_sql_url__' . $columnName . '_' . $i . ' = $databaseHand
     } else {
         echo "Impossible d'ouvrir le fichier pour l'écriture.";
     }
+
+
+
+
+    //  remove 
+    $php__Content_remove = "<?php \n";
+
+    $php__Content_remove .= "\n";
+    $php__Content_remove .= "session_start();";
+    $php__Content_remove .= "\n";
+    $php__Content_remove .= 'header("Access-Control-Allow-Origin: *");';
+    $php__Content_remove .= "\n";
+
+
+    $php__Content_remove .= '$servername = "localhost";';
+    $php__Content_remove .= "\n";
+
+
+    
+
+
+
+
+
+
+     
+    $php__Content_remove .= "\n";
+    $php__Content_remove .= '$' . $columnNames[0] . ' = $_POST["' . $columnNames[0] . '"];';
+
+    $php__Content_remove .= "\n";
+
+  
+
+    $php__Content_remove .= 'require_once "src_general.php";';
+    $php__Content_remove .= "\n";
+
+    $php__Content_remove .= 'require_once $src_general."path_config.php";';
+    $php__Content_remove .= "\n";
+    $php__Content_remove .= 'require_once $src_general."Give_url.php";';
+    $php__Content_remove .= "\n";
+
+    $php__Content_remove .= 'require_once $src_general."DatabaseHandler.php";';
+
+
+    $php__Content_remove .= "\n";
+
+    $php__Content_remove .= 'require_once $src_general."AsciiConverter.php";';
+
+
+    $php__Content_remove .= "\n";
+
+    $php__Content_remove .= 'require_once $src_general."path_config.php";';
+
+
+    
+    $php__Content_remove .= "\n";
+
+ 
+
+
+    $php__Content_remove .= "\n";
+
+    $php__Content_remove .= 
+    
+<<<'PHP'
+ 
+$databaseHandler = new DatabaseHandler($config_dbname, $config_password);
+PHP;
+
+
+$php__Content_remove .= "\n";
+
+
+
+$php__Content_remove .= '$databaseHandler->action_sql("DELETE FROM  `projet` WHERE   `'.$columnNames[0].'` = \'$'.$columnNames[0].'\'")' ;
+
+    
+     
+    
+    $php__Content_remove .= "\n";
+
+    $php__Content_remove .= "?>";
+
+    // Définir le chemin et le nom du fichier à créer
+    $filePath = $source_file[1] . $columnName . '_remove.php';
+
+    // Créer ou ouvrir le fichier en mode écriture
+    $file = fopen($filePath, 'w');
+
+    // Vérifier si le fichier a bien été ouvert
+    if ($file) {
+        // Écrire le contenu dans le fichier
+        fwrite($file, $php__Content_remove);
+
+        // Fermer le fichier après l'écriture
+        fclose($file);
+        echo "Le fichier a été créé avec succès.";
+        echo "<br/>";
+    } else {
+        echo "Impossible d'ouvrir le fichier pour l'écriture.";
+    }
+
+    //  remove 
+
+
+    
+    
+    
+    
+    // add 
+
+    $php__Content_add = "<?php \n";
+
+    $php__Content_add .= "\n";
+    $php__Content_add .= "session_start();";
+    $php__Content_add .= "\n";
+    $php__Content_add .= 'header("Access-Control-Allow-Origin: *");';
+    $php__Content_add .= "\n";
+
+
+    $php__Content_add .= '$servername = "localhost";';
+    $php__Content_add .= "\n";
+
+
+    
+
+
+
+
+
+
+     
+    $php__Content_add .= "\n";
+    $php__Content_add .= '$' . $columnNames[0] . ' = $_POST["' . $columnNames[0] . '"];';
+
+    $php__Content_add .= "\n";
+
+  
+
+    $php__Content_add .= 'require_once "src_general.php";';
+    $php__Content_add .= "\n";
+
+    $php__Content_add .= 'require_once $src_general."path_config.php";';
+    $php__Content_add .= "\n";
+    $php__Content_add .= 'require_once $src_general."Give_url.php";';
+    $php__Content_add .= "\n";
+
+    $php__Content_add .= 'require_once $src_general."DatabaseHandler.php";';
+
+
+    $php__Content_add .= "\n";
+
+    $php__Content_add .= 'require_once $src_general."AsciiConverter.php";';
+
+
+    $php__Content_add .= "\n";
+
+    $php__Content_add .= 'require_once $src_general."path_config.php";';
+
+
+    
+    $php__Content_add .= "\n";
+
+ 
+
+
+    $php__Content_add .= "\n";
+
+    $php__Content_add .= 
+    
+<<<'PHP'
+ 
+$databaseHandler = new DatabaseHandler($config_dbname, $config_password);
+PHP;
+
+
+$php__Content_add .= "\n";
+$php__Content_add .= '$time = time();';
+$php__Content_add .= "\n";
+
+
+
+
+
+$php__Content_add .= '$databaseHandler->action_sql("INSERT INTO `'.$mainTableName.'` ('.$columnNames[0].') VALUES ($time)");' ;
+
+     
+    
+    $php__Content_add .= "\n";
+
+    $php__Content_add .= "?>";
+
+    // Définir le chemin et le nom du fichier à créer
+    $filePath = $source_file[1] . $columnName . '_add.php';
+
+    // Créer ou ouvrir le fichier en mode écriture
+    $file = fopen($filePath, 'w');
+
+    // Vérifier si le fichier a bien été ouvert
+    if ($file) {
+        // Écrire le contenu dans le fichier
+        fwrite($file, $php__Content_add);
+
+        // Fermer le fichier après l'écriture
+        fclose($file);
+        echo "Le fichier a été créé avec succès.";
+        echo "<br/>";
+    } else {
+        echo "Impossible d'ouvrir le fichier pour l'écriture.";
+    }
+
+    // add 
 
 
 
@@ -309,13 +537,14 @@ $databaseHandler = new DatabaseHandler($dbname, $username);
 $databaseHandler->getDataFromTable($req_sql_' . $i . ', "' . $columnName . '");
 $' . $columnName . '_req_sql_' . $i . ' = $databaseHandler->tableList_info;
 ';
+    $i++;
 }
 $i = 0;
 
 $phpContent_1 .= "\n?>";
 
 // Définir le chemin et le nom du fichier à créer
-$filePath = $source_file[0] . $mainTableName . '.php';
+$filePath = $source_file[0] . $mainTableName . '_up.php';
 
 // Créer ou ouvrir le fichier en mode écriture
 $file = fopen($filePath, 'w');
@@ -395,11 +624,41 @@ if ($file) {
 } else {
     echo "Impossible d'ouvrir le fichier pour l'écriture.";
 }
-?>
 
 
 
-<?php
+
+
+
+
+
+
+
+$phpConte__nt_js_remove .= "\n";
+
+// Définir le chemin et le nom du fichier à créer
+$filePath = $source_file[0] . $mainTableName . '_remove.js';
+
+// Créer ou ouvrir le fichier en mode écriture
+$file = fopen($filePath, 'w');
+
+// Vérifier si le fichier a bien été ouvert
+if ($file) {
+    // Écrire le contenu dans le fichier
+    fwrite($file, $phpConte__nt_js_remove);
+
+    // Fermer le fichier après l'écriture
+    fclose($file);
+    echo "Le fichier a été créé avec succès.";
+    echo "<br/>";
+} else {
+    echo "Impossible d'ouvrir le fichier pour l'écriture.";
+}
+
+
+
+
+ 
 
 
 
@@ -416,13 +675,13 @@ $phpContent_00 .= "?>";
 
 
 
- 
+
 
 
 
 
 // Nom du fichier à créer
-$fileName = $source_file[0]."src_general.php";
+$fileName = $source_file[0] . "src_general.php";
 
 // Crée ou ouvre le fichier en mode écriture
 $file = fopen($fileName, "w");
