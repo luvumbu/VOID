@@ -26,7 +26,7 @@ else {
 
  
     // Nom du fichier que tu veux créer
-    $nomFichier = "../conf/dbCheck.php";
+    $nomFichier = "../Class/dbCheck.php";
     
     // Utilisation de fopen() pour créer et ouvrir le fichier en mode écriture ('w')
     // Le mode 'w' crée un fichier vide pour l'écriture (ou vide le fichier s'il existe déjà)

@@ -25,9 +25,9 @@ session_start();
   require_once 'class/tempsDeLecture.php' ; 
   require_once 'class/CheckFileExists.php' ;  
 // Example usage
-$path = "conf/dbCheck.php";
+$path = "Class/dbCheck.php";
 if (checkFileExists($path)) {
-  require_once  'conf/dbCheck.php' ; 
+  require_once  'Class/dbCheck.php' ; 
  require_once 'test2.php' ;  
 }
 else {
@@ -38,12 +38,7 @@ else {
 
 
 
-
-$id_matable_histoi = "1" ; 
-$databaseHandler = new DatabaseHandler("root", "root");
-
-$databaseHandler->action_sql("UPDATE  `matable_histoi` SET `nom_matable_histoi` = '1234'   WHERE  `id_matable_histoi` ='".$id_matable_histoi."' ");
-
+ 
   ?>
 <script src="Class/js.js"></script>
 
