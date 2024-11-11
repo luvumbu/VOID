@@ -12,21 +12,39 @@ session_start();
 </head>
 
 <body>
-    <?php
-
-require_once 'Class/CheckFileExists.php' ; 
-
-    // Exemple d'utilisation
-    $path = "path/to/your/file.php";
-    if (CheckFileExists::CheckFileExists_($path)) {
-        echo "The file exists.";
-    } else {
-        echo "The file does not exist.";
-    }
+<?php 
 
 
 
-    ?>
-</body>
+  // Inclusion des fichiers de classe PHP nécessaires
+  require_once 'class/Creat_form.php';
+  require_once 'class/AsciiConverter.php';
+  require_once 'class/chercherIndex.php';
+  require_once 'class/IsLocal.php';
+  require_once 'class/give_url.php';
+  require_once 'class/tempsDeLecture.php' ; 
+  require_once 'class/CheckFileExists.php' ;  
+// Example usage
+$path = "conf/dbCheck.php";
+if (checkFileExists($path)) {
+  require_once  'conf/dbCheck.php' ; 
+ require_once 'test2.php' ;  
+}
+else {
 
-</html>
+    require_once 'view/loginVerificationForm.php' ; 
+  }
+
+
+
+
+
+$id_matable_histoi = "1" ; 
+$databaseHandler = new DatabaseHandler("root", "root");
+
+$databaseHandler->action_sql("UPDATE  `matable_histoi` SET `nom_matable_histoi` = '1234'   WHERE  `id_matable_histoi` ='".$id_matable_histoi."' ");
+
+  ?>
+<script src="Class/js.js"></script>
+
+ 

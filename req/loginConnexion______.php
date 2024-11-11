@@ -1,14 +1,65 @@
-<?php 
-
-
+<?php
+header("Access-Control-Allow-Origin: *");
 require_once '../class/DatabaseHandler.php'; 
 
-$input_2="root";
-$input_1=$input_2; 
+
+$servername = "localhost";
+$dbname =$_POST["dbname"] ;
+$username =$_POST["username"] ;
+// Create connection
+ 
+ 
+
+
+$databaseHandler = new DatabaseHandler($dbname, $username);
+if ($databaseHandler->verif != 1) {
+  
+    echo 'FAKE' ; 
+}
+else {
+  
 
 
 
-$databaseHandler = new DatabaseHandler($input_1,$input_2); 
+
+
+
+ 
+    // Nom du fichier que tu veux créer
+    $nomFichier = "../conf/dbCheck.php";
+    
+    // Utilisation de fopen() pour créer et ouvrir le fichier en mode écriture ('w')
+    // Le mode 'w' crée un fichier vide pour l'écriture (ou vide le fichier s'il existe déjà)
+    $fichier = fopen($nomFichier, 'w');
+    
+    // Vérifie si le fichier a bien été ouvert
+    if ($fichier) {
+        // Contenu à écrire dans le fichier
+        $contenu = "<?php \n";
+        $contenu =  $contenu.'$dbname = "'.$dbname.'";'."\n";
+        $contenu =  $contenu.'$username = "'.$username.'";'."\n";
+        $contenu = $contenu."?>\n";
+      
+    
+        
+    
+        // Écriture du contenu dans le fichier
+        fwrite($fichier, $contenu);
+    
+        // Fermeture du fichier après écriture
+        fclose($fichier);
+    
+        echo "Le fichier a été créé et le contenu a été écrit avec succès.";
+    } else {
+        echo "Erreur lors de la création du fichier.";
+    }
+  
+    
+
+
+
+
+$databaseHandler = new DatabaseHandler($dbname,$username); 
 $databaseHandler->set_column_names("id_user");
 $databaseHandler->set_column_names("id_sha1_user");
 
@@ -46,7 +97,7 @@ $databaseHandler->set_column_types("LONGTEXT NOT NULL");
 
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
 $databaseHandler->set_column_types("TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP");
-$databaseHandler->add_table($input_1);
+$databaseHandler->add_table("user");
 //$config_password_ = sha1($input_2) ; 
 
  
@@ -72,7 +123,8 @@ $databaseHandler->add_table($input_1);
 
 
 
-$databaseHandler = new DatabaseHandler($input_1,$input_2); 
+ 
+$databaseHandler = new DatabaseHandler($dbname,$username); 
 
 
 $databaseHandler->set_column_names("id_projet");
@@ -180,7 +232,7 @@ $databaseHandler->add_table("projet");
 
 
 
-$databaseHandler = new DatabaseHandler($input_1,$input_2); 
+$databaseHandler = new DatabaseHandler($dbname,$username);  
 $databaseHandler->set_column_names("id_projet_img_auto");
 $databaseHandler->set_column_names("id_sha1_projet_img");
 
@@ -216,7 +268,7 @@ $databaseHandler->add_table("projet_img");
 
 
 
-$databaseHandler = new DatabaseHandler($input_1,$input_2); 
+$databaseHandler = new DatabaseHandler($dbname,$username);  
 $databaseHandler->set_column_names("id_visit_user");
 $databaseHandler->set_column_names("id_projet_visit_user");
 
@@ -293,7 +345,7 @@ $databaseHandler->add_table("visit_user");
 
 
 
-$databaseHandler = new DatabaseHandler($input_1,$input_2); 
+$databaseHandler = new DatabaseHandler($dbname,$username);  
 $databaseHandler->set_column_names("id_option_projet");
 $databaseHandler->set_column_names("start_option_projet");
 $databaseHandler->set_column_names("sha1_option_projet");
@@ -347,7 +399,7 @@ $databaseHandler->add_table("option_projet");
 
 
 
-$databaseHandler = new DatabaseHandler($input_1,$input_2); 
+$databaseHandler = new DatabaseHandler($dbname,$username);  
 $databaseHandler->set_column_names("id_comment_projet");
 $databaseHandler->set_column_names("id_sha1_comment_projet");
 
@@ -484,7 +536,7 @@ $databaseHandler->add_table("comment_projet");
 
 
 
-$databaseHandler = new DatabaseHandler($input_1,$input_2); 
+$databaseHandler = new DatabaseHandler($dbname,$username);  
 
 
 
@@ -557,7 +609,7 @@ $databaseHandler->add_table('social_media');
 
 
 
-$databaseHandler = new DatabaseHandler($input_1,$input_2); 
+$databaseHandler = new DatabaseHandler($dbname,$username);  
 
 
 
@@ -609,27 +661,16 @@ $databaseHandler->add_table('group_projet');
 
 
 
-$req_sqlxx = 'SELECT * FROM `'.$input_1.'` WHERE `nom_user`="'.$input_1.'"  AND `password_user` ="'.$input_2.'" ';
-$databaseHandlerxx = new DatabaseHandler($input_1, $input_2);
-$databaseHandlerxx->getDataFromTable($req_sqlxx, "nom_user");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
  
 
+
+
+
+
+
+
+}
 
 ?>

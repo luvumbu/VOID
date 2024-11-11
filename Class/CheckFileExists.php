@@ -1,22 +1,24 @@
+
 <?php
-class CheckFileExists
-{
-    // Méthode pour vérifier si un fichier existe
-    public static function CheckFileExists_($filePath)
-    {
-        return file_exists($filePath);
+function CheckFileExists($filePath) {
+    if (file_exists($filePath)) {
+        return true; // The file exists
+    } else {
+        return false; // The file does not exist
     }
 }
 
-
 /*
-// Exemple d'utilisation
+// Example usage
 $path = "path/to/your/file.php";
-if (CheckFileExists::checkFileExists($path)) {
+if (checkFileExists($path)) {
     echo "The file exists.";
 } else {
     echo "The file does not exist.";
 }
     */
 
-    ?>
+
+ 
+ 
+?>

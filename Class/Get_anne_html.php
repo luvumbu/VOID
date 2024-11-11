@@ -1,4 +1,7 @@
 <?php
+
+
+ 
 class Get_anne
 {
     public $name;
@@ -35,7 +38,8 @@ class Get_anne
 
 // Définir les événements avec leurs dates dans un tableau associatif
 $events = [
-    "2001-09-11 12:00:00" => "Attaque du 11 septembre"
+     "2008-09-15 08:00:00"=> "Attaque du 11 septembre",
+     "2025-09-11 12:00:00" => "Crise des subprimes",
 ];
 $countdowns = [];
 
@@ -55,36 +59,72 @@ foreach ($events as $date_future => $event_name) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comptes à Rebours Multiples</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f9;
-        }
-        .countdown-container {
-            margin-bottom: 20px;
-            text-align: center;
-            font-size: 1.5em;
-            color: #333;
-        }
-        .time {
-            display: inline-block;
-            margin: 0 10px;
-        }
-        .label {
-            display: block;
-            font-size: 0.5em;
-            color: #777;
-        }
-        .status {
-            color: #333;
-            font-size: 1.2em;
-            margin-top: 10px;
-        }
+:root {
+    --background-color: #f9f9f9; /* Fond gris clair */
+    --text-color: #333; /* Texte gris foncé */
+    --highlight-color: #007acc; /* Bleu doux pour les éléments principaux */
+    --label-color: #555; /* Couleur des étiquettes */
+    --container-background: #ffffff; /* Fond des conteneurs */
+    --border-color: #ddd; /* Bordure légère */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.countdown-container {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.2em;
+    background-color: var(--container-background);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    width: 100%;
+    max-width: 600px; /* Largeur augmentée */
+    color: var(--text-color);
+}
+
+.event-name {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: var(--highlight-color);
+    margin-bottom: 10px;
+}
+
+.time {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 8px;
+    background-color: var(--container-background);
+    border-radius: 4px;
+    width: 60px;
+    border: 1px solid var(--border-color);
+}
+
+.label {
+    display: block;
+    font-size: 0.8em;
+    color: var(--label-color);
+    margin-top: 4px;
+}
+
+.status {
+    color: var(--highlight-color);
+    font-size: 1em;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
     </style>
 </head>
 <body>
@@ -112,9 +152,7 @@ foreach ($events as $date_future => $event_name) {
             <span id="seconds-<?php echo $index; ?>"><?php echo $temps_restant["secondes"]; ?></span>
             <span class="label">Secondes</span>
         </div>
-        <div class="status" id="status-<?php echo $index; ?>">
-            <?php echo $temps_restant["is_past"] ? "Le compte à rebours est terminé !" : ""; ?>
-        </div>
+  
     </div>
 <?php endforeach; ?>
 
@@ -123,7 +161,7 @@ foreach ($events as $date_future => $event_name) {
         constructor(dateString, index) {
             this.targetDate = new Date(dateString).getTime();
             this.index = index;
-            this.statusElement = document.getElementById(`status-${index}`);
+            this.containerElement = document.getElementById(`countdown-${index}`);
             this.updateCountdown();
             setInterval(() => this.updateCountdown(), 1000);
         }
@@ -133,8 +171,9 @@ foreach ($events as $date_future => $event_name) {
             let distance = this.targetDate - now;
 
             if (distance < 0) {
-                this.statusElement.innerText = "Temps écoulé depuis :";
-                distance = Math.abs(distance);
+                // Temps écoulé : appliquez la couleur de fond rgba(200, 0, 0, 0.3)
+                this.containerElement.style.backgroundColor = 'rgba(200, 0, 0, 0.2)';
+                distance = Math.abs(distance); // Pour afficher les valeurs positives
             }
 
             const years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365));
@@ -161,6 +200,8 @@ foreach ($events as $date_future => $event_name) {
 
     startCountdowns();
 </script>
+
+
 
 </body>
 </html>

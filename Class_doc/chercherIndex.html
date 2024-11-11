@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Fonction chercherIndex</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #005a9c;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+        section {
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            overflow-x: auto;
+        }
+        code {
+            color: #f8f8f2;
+            font-size: 16px;
+        }
+        .example {
+            background-color: #e0e0e0;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Documentation PHP - Fonction chercherIndex</h1>
+    </header>
+
+    <section>
+        <h2>Description</h2>
+        <p>La fonction <code>chercherIndex</code> permet de rechercher l'index d'une valeur spécifique dans un tableau. Si la valeur est trouvée, l'index est retourné ; sinon, la fonction retourne <code>false</code>.</p>
+    </section>
+
+    <section>
+        <h2>Code Source</h2>
+        <pre><code>
+<!--
+<?php
+function chercherIndex($tableau, $valeur) {
+    // Utiliser array_search pour trouver l'index ou la clé de la valeur
+    $index = array_search($valeur, $tableau);
+
+    // Vérifier si la valeur a été trouvée
+    if ($index !== false) {
+        return $index;
+    } else {
+        return false; // Retourner false si la valeur n'est pas trouvée
+    }
+}
+?>
+-->
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>Exemple d'utilisation</h2>
+        <div class="example">
+            <p>Voici un exemple d'utilisation de la fonction <code>chercherIndex</code> :</p>
+            <pre><code>
+<?php
+$tableau = array("pomme", "banane", "orange", "fraise");
+$valeur_a_chercher = "orange";
+
+$resultat = chercherIndex($tableau, $valeur_a_chercher);
+
+if ($resultat !== false) {
+    echo "L'index de '$valeur_a_chercher' est $resultat.";
+} else {
+    echo "'$valeur_a_chercher' n'a pas été trouvé dans le tableau.";
+}
+?>
+            </code></pre>
+        </div>
+    </section>
+
+    <footer>
+        <p style="text-align:center; padding: 20px 0; background-color: #333; color: white;">© 2024 Documentation PHP</p>
+    </footer>
+</body>
+</html>

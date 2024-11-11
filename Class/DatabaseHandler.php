@@ -304,4 +304,6 @@ $databaseHandler->action_sql("INSERT INTO `undeuxtroisquatre` (nom) VALUES ('nom
 */
 // fonction ok 22/07/2024  X0_
 
+
+
 ?>
