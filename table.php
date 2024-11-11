@@ -409,109 +409,7 @@ $php__Content_remove .= '$databaseHandler->action_sql("DELETE FROM  `projet` WHE
     
     
     
-    // add 
 
-    $php__Content_add = "<?php \n";
-
-    $php__Content_add .= "\n";
-    $php__Content_add .= "session_start();";
-    $php__Content_add .= "\n";
-    $php__Content_add .= 'header("Access-Control-Allow-Origin: *");';
-    $php__Content_add .= "\n";
-
-
-    $php__Content_add .= '$servername = "localhost";';
-    $php__Content_add .= "\n";
-
-
-    
-
-
-
-
-
-
-     
-    $php__Content_add .= "\n";
-    $php__Content_add .= '$' . $columnNames[0] . ' = $_POST["' . $columnNames[0] . '"];';
-
-    $php__Content_add .= "\n";
-
-  
-
-    $php__Content_add .= 'require_once "src_general.php";';
-    $php__Content_add .= "\n";
-
-    $php__Content_add .= 'require_once $src_general."path_config.php";';
-    $php__Content_add .= "\n";
-    $php__Content_add .= 'require_once $src_general."Give_url.php";';
-    $php__Content_add .= "\n";
-
-    $php__Content_add .= 'require_once $src_general."DatabaseHandler.php";';
-
-
-    $php__Content_add .= "\n";
-
-    $php__Content_add .= 'require_once $src_general."AsciiConverter.php";';
-
-
-    $php__Content_add .= "\n";
-
-    $php__Content_add .= 'require_once $src_general."path_config.php";';
-
-
-    
-    $php__Content_add .= "\n";
-
- 
-
-
-    $php__Content_add .= "\n";
-
-    $php__Content_add .= 
-    
-<<<'PHP'
- 
-$databaseHandler = new DatabaseHandler($config_dbname, $config_password);
-PHP;
-
-
-$php__Content_add .= "\n";
-$php__Content_add .= '$time = time();';
-$php__Content_add .= "\n";
-
-
-
-
-
-$php__Content_add .= '$databaseHandler->action_sql("INSERT INTO `'.$mainTableName.'` ('.$columnNames[0].') VALUES ($time)");' ;
-
-     
-    
-    $php__Content_add .= "\n";
-
-    $php__Content_add .= "?>";
-
-    // Définir le chemin et le nom du fichier à créer
-    $filePath = $source_file[1] . $columnName . '_add.php';
-
-    // Créer ou ouvrir le fichier en mode écriture
-    $file = fopen($filePath, 'w');
-
-    // Vérifier si le fichier a bien été ouvert
-    if ($file) {
-        // Écrire le contenu dans le fichier
-        fwrite($file, $php__Content_add);
-
-        // Fermer le fichier après l'écriture
-        fclose($file);
-        echo "Le fichier a été créé avec succès.";
-        echo "<br/>";
-    } else {
-        echo "Impossible d'ouvrir le fichier pour l'écriture.";
-    }
-
-    // add 
 
 
 
@@ -697,6 +595,155 @@ if ($file) {
 } else {
     echo "Erreur lors de la création du fichier $fileName.";
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // add 
+
+    $php__Content_add = "<?php \n";
+
+    $php__Content_add .= "\n";
+    $php__Content_add .= "session_start();";
+    $php__Content_add .= "\n";
+    $php__Content_add .= 'header("Access-Control-Allow-Origin: *");';
+    $php__Content_add .= "\n";
+
+
+    $php__Content_add .= '$servername = "localhost";';
+    $php__Content_add .= "\n";
+
+
+    
+
+
+
+
+
+
+     
+    $php__Content_add .= "\n";
+ 
+
+  
+
+    $php__Content_add .= 'require_once "src_general.php";';
+    $php__Content_add .= "\n";
+
+    $php__Content_add .= 'require_once $src_general."path_config.php";';
+    $php__Content_add .= "\n";
+    $php__Content_add .= 'require_once $src_general."Give_url.php";';
+    $php__Content_add .= "\n";
+
+    $php__Content_add .= 'require_once $src_general."DatabaseHandler.php";';
+
+
+    $php__Content_add .= "\n";
+
+    $php__Content_add .= 'require_once $src_general."AsciiConverter.php";';
+
+
+    $php__Content_add .= "\n";
+
+    $php__Content_add .= 'require_once $src_general."path_config.php";';
+
+
+    
+    $php__Content_add .= "\n";
+
+ 
+
+
+    $php__Content_add .= "\n";
+
+    $php__Content_add .= 
+    
+<<<'PHP'
+ 
+$databaseHandler = new DatabaseHandler($config_dbname, $config_password);
+PHP;
+
+
+$php__Content_add .= "\n";
+$php__Content_add .= '$time = time();';
+$php__Content_add .= "\n";
+
+
+
+
+
+$php__Content_add .= '$databaseHandler->action_sql("INSERT INTO `'.$mainTableName.'` ('.$columnNames[0].') VALUES ($time)");' ;
+
+     
+    
+    $php__Content_add .= "\n";
+
+    $php__Content_add .= "?>";
+
+    // Définir le chemin et le nom du fichier à créer
+    $filePath = $source_file[1] . $mainTableName . '_add.php';
+
+    // Créer ou ouvrir le fichier en mode écriture
+    $file = fopen($filePath, 'w');
+
+    // Vérifier si le fichier a bien été ouvert
+    if ($file) {
+        // Écrire le contenu dans le fichier
+        fwrite($file, $php__Content_add);
+
+        // Fermer le fichier après l'écriture
+        fclose($file);
+        echo "Le fichier a été créé avec succès.";
+        echo "<br/>";
+    } else {
+        echo "Impossible d'ouvrir le fichier pour l'écriture.";
+    }
+
+    // add 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
 
 
