@@ -11,4 +11,3 @@ require_once $src_general."path_config.php";
 require_once $src_general."path_config.php";
 $databaseHandler->action_sql("UPDATE  `aliment` SET `nom_aliment` = ".$nom_aliment."   WHERE  `id_aliment` =".$id_aliment." ");
 ?>
-?>

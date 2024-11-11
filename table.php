@@ -4,7 +4,7 @@ require_once 'Class/DatabaseHandler.php';
 
 
 
-
+echo "<br/>" ; 
 
 $columnNames = isset($_POST['column_name']) ? $_POST['column_name'] : [];
 $columnTypes = isset($_POST['column_type']) ? $_POST['column_type'] : [];
@@ -24,6 +24,8 @@ $databaseHandler = new DatabaseHandler("root", "root");
 
 // Parcours des noms de colonnes et des types pour les définir
 foreach ($columnNames as $index => $name) {
+echo "<br/>" ; 
+
     // Définir le nom de la colonne
     $databaseHandler->set_column_names($name);
 
@@ -65,6 +67,8 @@ $source_file = array(
 
 
 
+
+
 $phpContent_1 .= "\n";
 
 // Parcours des noms de colonnes et ajout dynamique dans le code PHP
@@ -73,6 +77,7 @@ $phpContent_1 .= "\n";
 var_dump($columnNames);
 $i = 0;
 foreach ($columnNames as $columnName) {
+    echo "<br/>" ; 
 
     $phpConte__nt_js .= "\n";
 
@@ -196,6 +201,8 @@ if ($file) {
     // Fermer le fichier après l'écriture
     fclose($file);
     echo "Le fichier a été créé avec succès.";
+echo "<br/>" ; 
+
 } else {
     echo "Impossible d'ouvrir le fichier pour l'écriture.";
 }
@@ -243,6 +250,8 @@ if ($file) {
     // Fermer le fichier après l'écriture
     fclose($file);
     echo "Le fichier a été créé avec succès.";
+echo "<br/>" ; 
+
 } else {
     echo "Impossible d'ouvrir le fichier pour l'écriture.";
 }
@@ -252,7 +261,6 @@ if ($file) {
 
 
 
-$php__Content_update .= "\n?>";
 
 // Définir le chemin et le nom du fichier à créer
 $filePath = $source_file[0] . $mainTableName . '_update.php';
@@ -268,12 +276,15 @@ if ($file) {
     // Fermer le fichier après l'écriture
     fclose($file);
     echo "Le fichier a été créé avec succès.";
+echo "<br/>" ; 
+
 } else {
     echo "Impossible d'ouvrir le fichier pour l'écriture.";
 }
 
 
 
+echo "<br/>" ; 
 
 
 
@@ -304,6 +315,8 @@ if ($file) {
     // Fermer le fichier après l'écriture
     fclose($file);
     echo "Le fichier a été créé avec succès.";
+echo "<br/>" ; 
+
 } else {
     echo "Impossible d'ouvrir le fichier pour l'écriture.";
 }

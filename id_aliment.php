@@ -2,7 +2,7 @@
 $servername = "localhost";
 $id = $_POST["id"];
 $id_aliment = $_POST["id_aliment"];
-$id_general = $_POST["id_general"];
+
 require_once "src_general.php";
 require_once $src_general."path_config.php";
 require_once $src_general."DatabaseHandler.php";
