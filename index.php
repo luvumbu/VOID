@@ -43,3 +43,17 @@ else {
 <script src="Class/js.js"></script>
 
  
+ 
+  
+<?php 
+  include_once "CRUDManager/ma_table_includes.php" ;
+?>
+<?php 
+  include_once "CRUDManager/ma_table_includes.php" ;
+?>
+<?php 
+  include_once "CRUDManager/ma_table_includes.php" ;
+?>
+<?php 
+  include_once "CRUDManager/ma_table_includes.php" ;
+?>

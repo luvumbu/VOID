@@ -5,12 +5,18 @@ require_once 'Class/dbCheck.php';
 
 
 
-var_dump($_POST['column_name']);
+
 
 $source_file = array(
-    "CRUDManager/",
     "CRUDManager/"
 );
+
+$include_list = array(
+    ""
+);
+
+
+
 $permissions = 0777;
 foreach ($source_file as $dossier) {
     if (!file_exists($dossier)) {
@@ -72,6 +78,11 @@ $i = 0;
 foreach ($columnNames as $columnName) {
     echo "<br/>";
     $phpConte__nt_js .= "\n";
+    $phpConte__nt_js .= "<script>";
+    $phpConte__nt_js .= "\n";
+
+
+
     $phpConte__nt_js .= '    function ' . $columnName . '(_this) {
         var ok = new Information("' . $source_file[0] . $columnName . '_up.php"); // création de la classe 
         ok.add("' . $columnName . '", _this.title); // ajout de l\'information pour lenvoi 
@@ -91,8 +102,15 @@ function r() {
   location.reload(); 
 }
     }';
+
+
+    $phpConte__nt_js .= "\n";
+    $phpConte__nt_js .= "</script>";
     // remove JS 
     $phpConte__nt_js_remove .= "\n";
+    $phpConte__nt_js_remove .= "<script>";
+
+
     $phpConte__nt_js_remove .= '    function ' . $columnName . '_remove(_this) {
         var ok = new Information("' . $source_file[0] . $columnName . '_remove.php"); // création de la classe 
         ok.add("' . $columnName . '", _this.title); // ajout de l\'information pour lenvoi 
@@ -110,6 +128,7 @@ function r() {
         location.reload(); 
         }
          }';
+    $phpConte__nt_js_remove .= "</script>";
     // remove JS 
 
 
@@ -118,16 +137,18 @@ function r() {
 
 
 
-        // add JS 
-        $phpConte__nt_js_add .= "\n";
-        $phpConte__nt_js_add .= '    function ' . $columnName . '_add(_this) {
+    // add JS 
+    $phpConte__nt_js_add .= "\n";
+    $phpConte__nt_js_add .= "<script>";
+
+    $phpConte__nt_js_add .= '    function ' . $columnName . '_add(_this) {
             var ok = new Information("' . $source_file[0] . $columnName . '_add.php"); // création de la classe 
             ok.add("' . $columnName . '", _this.title); // ajout de l\'information pour lenvoi 
             console.log(ok.info());  
             ok.push(); // envoie l\'information au code php 
         }';
-        $phpConte__nt_js_add .= "\n";
-        $phpConte__nt_js_add .= '    function ' . $columnName . '_add_r(_this) {
+    $phpConte__nt_js_add .= "\n";
+    $phpConte__nt_js_add .= '    function ' . $columnName . '_add_r(_this) {
             var ok = new Information("' . $source_file[0] . $columnName . '_add.php"); // création de la classe 
             ok.add("' . $columnName . '", _this.title); // ajout de l\'information pour lenvoi 
             console.log(ok.info());  
@@ -137,7 +158,7 @@ function r() {
             location.reload(); 
             }
              }';
-        // add JS 
+    // add JS 
 
 
 
@@ -149,7 +170,7 @@ function r() {
 
 
 
-    
+
     if ($i == 0) {
         $phpContent_1 .= '
 $databaseHandler = new DatabaseHandler($dbname, $username);
@@ -187,8 +208,10 @@ $' . $columnName . '_req_sql_url__' . $columnName . '_' . $i . ' = $databaseHand
     $php__Content_update .= "\n";
     $php__Content_update .= "?>";
     // Définir le chemin et le nom du fichier à créer
-    $filePath = $source_file[1] . $columnName . '_up.php';
+    $filePath = $source_file[0] . $columnName . '_up.php';
     // Créer ou ouvrir le fichier en mode écriture
+
+    //array_push($include_list,$filePath);
     $file = fopen($filePath, 'w');
     // Vérifier si le fichier a bien été ouvert
     if ($file) {
@@ -236,7 +259,9 @@ PHP;
     $php__Content_remove .= "\n";
     $php__Content_remove .= "?>";
     // Définir le chemin et le nom du fichier à créer
-    $filePath = $source_file[1] . $columnName . '_remove.php';
+    $filePath = $source_file[0] . $columnName . '_remove.php';
+    //array_push($include_list,$filePath);
+
     // Créer ou ouvrir le fichier en mode écriture
     $file = fopen($filePath, 'w');
     // Vérifier si le fichier a bien été ouvert
@@ -270,6 +295,8 @@ $i = 0;
 $phpContent_1 .= "\n?>";
 // Définir le chemin et le nom du fichier à créer
 $filePath = $source_file[0] . $mainTableName . '_up.php';
+//array_push($include_list,$filePath);
+
 // Créer ou ouvrir le fichier en mode écriture
 $file = fopen($filePath, 'w');
 // Vérifier si le fichier a bien été ouvert
@@ -285,6 +312,8 @@ if ($file) {
 }
 // Définir le chemin et le nom du fichier à créer
 $filePath = $source_file[0] . $mainTableName . '_update.php';
+//array_push($include_list,$filePath);
+
 // Créer ou ouvrir le fichier en mode écriture
 $file = fopen($filePath, 'w');
 // Vérifier si le fichier a bien été ouvert
@@ -302,7 +331,10 @@ if ($file) {
 echo "<br/>";
 $phpConte__nt_js .= "\n";
 // Définir le chemin et le nom du fichier à créer
-$filePath = $source_file[0] . $mainTableName . '.js';
+// js_scrypt
+$filePath = $source_file[0] . $mainTableName . '.php'; //jsjs
+array_push($include_list, $filePath);
+
 // Créer ou ouvrir le fichier en mode écriture
 $file = fopen($filePath, 'w');
 // Vérifier si le fichier a bien été ouvert
@@ -320,7 +352,9 @@ if ($file) {
 
 $phpConte__nt_js_remove .= "\n";
 // Définir le chemin et le nom du fichier à créer
-$filePath = $source_file[0] . $mainTableName . '_remove.js';
+$filePath = $source_file[0] . $mainTableName . '_remove.php'; // jsjs
+array_push($include_list, $filePath);
+
 // Créer ou ouvrir le fichier en mode écriture
 $file = fopen($filePath, 'w');
 // Vérifier si le fichier a bien été ouvert
@@ -338,7 +372,9 @@ if ($file) {
 // add 
 $phpConte__nt_js_add .= "\n";
 // Définir le chemin et le nom du fichier à créer
-$filePath = $source_file[0] . $mainTableName . '_add.js';
+$filePath = $source_file[0] . $mainTableName . '_add.php'; // jsjs
+array_push($include_list, $filePath);
+
 // Créer ou ouvrir le fichier en mode écriture
 $file = fopen($filePath, 'w');
 // Vérifier si le fichier a bien été ouvert
@@ -399,7 +435,7 @@ $php__Content_add .= 'require_once $src_general."path_config.php";';
 $php__Content_add .= "\n";
 $php__Content_add .= "\n";
 $php__Content_add .=
-   <<<'PHP'
+    <<<'PHP'
  
 $databaseHandler = new DatabaseHandler($config_dbname, $config_password);
 PHP;
@@ -410,7 +446,9 @@ $php__Content_add .= '$databaseHandler->action_sql("INSERT INTO `' . $mainTableN
 $php__Content_add .= "\n";
 $php__Content_add .= "?>";
 // Définir le chemin et le nom du fichier à créer
-$filePath = $source_file[1] . $mainTableName . '_add.php';
+$filePath = $source_file[0] . $mainTableName . '_add.php';
+//array_push($include_list,$filePath);
+
 // Créer ou ouvrir le fichier en mode écriture
 $file = fopen($filePath, 'w');
 // Vérifier si le fichier a bien été ouvert
@@ -426,3 +464,60 @@ if ($file) {
     echo "Impossible d'ouvrir le fichier pour l'écriture.";
 }
 // add 
+
+$php__include = "<?php";
+
+
+
+foreach ($include_list as $file) {
+
+
+    $php__include .= "\n";
+    $php__include .= 'include_once "' . $file . '";';
+    $php__include .= "\n";
+}
+$php__include .= "?>";
+
+
+
+// Définir le chemin et le nom du fichier à créer
+$filePath = $source_file[0] . $mainTableName . '_includes.php';
+array_push($include_list, $filePath);
+
+// Créer ou ouvrir le fichier en mode écriture
+$file = fopen($filePath, 'w');
+// Vérifier si le fichier a bien été ouvert
+if ($file) {
+    // Écrire le contenu dans le fichier
+    fwrite($file, $php__include);
+
+    // Fermer le fichier après l'écriture
+    fclose($file);
+    echo "Le fichier a été créé avec succès.";
+    echo "<br/>";
+} else {
+    echo "Impossible d'ouvrir le fichier pour l'écriture.";
+}
+// add 
+
+
+
+
+
+$file = 'index.php';
+$contenu_a_ajouter = "\n<?php \n  include_once \"$filePath\" ;\n?>";
+
+// Ouvre le fichier en mode ajout (append)
+$fichier = fopen($file, 'a');
+
+// Vérifie si le fichier est ouvert correctement
+if ($fichier) {
+    // Écrit le contenu à la fin du fichier
+    fwrite($fichier, $contenu_a_ajouter);
+
+    // Ferme le fichier après écriture
+    fclose($fichier);
+    echo "Le contenu a été ajouté avec succès.";
+} else {
+    echo "Impossible d'ouvrir le fichier.";
+}
