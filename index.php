@@ -28,7 +28,7 @@ session_start();
 $path = "Class/dbCheck.php";
 if (checkFileExists($path)) {
   require_once  'Class/dbCheck.php' ; 
-   require_once 'test2.php' ;  
+   require_once 'view/form_creation_table_bdd.php' ;  
 }
 else {
 
@@ -45,15 +45,16 @@ else {
  
  
   
+ 
 <?php 
-  include_once "CRUDManager/ma_table_includes.php" ;
+
+  include_once "CRUDManager/nom_table_includes.php" ;
+
+
 ?>
+
+
+ 
 <?php 
-  include_once "CRUDManager/ma_table_includes.php" ;
-?>
-<?php 
-  include_once "CRUDManager/ma_table_includes.php" ;
-?>
-<?php 
-  include_once "CRUDManager/ma_table_includes.php" ;
+  include_once "../CRUDManager/nom_table_includes.php" ;
 ?>

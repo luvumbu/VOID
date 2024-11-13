@@ -1,6 +1,6 @@
 <?php
-require_once 'Class/DatabaseHandler.php';
-require_once 'Class/dbCheck.php';
+require_once '../Class/DatabaseHandler.php';
+require_once '../Class/dbCheck.php';
 
 
 
@@ -8,7 +8,7 @@ require_once 'Class/dbCheck.php';
 
 
 $source_file = array(
-    "CRUDManager/"
+    "../CRUDManager/"
 );
 
 $include_list = array(
@@ -473,7 +473,8 @@ foreach ($include_list as $file) {
 
 
     $php__include .= "\n";
-    $php__include .= 'include_once "' . $file . '";';
+    $php__include .= 'include_once "' . str_replace($source_file[0],"",$file). '";';
+   
     $php__include .= "\n";
 }
 $php__include .= "?>";
@@ -503,8 +504,8 @@ if ($file) {
 
 
 
-
-$file = 'index.php';
+ 
+$file = '../index.php';
 $contenu_a_ajouter = "\n<?php \n  include_once \"$filePath\" ;\n?>";
 
 // Ouvre le fichier en mode ajout (append)
@@ -521,3 +522,6 @@ if ($fichier) {
 } else {
     echo "Impossible d'ouvrir le fichier.";
 }
+
+
+ 

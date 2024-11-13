@@ -120,7 +120,7 @@
 <body>
     <h1>Créer une nouvelle table dans la base de données</h1>
 
-    <form action="table.php" method="POST">
+    <form action="config/config_form_creation_table_bdd.php" method="POST">
         <label for="main_table_name">Nom de la table :</label>
         <input type="text" id="main_table_name" name="main_table_name" required><br><br>
 
