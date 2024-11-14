@@ -116,8 +116,7 @@
             }
         }
     </style>
-</head>
-<body>
+</head>  
     <h1>Créer une nouvelle table dans la base de données</h1>
 
     <form action="config/config_form_creation_table_bdd.php" method="POST">
@@ -131,12 +130,27 @@
 
                 <label for="column_type_1">Type de la colonne :</label>
                 <select name="column_type[]" required>
+                    <!-- Types numériques -->
                     <option value="INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY">INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY</option>
+                    <option value="INT">INT</option>
+                    <option value="BIGINT">BIGINT</option>
+                    <option value="FLOAT">FLOAT</option>
+                    <option value="DOUBLE">DOUBLE</option>
+                    <option value="DECIMAL(10,2)">DECIMAL(10,2)</option>
+
+                    <!-- Types de chaînes de caractères -->
                     <option value="VARCHAR(255) NOT NULL">VARCHAR(255) NOT NULL</option>
+                    <option value="CHAR(100) NOT NULL">CHAR(100) NOT NULL</option>
                     <option value="TEXT NOT NULL">TEXT NOT NULL</option>
                     <option value="LONGTEXT NOT NULL">LONGTEXT NOT NULL</option>
-                    <option value="DATE NOT NULL">DATE NOT NULL</option>
+                    <option value="BLOB">BLOB</option>
+
+                    <!-- Types de date et heure -->
+                    <option value="DATE">DATE</option>
+                    <option value="DATETIME">DATETIME</option>
                     <option value="TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP">TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP</option>
+                    <option value="TIME">TIME</option>
+                    <option value="YEAR">YEAR</option>
                 </select><br><br>
             </div>
         </div>
@@ -150,7 +164,7 @@
         document.getElementById("addColumnBtn").addEventListener("click", function() {
             var columnDiv = document.createElement("div");
             columnDiv.classList.add("column");
-            
+
             // Création de l'input pour le nom de la colonne
             var labelName = document.createElement("label");
             labelName.textContent = "Nom de la colonne :";
@@ -174,36 +188,32 @@
             selectType.name = "column_type[]";
             selectType.required = true;
 
-            // Options du select
-            var option1 = document.createElement("option");
-            option1.value = "INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY";
-            option1.textContent = "INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY";
-            selectType.appendChild(option1);
+            // Ajout des options de types de colonne
+            var types = [
+                { value: "INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY", text: "INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY" },
+                { value: "INT", text: "INT" },
+                { value: "BIGINT", text: "BIGINT" },
+                { value: "FLOAT", text: "FLOAT" },
+                { value: "DOUBLE", text: "DOUBLE" },
+                { value: "DECIMAL(10,2)", text: "DECIMAL(10,2)" },
+                { value: "VARCHAR(255) NOT NULL", text: "VARCHAR(255) NOT NULL" },
+                { value: "CHAR(100) NOT NULL", text: "CHAR(100) NOT NULL" },
+                { value: "TEXT NOT NULL", text: "TEXT NOT NULL" },
+                { value: "LONGTEXT NOT NULL", text: "LONGTEXT NOT NULL" },
+                { value: "BLOB", text: "BLOB" },
+                { value: "DATE", text: "DATE" },
+                { value: "DATETIME", text: "DATETIME" },
+                { value: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP", text: "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" },
+                { value: "TIME", text: "TIME" },
+                { value: "YEAR", text: "YEAR" }
+            ];
 
-            var option2 = document.createElement("option");
-            option2.value = "VARCHAR(255) NOT NULL";
-            option2.textContent = "VARCHAR(255) NOT NULL";
-            selectType.appendChild(option2);
-
-            var option3 = document.createElement("option");
-            option3.value = "TEXT NOT NULL";
-            option3.textContent = "TEXT NOT NULL";
-            selectType.appendChild(option3);
-
-            var option4 = document.createElement("option");
-            option4.value = "LONGTEXT NOT NULL";
-            option4.textContent = "LONGTEXT NOT NULL";
-            selectType.appendChild(option4);
-
-            var option5 = document.createElement("option");
-            option5.value = "DATE NOT NULL";
-            option5.textContent = "DATE NOT NULL";
-            selectType.appendChild(option5);
-
-            var option6 = document.createElement("option");
-            option6.value = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP";
-            option6.textContent = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP";
-            selectType.appendChild(option6);
+            types.forEach(function(type) {
+                var option = document.createElement("option");
+                option.value = type.value;
+                option.textContent = type.text;
+                selectType.appendChild(option);
+            });
 
             columnDiv.appendChild(selectType);
 

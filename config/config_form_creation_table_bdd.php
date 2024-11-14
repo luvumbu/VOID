@@ -172,9 +172,40 @@ $' . $columnName . '_req_sql_url__' . $columnName . '_' . $i . ' = $databaseHand
     $php__Content_update .= "\n";
     $php__Content_update .= '$servername = "localhost";';
     $php__Content_update .= "\n";
-    $php__Content_update .= '$' . $columnNames[0] . ' = $_POST["' . $columnNames[0] . '"];';
+   
+    $xa = 0 ;
+   for($aa = 0 ; $aa <count($columnNames) ; $aa++ ) {
+     
     $php__Content_update .= "\n";
-    $php__Content_update .= '$' . $columnName . ' = $_POST["' . $columnName . '"];';
+
+
+
+    $php__Content_update .= 'if(isset($_POST["'.$columnNames[$aa].'"]))';
+    $php__Content_update .= "\n";
+    $php__Content_update .= "{";
+    $php__Content_update .= "\n";
+    $php__Content_update .= '$' . $columnNames[$aa] . ' = $_POST["' . $columnNames[$aa] . '"];';
+    $php__Content_update .= "\n";
+    $php__Content_update .= "}";
+
+
+
+
+   
+  
+    $php__Content_update .= "\n";
+   
+
+    $xa = $aa ; 
+
+
+
+   }
+ 
+    $php__Content_update .= "\n";
+    
+   
+
     $php__Content_update .= "\n";
     $php__Content_update .= 'require_once "src_general.php";';
     $php__Content_update .= "\n";
@@ -190,7 +221,7 @@ $' . $columnName . '_req_sql_url__' . $columnName . '_' . $i . ' = $databaseHand
     $php__Content_update .= "\n";
     $php__Content_update .= 'require_once $src_general."path_config.php";';
     $php__Content_update .= "\n";
-    $php__Content_update .= '$databaseHandler->action_sql("UPDATE  `' . $mainTableName . '` SET `' . $columnName . '` = ".$' . $columnName . '."   WHERE  `' . $columnNames[0] . '` =".$' . $columnNames[0] . '." ");';
+    $php__Content_update .= '$databaseHandler->action_sql("UPDATE  `' . $mainTableName . '` SET `' . $columnName . '` = ".$' . $columnName . '."   WHERE  `' . $columnName . '` =".$' . $columnName . '." ");';
     $php__Content_update .= "\n";
     $php__Content_update .= "?>";
     // Définir le chemin et le nom du fichier à créer
