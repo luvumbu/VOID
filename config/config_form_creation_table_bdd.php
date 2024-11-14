@@ -295,7 +295,7 @@ $i = 0;
 $phpContent_1 .= "\n?>";
 // Définir le chemin et le nom du fichier à créer
 $filePath = $source_file[0] . $mainTableName . '_up.php';
-//array_push($include_list,$filePath);
+// array_push($include_list,$filePath);
 
 // Créer ou ouvrir le fichier en mode écriture
 $file = fopen($filePath, 'w');
@@ -373,7 +373,7 @@ if ($file) {
 $phpConte__nt_js_add .= "\n";
 // Définir le chemin et le nom du fichier à créer
 $filePath = $source_file[0] . $mainTableName . '_add.php'; // jsjs
-array_push($include_list, $filePath);
+//array_push($include_list, $filePath);
 
 // Créer ou ouvrir le fichier en mode écriture
 $file = fopen($filePath, 'w');
@@ -483,6 +483,8 @@ $php__include .= "?>";
 
 // Définir le chemin et le nom du fichier à créer
 $filePath = $source_file[0] . $mainTableName . '_includes.php';
+$filePath2 = str_replace("../","",$source_file[0]) . $mainTableName . '_includes.php';
+
 array_push($include_list, $filePath);
 
 // Créer ou ouvrir le fichier en mode écriture
@@ -504,9 +506,9 @@ if ($file) {
 
 
 
- 
-$file = '../index.php';
-$contenu_a_ajouter = "\n<?php \n  include_once \"$filePath\" ;\n?>";
+
+$file = '../log.php';
+$contenu_a_ajouter = "\n<?php \n  include_once \"$filePath2\" ;\n?>";
 
 // Ouvre le fichier en mode ajout (append)
 $fichier = fopen($file, 'a');
@@ -514,14 +516,38 @@ $fichier = fopen($file, 'a');
 // Vérifie si le fichier est ouvert correctement
 if ($fichier) {
     // Écrit le contenu à la fin du fichier
-    fwrite($fichier, $contenu_a_ajouter);
+
+
+  
+    
+
+// Vérifie si le fichier existe avant d'essayer de le lire
+if (file_exists($file)) {
+    // Lit le contenu du fichier
+    $content = file_get_contents($file);
+    
+    // Vérifie si le mot "verso" est présent dans le contenu
+    if (strpos($content,  $contenu_a_ajouter) !== false) {
+        echo "Le mot 'verso' a été trouvé dans le fichier.";
+    } else {
+           fwrite($fichier, $contenu_a_ajouter);
 
     // Ferme le fichier après écriture
     fclose($fichier);
     echo "Le contenu a été ajouté avec succès.";
+    }
+} else {
+    echo "Le fichier n'existe pas.";
+}
 } else {
     echo "Impossible d'ouvrir le fichier.";
 }
 
 
  
+
+
+// Chemin vers le fichier
+
+
+?>

@@ -43,18 +43,16 @@ else {
 <script src="Class/js.js"></script>
 
  
- 
+ <?php 
+
+
+require_once 'log.php' ; 
+
+
+?>
   
  
-<?php 
-
-  include_once "CRUDManager/nom_table_includes.php" ;
-
-
-?>
-
-
  
-<?php 
-  include_once "../CRUDManager/nom_table_includes.php" ;
-?>
+
+
+
