@@ -8,9 +8,6 @@ $source_file = array(
 $include_list = array(
     ""
 );
-
- 
-
 $permissions = 0777;
 foreach ($source_file as $dossier) {
     if (!file_exists($dossier)) {
@@ -49,8 +46,7 @@ $phpContent_1 = "<?php \n";
 $phpContent_1 .= "session_start();";
 $phpContent_1 .= "\n";
 $phpContent_1 .= '$servername = "localhost";';
-$phpContent_1 .= "\n";
-// !
+$phpContent_1 .= "\n";// !
 $phpContent_1 .= 'require_once "src_general.php";';
 $phpContent_1 .= "\n";
 $phpContent_1 .= 'require_once $src_general."dbCheck.php";';
@@ -60,8 +56,7 @@ $phpContent_1 .= "\n";
 $phpContent_1 .= 'require_once $src_general."Give_url.php";';
 $phpContent_1 .= "\n";
 $phpContent_1 .= 'require_once $src_general."AsciiConverter.php";';
-$phpContent_1 .= "\n";
-//  !  
+$phpContent_1 .= "\n";//  !  
 $phpConte__nt_js  = "";
 // Construction de la requête de base avec le nom de la table
 $phpContent_1 .= '$req_sql_0 = \'SELECT * FROM `' . $mainTableName . '` WHERE 1\';';
@@ -74,9 +69,6 @@ foreach ($columnNames as $columnName) {
     $phpConte__nt_js .= "\n";
     $phpConte__nt_js .= "<script>";
     $phpConte__nt_js .= "\n";
-
-
-
     $phpConte__nt_js .= '    function ' . $columnName . '(_this) {
         var ok = new Information("' . $source_file[0] . $columnName . '_up.php"); // création de la classe 
         ok.add("' . $columnName . '", _this.title); // ajout de l\'information pour lenvoi 

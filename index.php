@@ -1,9 +1,8 @@
 <?php
-
 session_start();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -17,13 +16,8 @@ session_start();
 
 
   // Inclusion des fichiers de classe PHP nécessaires
-  require_once 'class/Creat_form.php';
-  require_once 'class/AsciiConverter.php';
-  require_once 'class/chercherIndex.php';
-  require_once 'class/IsLocal.php';
-  require_once 'class/give_url.php';
-  require_once 'class/tempsDeLecture.php' ; 
-  require_once 'class/CheckFileExists.php' ;  
+  require_once 'Class/path_general_class.php';
+ 
 // Example usage
 $path = "Class/dbCheck.php";
 if (checkFileExists($path)) {
@@ -31,28 +25,10 @@ if (checkFileExists($path)) {
    require_once 'view/form_creation_table_bdd.php' ;  
 }
 else {
-
     require_once 'view/loginVerificationForm.php' ; 
-  }
-
-
-
-
- 
+  } 
   ?>
-<script src="Class/js.js"></script>
-
- 
+<script src="Class/js.js"></script> 
  <?php 
-
-
 require_once 'log.php' ; 
-
-
 ?>
-  
- 
- 
-
-
-
