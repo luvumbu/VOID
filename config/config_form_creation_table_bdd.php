@@ -1,12 +1,6 @@
 <?php
 require_once '../Class/DatabaseHandler.php';
 require_once '../Class/dbCheck.php';
-
-
-
-
-
-
 $source_file = array(
     "../CRUDManager/"
 );
@@ -15,7 +9,7 @@ $include_list = array(
     ""
 );
 
-
+ 
 
 $permissions = 0777;
 foreach ($source_file as $dossier) {
