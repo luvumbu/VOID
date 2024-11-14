@@ -312,7 +312,7 @@ $i = 0;
 $phpContent_1 .= "\n?>";
 // Définir le chemin et le nom du fichier à créer
 $filePath = $source_file[0] . $mainTableName . '_up.php';
-// array_push($include_list,$filePath);
+  array_push($include_list,$filePath);
 
 // Créer ou ouvrir le fichier en mode écriture
 $file = fopen($filePath, 'w');
