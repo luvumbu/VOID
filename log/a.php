@@ -102,4 +102,29 @@ body {
             <div class='filex' >MA_TaBLE_ok_1</div>
             <div class='date_event' >2024-11-16 02:20:28</div>
 
+       </div><div class='contenu_a_ajouter'>
+            <div class='mainTableName' >varchar</div>
+            <div class='filex' >id_varchar</div>
+            <div class='date_event' >2024-11-16 02:54:27</div>
+
+       </div><div class='contenu_a_ajouter'>
+            <div class='mainTableName' >varchar</div>
+            <div class='filex' >id_varchar</div>
+            <div class='date_event' >2024-11-16 02:55:04</div>
+
+       </div><div class='contenu_a_ajouter'>
+            <div class='mainTableName' >varchar</div>
+            <div class='filex' >id_varchar</div>
+            <div class='date_event' >2024-11-16 02:55:38</div>
+
+       </div><div class='contenu_a_ajouter'>
+            <div class='mainTableName' >varchar_element</div>
+            <div class='filex' >id_varchar</div>
+            <div class='date_event' >2024-11-16 02:56:04</div>
+
+       </div><div class='contenu_a_ajouter'>
+            <div class='mainTableName' >varchar_element2</div>
+            <div class='filex' >id_varchar</div>
+            <div class='date_event' >2024-11-16 02:56:20</div>
+
        </div>
