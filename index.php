@@ -26,5 +26,19 @@ session_start();
   <script src="Class/js.js"></script>
   <?php
   require_once 'log/log.php';
- 
+
+
   ?>
+  <div id="dowload_file" class="display_none">
+    <?php
+
+    require_once 'view/dowload_file.php';
+
+    ?>
+  </div>
+
+  <style>
+    .display_none{
+      display: none;
+    }
+  </style>
