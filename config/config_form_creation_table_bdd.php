@@ -1,6 +1,7 @@
 <?php
 require_once '../Class/DatabaseHandler.php';
 require_once '../Class/dbCheck.php';
+date_default_timezone_set('Europe/Paris');
 $source_file = array(
     "../CRUDManager/"
 );
@@ -46,7 +47,7 @@ $phpContent_1 = "<?php \n";
 $phpContent_1 .= "session_start();";
 $phpContent_1 .= "\n";
 $phpContent_1 .= '$servername = "localhost";';
-$phpContent_1 .= "\n";// !
+$phpContent_1 .= "\n"; // !
 $phpContent_1 .= 'require_once "src_general.php";';
 $phpContent_1 .= "\n";
 $phpContent_1 .= 'require_once $src_general."dbCheck.php";';
@@ -56,7 +57,7 @@ $phpContent_1 .= "\n";
 $phpContent_1 .= 'require_once $src_general."Give_url.php";';
 $phpContent_1 .= "\n";
 $phpContent_1 .= 'require_once $src_general."AsciiConverter.php";';
-$phpContent_1 .= "\n";//  !  
+$phpContent_1 .= "\n"; //  !  
 $phpConte__nt_js  = "";
 // Construction de la requête de base avec le nom de la table
 $phpContent_1 .= '$req_sql_0 = \'SELECT * FROM `' . $mainTableName . '` WHERE 1\';';
@@ -172,39 +173,36 @@ $' . $columnName . '_req_sql_url__' . $columnName . '_' . $i . ' = $databaseHand
     $php__Content_update .= "\n";
     $php__Content_update .= '$servername = "localhost";';
     $php__Content_update .= "\n";
-   
-    $xa = 0 ;
-   for($aa = 0 ; $aa <count($columnNames) ; $aa++ ) {
-     
+
+    $xa = 0;
+    for ($aa = 0; $aa < count($columnNames); $aa++) {
+
+        $php__Content_update .= "\n";
+
+
+
+        $php__Content_update .= 'if(isset($_POST["' . $columnNames[$aa] . '"]))';
+        $php__Content_update .= "\n";
+        $php__Content_update .= "{";
+        $php__Content_update .= "\n";
+        $php__Content_update .= '$' . $columnNames[$aa] . ' = $_POST["' . $columnNames[$aa] . '"];';
+        $php__Content_update .= "\n";
+        $php__Content_update .= "}";
+
+
+
+
+
+
+        $php__Content_update .= "\n";
+
+
+        $xa = $aa;
+    }
+
     $php__Content_update .= "\n";
 
 
-
-    $php__Content_update .= 'if(isset($_POST["'.$columnNames[$aa].'"]))';
-    $php__Content_update .= "\n";
-    $php__Content_update .= "{";
-    $php__Content_update .= "\n";
-    $php__Content_update .= '$' . $columnNames[$aa] . ' = $_POST["' . $columnNames[$aa] . '"];';
-    $php__Content_update .= "\n";
-    $php__Content_update .= "}";
-
-
-
-
-   
-  
-    $php__Content_update .= "\n";
-   
-
-    $xa = $aa ; 
-
-
-
-   }
- 
-    $php__Content_update .= "\n";
-    
-   
 
     $php__Content_update .= "\n";
     $php__Content_update .= 'require_once "src_general.php";';
@@ -312,7 +310,7 @@ $i = 0;
 $phpContent_1 .= "\n?>";
 // Définir le chemin et le nom du fichier à créer
 $filePath = $source_file[0] . $mainTableName . '_up.php';
-  array_push($include_list,$filePath);
+array_push($include_list, $filePath);
 
 // Créer ou ouvrir le fichier en mode écriture
 $file = fopen($filePath, 'w');
@@ -490,8 +488,8 @@ foreach ($include_list as $file) {
 
 
     $php__include .= "\n";
-    $php__include .= 'include_once "' . str_replace($source_file[0],"",$file). '";';
-   
+    $php__include .= 'include_once "' . str_replace($source_file[0], "", $file) . '";';
+
     $php__include .= "\n";
 }
 $php__include .= "?>";
@@ -500,7 +498,7 @@ $php__include .= "?>";
 
 // Définir le chemin et le nom du fichier à créer
 $filePath = $source_file[0] . $mainTableName . '_includes.php';
-$filePath2 = str_replace("../","",$source_file[0]) . $mainTableName . '_includes.php';
+$filePath2 = str_replace("../", "", $source_file[0]) . $mainTableName . '_includes.php';
 
 array_push($include_list, $filePath);
 
@@ -535,36 +533,103 @@ if ($fichier) {
     // Écrit le contenu à la fin du fichier
 
 
-  
-    
 
-// Vérifie si le fichier existe avant d'essayer de le lire
-if (file_exists($file)) {
-    // Lit le contenu du fichier
-    $content = file_get_contents($file);
-    
-    // Vérifie si le mot "verso" est présent dans le contenu
-    if (strpos($content,  $contenu_a_ajouter) !== false) {
-        echo "Le mot 'verso' a été trouvé dans le fichier.";
+
+
+    // Vérifie si le fichier existe avant d'essayer de le lire
+    if (file_exists($file)) {
+        // Lit le contenu du fichier
+        $content = file_get_contents($file);
+
+        // Vérifie si le mot "verso" est présent dans le contenu
+        if (strpos($content,  $contenu_a_ajouter) !== false) {
+            echo "Le mot 'verso' a été trouvé dans le fichier.";
+        } else {
+            fwrite($fichier, $contenu_a_ajouter);
+
+            // Ferme le fichier après écriture
+            fclose($fichier);
+            echo "Le contenu a été ajouté avec succès.";
+        }
     } else {
-           fwrite($fichier, $contenu_a_ajouter);
-
-    // Ferme le fichier après écriture
-    fclose($fichier);
-    echo "Le contenu a été ajouté avec succès.";
+        echo "Le fichier n'existe pas.";
     }
-} else {
-    echo "Le fichier n'existe pas.";
-}
 } else {
     echo "Impossible d'ouvrir le fichier.";
 }
 
 
- 
 
 
-// Chemin vers le fichier
 
 
-?>
+
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+
+
+
+echo "<br/>";
+
+
+
+
+
+
+
+
+$file = '../log/a.php';
+$contenu_a_ajouter = "";
+foreach ($columnNames as $filex) {
+
+    echo $filex;
+    echo "<br/>";
+
+
+
+
+    $contenu_a_ajouter .= "<div class='contenu_a_ajouter'>
+            <div class='mainTableName' >" . $mainTableName . "</div>
+            <div class='filex' >" . $filex . "</div>
+            <div class='date_event' >" . date('Y-m-d H:i:s') . "</div>
+
+       </div>";
+}
+
+
+
+
+
+
+
+// Ouvre le fichier en mode ajout (append)
+$fichier = fopen($file, 'a');
+
+// Vérifie si le fichier est ouvert correctement
+if ($fichier) {
+    // Écrit le contenu à la fin du fichier
+
+
+
+
+
+    // Vérifie si le fichier existe avant d'essayer de le lire
+    if (file_exists($file)) {
+        // Lit le contenu du fichier
+        $content = file_get_contents($file);
+
+        // Vérifie si le mot "verso" est présent dans le contenu
+        if (strpos($content,  $contenu_a_ajouter) !== false) {
+            echo "Le mot 'verso' a été trouvé dans le fichier.";
+        } else {
+            fwrite($fichier, $contenu_a_ajouter);
+
+            // Ferme le fichier après écriture
+            fclose($fichier);
+            echo "Le contenu a été ajouté avec succès.";
+        }
+    } else {
+        echo "Le fichier n'existe pas.";
+    }
+} else {
+    echo "Impossible d'ouvrir le fichier.";
+}
