@@ -522,7 +522,7 @@ if ($file) {
 
 
 
-$file = '../log.php';
+$file = '../log/log.php';
 $contenu_a_ajouter = "\n<?php \n  include_once \"$filePath2\" ;\n?>";
 
 // Ouvre le fichier en mode ajout (append)

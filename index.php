@@ -25,6 +25,6 @@ session_start();
   ?>
   <script src="Class/js.js"></script>
   <?php
-  require_once 'log.php';
+  require_once 'log/log.php';
  
   ?>
