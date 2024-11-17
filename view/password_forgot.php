@@ -4,7 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire de vérification de connexion</title>
+    <title>Password forgot</title>
+  <?php 
+require_once  '../Class/js.php' ; 
+
+?>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -91,40 +96,40 @@
     <div class="form-container">
         <h2>Vérification de Connexion</h2>
         <form action="your_php_file.php" method="POST">
-            <label for="dbname">Nom de la Base de Données :</label>
-            <input type="text" id="dbname" name="dbname" required>
 
-            <label for="username">Nom d'Utilisateur :</label>
+
+            <label for="username">Adresse mail</label>
             <input type="text" id="username" name="username" required>
 
             <!-- Div acting as a button -->
-            <div class="submit-btn" onclick="verifyConnection(this)">Vérifier la Connexion</div>
+            <div class="submit-btn" onclick="password_forgot(this)">Vérifier la Connexion</div>
         </form>
     </div>
 
 
     <script>
-        function verifyConnection() {
-            const dbname = document.getElementById("dbname").value;
+        function password_forgot() {
+         
             const username = document.getElementById("username").value;
 
 
-            var ok = new Information("req/loginVerificationForm.php"); // création de la classe 
-            ok.add("dbname", dbname); // ajout de l'information pour lenvoi 
-            ok.add("username", username); // ajout d'une deuxieme information denvoi  
+            var ok = new Information("../req/password_forgot_mail.php"); // création de la classe 
+            ok.add("nom_user", username); // ajout de l'information pour lenvoi 
             console.log(ok.info()); // demande l'information dans le tableau
             ok.push(); // envoie l'information au code pkp 
 
 
 
 
+            /*
 
+                        const myTimeout = setTimeout(login_bdd_, 250);
 
-            const myTimeout = setTimeout(verifyConnection, 250);
+                        function login_bdd_() {
+                         location.reload() ;
+                        }
 
-            function verifyConnection() {
-             location.reload() ;
-            }
+                        */
         }
     </script>
 </body>

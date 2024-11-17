@@ -1,9 +1,9 @@
 <?php
-require_once 'class/Creat_form.php';
-require_once 'class/AsciiConverter.php';
-require_once 'class/chercherIndex.php';
-require_once 'class/IsLocal.php';
-require_once 'class/give_url.php';
-require_once 'class/tempsDeLecture.php' ; 
-require_once 'class/CheckFileExists.php' ; 
+require_once 'Creat_form.php';
+require_once 'AsciiConverter.php';
+require_once 'chercherIndex.php';
+require_once 'IsLocal.php';
+require_once 'give_url.php';
+require_once 'tempsDeLecture.php' ; 
+require_once 'CheckFileExists.php' ; 
 ?>
