@@ -18,8 +18,22 @@ session_start();
   $path = "Class/dbCheck.php";
   if (checkFileExists($path)) {
     require_once  'Class/dbCheck.php';
-    require_once 'view/form_creation_table_bdd.php';
+    $databaseHandler = new DatabaseHandler($dbname, $username); 
+
+    if($databaseHandler->verif!=1){
+      require_once 'view/loginVerificationForm.php';
+
+    }
+    else {
+      require_once 'view/form_creation_table_bdd.php';
+
+    }
+
   } else {
+
+
+
+   
     require_once 'view/loginVerificationForm.php';
   }
   ?>
