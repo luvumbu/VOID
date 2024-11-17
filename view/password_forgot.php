@@ -114,7 +114,7 @@ require_once  '../Class/js.php' ;
 
 
             var ok = new Information("../req/password_forgot_mail.php"); // création de la classe 
-            ok.add("nom_user", username); // ajout de l'information pour lenvoi 
+            ok.add("username", username); // ajout de l'information pour lenvoi 
             console.log(ok.info()); // demande l'information dans le tableau
             ok.push(); // envoie l'information au code pkp 
 

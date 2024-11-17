@@ -1,19 +1,15 @@
-<?php
-
-session_start();
-
-
-
-
-?>
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription</title>
+    <title>Password forgot</title>
+  <?php 
+require_once  '../Class/js.php' ; 
+
+?>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -98,68 +94,44 @@ session_start();
 <body>
 
     <div class="form-container">
-        <h2>Inscription</h2>
+        <h2>Vérification de Connexion</h2>
         <form action="your_php_file.php" method="POST">
-            <label for="dbname">Adresse mail</label>
-            <input type="text" id="dbname" name="dbname" required>
 
 
+            <label for="username">Adresse mail</label>
+            <input type="text" id="username" name="username" required>
 
             <!-- Div acting as a button -->
-            <div class="submit-btn" onclick="inscrption(this)">Confirmation</div>
+            <div class="submit-btn" onclick="password_forgot(this)">Vérifier la Connexion</div>
         </form>
-
-
-        <a class="return" href="../">
-
-
-            <div>
-                <img width="50" height="50" src="https://img.icons8.com/ios-filled/50/return.png" alt="return" />
-
-            </div>
-        </a>
     </div>
 
 
     <script>
-        function inscrption() {
-            const dbname = document.getElementById("dbname").value;
+        function password_forgot() {
+         
             const username = document.getElementById("username").value;
 
 
-            var ok = new Information("req/inscrption.php"); // création de la classe 
-            ok.add("dbname", dbname); // ajout de l'information pour lenvoi 
-            ok.add("username", username); // ajout d'une deuxieme information denvoi  
+            var ok = new Information("../req/password_forgot_mail.php"); // création de la classe 
+            ok.add("nom_user", username); // ajout de l'information pour lenvoi 
             console.log(ok.info()); // demande l'information dans le tableau
             ok.push(); // envoie l'information au code pkp 
 
 
 
 
+            /*
 
+                        const myTimeout = setTimeout(login_bdd_, 250);
 
-            const myTimeout = setTimeout(login_bdd_, 250);
+                        function login_bdd_() {
+                         location.reload() ;
+                        }
 
-            function login_bdd_() {
-                location.reload();
-            }
+                        */
         }
     </script>
 </body>
 
 </html>
-
-<style>
-    .return {
-        background-color: white;
-        margin-top: 25px;
-        margin-bottom: 25px;
-        width: 50px;
-        text-align: center;
-
-    }
-
-    .return:hover {
-        cursor: pointer;
-    }
-</style>
