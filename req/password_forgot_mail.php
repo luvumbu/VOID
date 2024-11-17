@@ -4,8 +4,25 @@ session_start();
 require_once '../Class/give_url.php';
 require_once '../Class/path_config.php';
 require_once '../Class/DatabaseHandler.php';
+require_once '../Class/dbCheck.php';
 
-echo "OK<br>";
+$username_ = $_POST["username"] ; 
+ 
+$req_sql = 'SELECT * FROM `'.$dbname.'` WHERE `nom_user` ="'.$username_.'" ' ;
+ 
+$databaseHandler = new DatabaseHandler($dbname, $username);
+$databaseHandler->getDataFromTable($req_sql, "id_user");
+$id_user = $databaseHandler->tableList_info;
+
+
+
+ 
+ 
+
+ 
+if($id_user[0]!=""){
+
+
 
 if (isset($_POST["username"])) {
     $username = htmlspecialchars($_POST["username"], ENT_QUOTES, 'UTF-8');
@@ -54,4 +71,10 @@ if (mail($to, $subject, $message, $headers)) {
 } else {
     echo '<div class="notification">Échec de l\'envoi de l\'e-mail.</div>';
 }
+ 
+}
+else {
+  echo "ERROR" ; 
+}
+ 
 ?>
