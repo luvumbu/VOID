@@ -1,9 +1,12 @@
-<?php
-require_once '../Class/DatabaseHandler.php';
-require_once '../Class/dbCheck.php';
+<?php 
 
 
+
+ 
+
+ 
 date_default_timezone_set('Europe/Paris');
+ 
 $source_file = array(
     "../CRUDManager/"
 );
@@ -24,10 +27,24 @@ foreach ($source_file as $dossier) {
     }
 }
 echo "<br/>";
-$columnNames = isset($_POST['column_name']) ? $_POST['column_name'] : [];
-$columnTypes = isset($_POST['column_type']) ? $_POST['column_type'] : [];
-$mainTableName = isset($_POST['main_table_name']) ? $_POST['main_table_name'] : '';
+
+
+
+
+var_dump($databaseHandler->column_names) ;
+ 
+$columnNames = isset($databaseHandler->column_names) ? $databaseHandler->column_names : [];
+$columnTypes = isset($databaseHandler->column_types) ? $databaseHandler->column_types : [];
+ 
 // Instancier l'objet DatabaseHandler
+ 
+
+
+
+
+
+
+
 $databaseHandler = new DatabaseHandler($dbname, $username);
 
 // Parcours des noms de colonnes et des types pour les définir
@@ -579,7 +596,7 @@ echo "<br/>";
 
 
 
-$file = '../log/a.php';
+$file = 'log/a.php';
 $contenu_a_ajouter = "";
 foreach ($columnNames as $filex) {
 
@@ -635,3 +652,8 @@ if ($fichier) {
 } else {
     echo "Impossible d'ouvrir le fichier.";
 }
+
+
+
+
+?>
