@@ -18,14 +18,17 @@ session_start();
   <title>Document</title>
 </head>
 <style>
-    .display_none {
-      display: none;
-    }
-  </style>
+  .display_none {
+    display: none;
+  }
+</style>
+
 <body>
   <?php
   // Inclusion des fichiers de classe PHP nécessaires
   require_once 'Class/path_general_class.php';
+  require_once 'log/log.php';
+
   // Example usage
   $path = "Class/dbCheck.php";
   if (checkFileExists($path)) {
@@ -44,18 +47,26 @@ session_start();
 
 
 
+        require_once 'view/home.php' ; 
+
+
+        var_dump($id_user_req_sql_url__id_user_0 ) ; 
+
+
+        echo give_url() ; 
+?>
+
+<a href="req/session_destroy.php">
+    <img width="100" height="100" src="https://img.icons8.com/fluency/100/switch-off.png" alt="switch-off"/>
+
+    </a>
+<?php 
         if ($_SESSION["index"][0] == $dbname && $_SESSION["index"][1]  == $username) {
-          require_once 'view/form_creation_table_bdd.php';
+          require_once 'view/admin_form_creation_table_bdd.php';
         } else {
 
-         
-  ?>
-          <a href="req/session_destroy.php">
-            <img width="100" height="100" src="https://img.icons8.com/fluency/100/switch-off.png" alt="switch-off" />
 
-          </a>
-
-  <?php
+ 
         }
       } else {
 
@@ -76,11 +87,9 @@ session_start();
   <div id="dowload_file" class="display_none">
     <?php
     require_once 'view/dowload_file.php';
-    require_once 'log/log.php';
     // cette log permet de charger toute les fuction ont peut les deselectionner pour choissir cel qui conviens 
-    
+
 
 
     ?>
   </div>
-
