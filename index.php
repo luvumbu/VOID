@@ -17,7 +17,11 @@ session_start();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
-
+<style>
+    .display_none {
+      display: none;
+    }
+  </style>
 <body>
   <?php
   // Inclusion des fichiers de classe PHP nécessaires
@@ -72,12 +76,11 @@ session_start();
   <div id="dowload_file" class="display_none">
     <?php
     require_once 'view/dowload_file.php';
+    require_once 'log/log.php';
+    // cette log permet de charger toute les fuction ont peut les deselectionner pour choissir cel qui conviens 
+    
+
 
     ?>
   </div>
 
-  <style>
-    .display_none {
-      display: none;
-    }
-  </style>
