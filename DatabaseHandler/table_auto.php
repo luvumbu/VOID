@@ -185,7 +185,7 @@ $databaseHandler->add_table("projet");
 
 
 $mainTableName = "projet" ; 
- require 'auto_exe.php' ; 
+ //require 'auto_exe.php' ; 
 
 
 $databaseHandler = new DatabaseHandler($input_1,$input_2); 
@@ -216,7 +216,7 @@ $databaseHandler->add_table("projet_img");
 
 
 $mainTableName = "projet_img" ; 
- require 'auto_exe.php' ; 
+ //require 'auto_exe.php' ; 
 
 
 
@@ -300,7 +300,7 @@ $databaseHandler->add_table("visit_user");
 
 
 $mainTableName = "visit_user" ; 
- require 'auto_exe.php' ;
+ //require 'auto_exe.php' ;
 
 
 $databaseHandler = new DatabaseHandler($input_1,$input_2); 
@@ -356,7 +356,7 @@ $databaseHandler->add_table("option_projet");
 
 
 $mainTableName = "option_projet" ; 
- require 'auto_exe.php' ;
+ //require 'auto_exe.php' ;
 
 $databaseHandler = new DatabaseHandler($input_1,$input_2); 
 $databaseHandler->set_column_names("id_comment_projet");
@@ -425,7 +425,7 @@ $databaseHandler->add_table("comment_projet");
 
 
 $mainTableName = "comment_projet" ; 
- require 'auto_exe.php' ;
+ //require 'auto_exe.php' ;
 
 
  
@@ -555,7 +555,7 @@ $databaseHandler->add_table('social_media');
 
 
 $mainTableName = "social_media" ; 
- require 'auto_exe.php' ;
+ //require 'auto_exe.php' ;
 
 
 
@@ -623,7 +623,7 @@ $databaseHandler->add_table('group_projet');
 
 
 $mainTableName = "group_projet" ; 
- require 'auto_exe.php' ;
+ //require 'auto_exe.php' ;
 
 $req_sqlxx = 'SELECT * FROM `'.$input_1.'` WHERE `nom_user`="'.$input_1.'"  AND `password_user` ="'.$input_2.'" ';
 $databaseHandlerxx = new DatabaseHandler($input_1, $input_2);

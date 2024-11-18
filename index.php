@@ -50,7 +50,7 @@ session_start();
         require_once 'view/home.php' ; 
 
 
-        var_dump($id_user_req_sql_url__id_user_0 ) ; 
+  
 
 
         echo give_url() ; 
