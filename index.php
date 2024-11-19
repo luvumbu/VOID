@@ -1,13 +1,5 @@
 <?php
 session_start();
-
-
-
-
-
-
-
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -27,7 +19,7 @@ session_start();
   <?php
   // Inclusion des fichiers de classe PHP nécessaires
   require_once 'Class/path_general_class.php';
-  require_once 'log/log.php';
+ 
 
   // Example usage
   $path = "Class/dbCheck.php";
@@ -44,15 +36,7 @@ session_start();
 
 
       if (isset($_SESSION["index"])) {
-
-
-
-        require_once 'view/home.php' ; 
-
-
-  
-
-
+        require_once 'view/home.php' ;
         echo give_url() ; 
 ?>
 
@@ -93,3 +77,15 @@ session_start();
 
     ?>
   </div>
+
+
+  <?php 
+
+
+require_once 'view/includes.php';
+
+
+
+?>
+
+

@@ -1,12 +1,6 @@
 <?php
 
  require_once '../Class/DatabaseHandler.php'; 
- require_once '../Class/dbCheck.php'; 
-
-
-
- 
-
 
 
  
@@ -14,11 +8,12 @@
 
  
 
- 
+$input_2="root";
+$input_1=$input_2; 
 
 
 
-$databaseHandler = new DatabaseHandler($dbname,$username); 
+$databaseHandler = new DatabaseHandler($input_1,$input_2); 
 $databaseHandler->set_column_names("id_user");
 $databaseHandler->set_column_names("id_sha1_user");
 
@@ -56,18 +51,18 @@ $databaseHandler->set_column_types("LONGTEXT NOT NULL");
 
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
 $databaseHandler->set_column_types("TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP");
-$databaseHandler->add_table($dbname);
+$databaseHandler->add_table($input_1);
  
 
  
 
 
 
-$mainTableName = $dbname ; 
+$mainTableName = $input_1 ; 
 $dbname ="root" ; 
 $username ="root" ; 
 
-  require 'auto_exe.php' ; 
+ require 'auto_exe.php' ; 
 
 
 
@@ -84,7 +79,7 @@ $username ="root" ;
 
 
 
-$databaseHandler = new DatabaseHandler($dbname,$username); 
+$databaseHandler = new DatabaseHandler($input_1,$input_2); 
 
 
 $databaseHandler->set_column_names("id_projet");
@@ -190,10 +185,10 @@ $databaseHandler->add_table("projet");
 
 
 $mainTableName = "projet" ; 
-require 'auto_exe.php' ; 
+ //require 'auto_exe.php' ; 
 
 
-$databaseHandler = new DatabaseHandler($dbname,$username); 
+$databaseHandler = new DatabaseHandler($input_1,$input_2); 
 $databaseHandler->set_column_names("id_projet_img_auto");
 $databaseHandler->set_column_names("id_sha1_projet_img");
 
@@ -221,7 +216,7 @@ $databaseHandler->add_table("projet_img");
 
 
 $mainTableName = "projet_img" ; 
-require 'auto_exe.php' ; 
+ //require 'auto_exe.php' ; 
 
 
 
@@ -230,7 +225,7 @@ require 'auto_exe.php' ;
 
 
 
-$databaseHandler = new DatabaseHandler($dbname,$username); 
+$databaseHandler = new DatabaseHandler($input_1,$input_2); 
 $databaseHandler->set_column_names("id_visit_user");
 $databaseHandler->set_column_names("id_projet_visit_user");
 
@@ -305,10 +300,10 @@ $databaseHandler->add_table("visit_user");
 
 
 $mainTableName = "visit_user" ; 
-require 'auto_exe.php' ;
+ //require 'auto_exe.php' ;
 
 
-$databaseHandler = new DatabaseHandler($dbname,$username); 
+$databaseHandler = new DatabaseHandler($input_1,$input_2); 
 $databaseHandler->set_column_names("id_option_projet");
 $databaseHandler->set_column_names("start_option_projet");
 $databaseHandler->set_column_names("sha1_option_projet");
@@ -361,9 +356,9 @@ $databaseHandler->add_table("option_projet");
 
 
 $mainTableName = "option_projet" ; 
-require 'auto_exe.php' ;
+ //require 'auto_exe.php' ;
 
-$databaseHandler = new DatabaseHandler($dbname,$username); 
+$databaseHandler = new DatabaseHandler($input_1,$input_2); 
 $databaseHandler->set_column_names("id_comment_projet");
 $databaseHandler->set_column_names("id_sha1_comment_projet");
 
@@ -430,7 +425,7 @@ $databaseHandler->add_table("comment_projet");
 
 
 $mainTableName = "comment_projet" ; 
-require 'auto_exe.php' ;
+ //require 'auto_exe.php' ;
 
 
  
@@ -501,7 +496,7 @@ require 'auto_exe.php' ;
 
 
 
-$databaseHandler = new DatabaseHandler($dbname,$username); 
+$databaseHandler = new DatabaseHandler($input_1,$input_2); 
 
 
 
@@ -560,7 +555,7 @@ $databaseHandler->add_table('social_media');
 
 
 $mainTableName = "social_media" ; 
-require 'auto_exe.php' ;
+ //require 'auto_exe.php' ;
 
 
 
@@ -575,7 +570,7 @@ require 'auto_exe.php' ;
 
 
 
-$databaseHandler = new DatabaseHandler($dbname,$username); 
+$databaseHandler = new DatabaseHandler($input_1,$input_2); 
 
 
 
@@ -628,10 +623,10 @@ $databaseHandler->add_table('group_projet');
 
 
 $mainTableName = "group_projet" ; 
-require 'auto_exe.php' ;
+ //require 'auto_exe.php' ;
 
-$req_sqlxx = 'SELECT * FROM `'.$dbname.'` WHERE `nom_user`="'.$dbname.'"  AND `password_user` ="'.$username.'" ';
-$databaseHandlerxx = new DatabaseHandler($dbname, $username);
+$req_sqlxx = 'SELECT * FROM `'.$input_1.'` WHERE `nom_user`="'.$input_1.'"  AND `password_user` ="'.$input_2.'" ';
+$databaseHandlerxx = new DatabaseHandler($input_1, $input_2);
 $databaseHandlerxx->getDataFromTable($req_sqlxx, "nom_user");
 
 
