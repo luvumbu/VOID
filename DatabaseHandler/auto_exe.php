@@ -221,14 +221,14 @@ $add_file_general .= "<script>";
 $add_file_general .= "\n";
 $add_file_general .= '    function ' . $mainTableName . '(_this) {
         var ok = new Information("function/add/' . $mainTableName . '.php"); // création de la classe 
-      //  ok.add("' . $mainTableName . '", _this.title); // ajout de l\'information pour lenvoi 
+       ok.add("title", _this.title); // ajout de l\'information pour lenvoi 
         console.log(ok.info());  
         ok.push(); // envoie l\'information au code php 
     }';
 $add_file_general .= "\n";
 $add_file_general .= '    function ' . $mainTableName . '_r(_this) {
         var ok = new Information("function/add/' . $mainTableName . '.php"); // création de la classe 
-        ok.add("' . $mainTableName . '", _this.title); // ajout de l\'information pour lenvoi 
+        ok.add("title", _this.title); // ajout de l\'information pour lenvoi 
         console.log(ok.info());  
         ok.push(); // envoie l\'information au code php
         const myTimeout = setTimeout(r, 250);
