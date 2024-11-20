@@ -44,8 +44,11 @@ $source_file = array(
 );
 
 
+$source_file_array = array();
 
-var_dump($databaseHandler->column_names);
+
+
+ 
 
 $columnNames = isset($databaseHandler->column_names) ? $databaseHandler->column_names : [];
 $columnTypes = isset($databaseHandler->column_types) ? $databaseHandler->column_types : [];
@@ -97,6 +100,8 @@ $add_file_general .= "?>";
 // Définir le chemin et le nom du fichier à créer
 $filePath = $source_file[0] . $name_file[1];
 
+
+
 // Extraire le chemin du dossier (sans le nom du fichier)
 $directoryPath = dirname($filePath);
 
@@ -105,13 +110,14 @@ if (!is_dir($directoryPath)) {
     // Créer le dossier avec les permissions appropriées (0777 par défaut, vous pouvez ajuster)
     if (mkdir($directoryPath, 0777, true)) {
         echo "Le dossier a été créé avec succès.<br/>";
+      //  array_push($source_file_array,$filePath );
     } else {
         echo "Impossible de créer le dossier.<br/>";
     }
 }
 
 // Ajouter le chemin du fichier à la liste des inclusions
-array_push($include_list, $filePath);
+ 
 
 // Créer ou ouvrir le fichier en mode écriture
 $file = fopen($filePath, 'w');
@@ -124,6 +130,7 @@ if ($file) {
     // Fermer le fichier après l'écriture
     fclose($file);
     echo "Le fichier a été créé avec succès.<br/>";
+    array_push($source_file_array,$filePath );
 } else {
     echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
 }
@@ -175,6 +182,7 @@ function r() {
 
 // Définir le chemin et le nom du fichier à créer
 $filePath = "../function/remove/" . $mainTableName . "_js.php";
+ 
 
 // Extraire le chemin du dossier (sans le nom du fichier)
 $directoryPath = dirname($filePath);
@@ -184,13 +192,14 @@ if (!is_dir($directoryPath)) {
     // Créer le dossier avec les permissions appropriées (0777 par défaut, vous pouvez ajuster)
     if (mkdir($directoryPath, 0777, true)) {
         echo "Le dossier a été créé avec succès.<br/>";
+        array_push($source_file_array,$filePath );
     } else {
         echo "Impossible de créer le dossier.<br/>";
     }
 }
 
 // Ajouter le chemin du fichier à la liste des inclusions
-array_push($include_list, $filePath);
+ 
 
 // Créer ou ouvrir le fichier en mode écriture
 $file = fopen($filePath, 'w');
@@ -203,6 +212,7 @@ if ($file) {
     // Fermer le fichier après l'écriture
     fclose($file);
     echo "Le fichier a été créé avec succès.<br/>";
+    array_push($source_file_array,$filePath );
 } else {
     echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
 }
@@ -246,6 +256,7 @@ function r() {
 
 // Définir le chemin et le nom du fichier à créer
 $filePath = "../function/add/" . $mainTableName . '_js.php';
+ 
 
 // Extraire le chemin du dossier (sans le nom du fichier)
 $directoryPath = dirname($filePath);
@@ -255,13 +266,13 @@ if (!is_dir($directoryPath)) {
     // Créer le dossier avec les permissions appropriées (0777 par défaut, vous pouvez ajuster)
     if (mkdir($directoryPath, 0777, true)) {
         echo "Le dossier a été créé avec succès.<br/>";
+        array_push($source_file_array,$filePath );
     } else {
         echo "Impossible de créer le dossier.<br/>";
     }
 }
 
-// Ajouter le chemin du fichier à la liste des inclusions
-array_push($include_list, $filePath);
+ 
 
 // Créer ou ouvrir le fichier en mode écriture
 $file = fopen($filePath, 'w');
@@ -274,6 +285,7 @@ if ($file) {
     // Fermer le fichier après l'écriture
     fclose($file);
     echo "Le fichier a été créé avec succès.<br/>";
+    array_push($source_file_array,$filePath );
 } else {
     echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
 }
@@ -326,13 +338,14 @@ if (!is_dir($directoryPath)) {
     // Créer le dossier avec les permissions appropriées (0777 par défaut, vous pouvez ajuster)
     if (mkdir($directoryPath, 0777, true)) {
         echo "Le dossier a été créé avec succès.<br/>";
+   //     array_push($source_file_array,$filePath );
     } else {
         echo "Impossible de créer le dossier.<br/>";
     }
 }
 
 // Ajouter le chemin du fichier à la liste des inclusions
-array_push($include_list, $filePath);
+ 
 
 // Créer ou ouvrir le fichier en mode écriture
 $file = fopen($filePath, 'w');
@@ -345,6 +358,7 @@ if ($file) {
     // Fermer le fichier après l'écriture
     fclose($file);
     echo "Le fichier a été créé avec succès.<br/>";
+  //  array_push($source_file_array,$filePath );
 } else {
     echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
 }
@@ -491,13 +505,14 @@ if (!is_dir($directoryPath)) {
     // Créer le dossier avec les permissions appropriées (0777 par défaut, vous pouvez ajuster)
     if (mkdir($directoryPath, 0777, true)) {
         echo "Le dossier a été créé avec succès.<br/>";
+   //     array_push($source_file_array,$filePath );
     } else {
         echo "Impossible de créer le dossier.<br/>";
     }
 }
 
 // Ajouter le chemin du fichier à la liste des inclusions
-array_push($include_list, $filePath);
+ 
 
 // Créer ou ouvrir le fichier en mode écriture
 $file = fopen($filePath, 'w');
@@ -510,6 +525,7 @@ if ($file) {
     // Fermer le fichier après l'écriture
     fclose($file);
     echo "Le fichier a été créé avec succès.<br/>";
+    array_push($source_file_array,$filePath );
 } else {
     echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
 }
@@ -568,13 +584,13 @@ if (!is_dir($directoryPath)) {
     // Créer le dossier avec les permissions appropriées (0777 par défaut, vous pouvez ajuster)
     if (mkdir($directoryPath, 0777, true)) {
         echo "Le dossier a été créé avec succès.<br/>";
+        array_push($source_file_array,$filePath );
     } else {
         echo "Impossible de créer le dossier.<br/>";
     }
 }
 
-// Ajouter le chemin du fichier à la liste des inclusions
-array_push($include_list, $filePath);
+ 
 
 // Créer ou ouvrir le fichier en mode écriture
 $file = fopen($filePath, 'w');
@@ -587,6 +603,7 @@ if ($file) {
     // Fermer le fichier après l'écriture
     fclose($file);
     echo "Le fichier a été créé avec succès.<br/>";
+    array_push($source_file_array,$filePath );
 } else {
     echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
 }
@@ -594,6 +611,8 @@ if ($file) {
 //
 
 
+
+var_dump($source_file_array) ; 
 
 
 
