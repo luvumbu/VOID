@@ -82,14 +82,22 @@ $add_file_general .= 'require_once $src_general."AsciiConverter.php";';
 
 
 $add_file_general .= "\n";
+$add_file_general .= '$title = $_POST["title"] ;';
+
+$add_file_general .= "\n";
+
+
+$add_file_general .= '$className = $_POST["className"] ;';
+$add_file_general .= "\n";
 $add_file_general .=
     <<<'PHP'
  
 $databaseHandler = new DatabaseHandler($dbname, $username);
 PHP;
 $add_file_general .= "\n";
-$add_file_general .= '$time = time();';
-$add_file_general .= "\n";
+ 
+
+
 $add_file_general .= '$databaseHandler->action_sql("INSERT INTO `' . $mainTableName . '` (' . $columnNames[0] . ') VALUES ($time)");';
 $add_file_general .= "\n";
 $add_file_general .= "?>";
@@ -457,10 +465,6 @@ $add_file_general .= 'require_once $src_general."AsciiConverter.php";';
 $add_file_general .= "\n";
 $add_file_general .= 'require_once $src_general."dbCheck.php";';
 $add_file_general .= "\n";
-
-
-
-
 
 $add_file_general .= '$title = $_POST["title"] ;';
 
