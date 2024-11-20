@@ -98,7 +98,7 @@ $add_file_general .= "\n";
  
 
 
-$add_file_general .= '$databaseHandler->action_sql("INSERT INTO `' . $mainTableName . '` (' . $columnNames[0] . ') VALUES ($time)");';
+$add_file_general .= '$databaseHandler->action_sql("INSERT INTO `' . $mainTableName . '` ($className) VALUES ($title)");';
 $add_file_general .= "\n";
 $add_file_general .= "?>";
 
