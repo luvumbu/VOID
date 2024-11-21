@@ -2,19 +2,13 @@
 
 
 date_default_timezone_set('Europe/Paris');
-
-
 /*
-
-
         var ok = new Information("function/remove/root_remove.php"); // création de la classe 
          ok.add("title", _this.title); // ajout de l'information pour lenvoi 
          ok.add("className", _this.className); // ajout de l'information pour lenvoi 
-        console.log(ok.info());  
-        ok.push(); // envoie l'information au code php 
-
-
-        */
+         console.log(ok.info());  
+         ok.push(); // envoie l'information au code php 
+*/
 
 $name_file = array(
     $mainTableName,
@@ -29,11 +23,11 @@ $name_file = array(
 $source_file = array(
     "../function/add/",
     "function/add/" . $name_file[1],
-    "../../Class/",
+    "Class/",
     "../view/includes.php",
     "function/add/" . $name_file[2],
     "../function/remove/",
-    '../../function/add/',
+    'Class/',
     '../../function/remove/'
 
 
@@ -104,9 +98,8 @@ $add_file_general .= "?>";
 
 
 
-
-// Définir le chemin et le nom du fichier à créer
-$filePath = $source_file[0] . $name_file[1];
+ 
+$filePath =  "../function/add/".$mainTableName . '.php';
 
 
 
@@ -157,13 +150,13 @@ $add_file_general .= '$servername = "localhost";';
 $add_file_general .= "\n";
  
  
-$add_file_general .= 'require_once "../../Class/dbCheck.php";';
+$add_file_general .= 'require_once "Class/dbCheck.php";';
 $add_file_general .= "\n";
-$add_file_general .= 'require_once "../../Class/Give_url.php";';
+$add_file_general .= 'require_once "Class/Give_url.php";';
 $add_file_general .= "\n";
-$add_file_general .= 'require_once "../../Class/DatabaseHandler.php";';
+$add_file_general .= 'require_once "Class/DatabaseHandler.php";';
 $add_file_general .= "\n";
-$add_file_general .= 'require_once "../../Class/AsciiConverter.php";';
+$add_file_general .= 'require_once "Class/AsciiConverter.php";';
 
 
 $add_file_general .= "\n";
@@ -260,7 +253,7 @@ $add_file_general .= "\n";
 $add_file_general .= "<script>";
 $add_file_general .= "\n";
 $add_file_general .= '    function ' . $mainTableName . '_remove(_this) {
-        var ok = new Information("function/' . $mainTableName . '"); // création de la classe 
+        var ok = new Information("function/remove/' . $mainTableName . '"); // création de la classe 
         ok.add("title", _this.title); // ajout de l\'information pour lenvoi 
         ok.add("className", _this.className); // ajout de l\'information pour lenvoi 
         console.log(ok.info());  
@@ -268,7 +261,7 @@ $add_file_general .= '    function ' . $mainTableName . '_remove(_this) {
     }';
 $add_file_general .= "\n";
 $add_file_general .= '    function ' . $mainTableName . '_remove_r(_this) {
-        var ok = new Information("function/' . $mainTableName . '"); // création de la classe 
+        var ok = new Information("function/remove/' . $mainTableName . '_remove"); // création de la classe 
          ok.add("title", _this.title); // ajout de l\'information pour lenvoi 
         ok.add("className", _this.className); // ajout de l\'information pour lenvoi 
         console.log(ok.info());  
