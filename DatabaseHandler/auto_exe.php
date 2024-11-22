@@ -183,13 +183,13 @@ $add_file_general .= 'header("Access-Control-Allow-Origin: *");';
 $add_file_general .= "\n";
 $add_file_general .= '$servername = "localhost";';
 $add_file_general .= "\n";
-$add_file_general .= 'require_once "../../Class/dbCheck.php";';
+$add_file_general .= 'require_once "Class/dbCheck.php";';
 $add_file_general .= "\n";
-$add_file_general .= 'require_once "../../Class/Give_url.php";';
+$add_file_general .= 'require_once "Class/Give_url.php";';
 $add_file_general .= "\n";
-$add_file_general .= 'require_once "../../Class/DatabaseHandler.php";';
+$add_file_general .= 'require_once "Class/DatabaseHandler.php";';
 $add_file_general .= "\n";
-$add_file_general .= 'require_once "../../Class/AsciiConverter.php";';
+$add_file_general .= 'require_once "Class/AsciiConverter.php";';
 $add_file_general .= "\n";
 $add_file_general .= '$title = $_SESSION["title"] ;';
 $add_file_general .= "\n"; 
@@ -206,20 +206,44 @@ $add_file_general .= "\n";
 $add_file_general .= '// $_SESSION["index"] = array($dbname_, $username_);';
 
 $add_file_general .= "\n";
-
-$add_file_general .= 'if($option=="index"){
-echo "test ok" ; 
-}';
-
+$add_file_general .= '$dbname_ = $_SESSION["index"][0] ;';
 $add_file_general .= "\n";
 
+$add_file_general .= '$username_ = $_SESSION["index"][1]; ';
+$add_file_general .= "\n";
+$add_file_general_1 = <<<PHP
+\$req_sql = "SELECT * FROM `$mainTableName` WHERE `\$className` = '\$username_'";
+\$databaseHandler->getDataFromTable(\$req_sql, \$className);
+\$$mainTableName = \$databaseHandler->tableList_info;
+PHP;
 
-
-$add_file_general .= <<<PHP
+$add_file_general_2 = <<<PHP
 \$req_sql = "SELECT * FROM `$mainTableName` WHERE `\$className` = '\$title'";
 \$databaseHandler->getDataFromTable(\$req_sql, \$className);
 \$$mainTableName = \$databaseHandler->tableList_info;
 PHP;
+
+
+
+
+
+
+
+$add_file_general .= 'if($option=="index") {
+'.$add_file_general_1.'
+
+}
+else {
+'.$add_file_general_2.'
+}
+';
+
+
+
+
+
+
+
 $add_file_general .= "\n";
 $add_file_general .= "?>";
 // Définir le chemin et le nom du fichier à créer
@@ -521,6 +545,21 @@ $add_file_general .= "\n";
 $add_file_general .= '$option =$_POST["option"] ;';
 $add_file_general .= "\n";
 $add_file_general .= '$className = $_POST["className"] ;';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $add_file_general .=
     <<<'PHP'
 $databaseHandler = new DatabaseHandler($dbname, $username);
@@ -576,6 +615,76 @@ $add_file_general .= 'require_once "../../Class/DatabaseHandler.php";';
 $add_file_general .= "\n";
 $add_file_general .= 'require_once "../../Class/AsciiConverter.php";';
 $add_file_general .= "\n";
+
+
+
+
+
+ 
+
+$add_file_general .= "\n";
+$add_file_general .= '$title = $_SESSION["title"] ;';
+$add_file_general .= "\n"; 
+$add_file_general .= '$option = $_SESSION["option"] ;';
+$add_file_general .= "\n";
+$add_file_general .= '$className = $_SESSION["className"] ;';
+$add_file_general .= "\n";
+$add_file_general .=
+    <<<'PHP'
+$databaseHandler = new DatabaseHandler($dbname, $username);
+PHP;
+$add_file_general .= "\n";
+
+$add_file_general .= '// $_SESSION["index"] = array($dbname_, $username_);';
+
+$add_file_general .= "\n";
+$add_file_general .= '$dbname_ = $_SESSION["index"][0] ;';
+$add_file_general .= "\n";
+
+$add_file_general .= '$username_ = $_SESSION["index"][1]; ';
+$add_file_general .= "\n";
+$add_file_general_1 = <<<PHP
+\$req_sql = "SELECT * FROM `$mainTableName` WHERE `\$className` = '\$username_'";
+\$databaseHandler->getDataFromTable(\$req_sql, \$className);
+\$$mainTableName = \$databaseHandler->tableList_info;
+PHP;
+
+$add_file_general_2 = <<<PHP
+\$req_sql = "SELECT * FROM `$mainTableName` WHERE `\$className` = '\$title'";
+\$databaseHandler->getDataFromTable(\$req_sql, \$className);
+\$$mainTableName = \$databaseHandler->tableList_info;
+PHP;
+
+
+
+$add_file_general .= "\n";
+
+
+
+
+$add_file_general .= 'if($option=="index") {
+'.$add_file_general_1.'
+
+}
+else {
+'.$add_file_general_2.'
+}
+';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $add_file_general .= '$title = $_SESSION["title"] ;'; 
 $add_file_general .= "\n";
 $add_file_general .= '$option = $_SESSION["option"] ;';

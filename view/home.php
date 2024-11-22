@@ -2,8 +2,13 @@
 <?php 
 
 //include_once 'function/select/root.php' ;
-include_once 'function/add/root_js.php' ;
+ 
 
+$_SESSION["option"] = "index" ; 
+include_once 'function/select/root.php' ; 
+
+ 
+ 
 ?>
 
 <div class="parent_projet" >
@@ -30,11 +35,7 @@ include_once 'function/add/root_js.php' ;
  
 
 
-
-
-var_dump($id_user) ; 
-
-var_dump( $_SESSION["index"]) ; 
+  
 
 ?>
 <style>
