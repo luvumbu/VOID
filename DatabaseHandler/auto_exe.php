@@ -491,41 +491,8 @@ if ($file) {
 } else {
     echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
 }
-$add_file_general = "";
-$add_file_general .=  "<?php";
-$add_file_general .=  "\n";
-$add_file_general .=  '$src_general ="' . $source_file[2] . '";';
-$add_file_general .=  "\n";
-$add_file_general .=  "?>";
-// Définir le chemin et le nom du fichier à créer
-$filePath = "../function/remove/src_general.php";
-// Extraire le chemin du dossier (sans le nom du fichier)
-$directoryPath = dirname($filePath);
-// Vérifier si le dossier existe, sinon le créer
-if (!is_dir($directoryPath)) {
-    // Créer le dossier avec les permissions appropriées (0777 par défaut, vous pouvez ajuster)
-    if (mkdir($directoryPath, 0777, true)) {
-        echo "Le dossier a été créé avec succès.<br/>";
-        array_push($source_file_array,$filePath );
-    } else {
-        echo "Impossible de créer le dossier.<br/>";
-    }
-}
-// Créer ou ouvrir le fichier en mode écriture
-$file = fopen($filePath, 'w');
-
-// Vérifier si le fichier a bien été ouvert
-if ($file) {
-    // Écrire le contenu dans le fichier
-    fwrite($file, $add_file_general);
-    // Fermer le fichier après l'écriture
-    fclose($file);
-    echo "Le fichier a été créé avec succès.<br/>";
-    array_push($source_file_array,$filePath );
-} else {
-    echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
-}
-//
+ 
+ 
 $add_file_general = "<?php \n";
 $add_file_general .= "\n";
 $add_file_general .= "session_start();";

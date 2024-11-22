@@ -5,3 +5,4 @@ CRUDManager
 uploads
 log/log.php
 function
+view/includes.php 

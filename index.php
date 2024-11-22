@@ -89,13 +89,6 @@ session_start();
   </div>
 
 
-  <?php 
-
-
-require_once 'view/includes.php';
-
-
-
-?>
+ 
 
 
