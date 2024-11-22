@@ -1,7 +1,12 @@
 <h1>HELLO </h1>
+<?php 
 
+//include_once 'function/select/root.php' ;
+include_once 'function/add/root_js.php' ;
 
-<div class="parent_projet">
+?>
+
+<div class="parent_projet" >
     <div class="parent_projet0">
         <div class="parent_projet1">
             <img src="https://cdn.pixabay.com/photo/2019/10/16/09/09/doraemon-4553920_1280.png" alt="" srcset="">
@@ -19,8 +24,23 @@
     </div>
 
 </div>
-<style>
+
+<div class="id_sha1_user" title="jes un deklddzkdhjsdhjshd" onclick="root(this)"> HOME</div>
+<?php 
  
+
+
+
+
+var_dump($id_user) ; 
+
+var_dump( $_SESSION["index"]) ; 
+
+?>
+<style>
+ img {
+    width: 100px;
+ }
 
     .parent_projet1,
     .parent_projet2 {
@@ -60,3 +80,9 @@
         margin: auto;
     }
 </style>
+
+<script>
+    function parent_projet() {
+        window.location.replace("add_img/index.php");
+    }
+</script>

@@ -51,7 +51,15 @@ $add_file_general .= 'require_once $src_general."AsciiConverter.php";';
 $add_file_general .= "\n";
 $add_file_general .= '$title = $_POST["title"] ;';
 $add_file_general .= "\n";
+$add_file_general .= '$option =$_POST["option"] ;';
+$add_file_general .= "\n";
+$add_file_general .= '$_SESSION["title"] = $_POST["title"] ;';
+$add_file_general .= "\n";
+$add_file_general .= '$_SESSION["option"] =$_POST["option"] ;';
+$add_file_general .= "\n";
 $add_file_general .= '$className = $_POST["className"] ;';
+$add_file_general .= "\n";
+$add_file_general .= '$_SESSION["className"] = $_POST["className"] ;';
 $add_file_general .= "\n";
 $add_file_general .=
     <<<'PHP'
@@ -59,7 +67,11 @@ $add_file_general .=
 $databaseHandler = new DatabaseHandler($dbname, $username);
 PHP;
 $add_file_general .= "\n";
-$add_file_general .= '$databaseHandler->action_sql("INSERT INTO `' . $mainTableName . '` ($className) VALUES ($title)");';
+$add_file_general .= '// $_SESSION["index"] = array($dbname_, $username_);';
+$add_file_general .= "\n";
+
+$add_file_general .= '$databaseHandler->action_sql("INSERT INTO `' . $mainTableName . '` ($className) VALUES (\'$title\')");';
+ 
 $add_file_general .= "\n";
 $add_file_general .= "?>";
 $filePath =  "../function/add/".$mainTableName . '.php';
@@ -111,12 +123,24 @@ $add_file_general .= 'require_once $src_general."AsciiConverter.php";';
 $add_file_general .= "\n";
 $add_file_general .= '$title = $_POST["title"] ;';
 $add_file_general .= "\n";
+$add_file_general .= '$option =$_POST["option"] ;';
+$add_file_general .= "\n";
 $add_file_general .= '$className = $_POST["className"] ;';
 $add_file_general .= "\n";
+$add_file_general .= '$_SESSION["title"] = $_POST["title"] ;';
+$add_file_general .= "\n";
+$add_file_general .= '$_SESSION["option"] =$_POST["option"] ;'; 
+$add_file_general .= "\n";
+$add_file_general .= '$_SESSION["className"] = $_POST["className"] ;';
+$add_file_general .= "\n";
+
+
 $add_file_general .=
     <<<'PHP'
 $databaseHandler = new DatabaseHandler($dbname, $username);
 PHP;
+$add_file_general .= "\n";
+$add_file_general .= '// $_SESSION["index"] = array($dbname_, $username_);';
 $add_file_general .= "\n";
 $add_file_general .= '$databaseHandler->action_sql("UPDATE `projet` SET `' . $mainTableName . '` = \'$className\' WHERE `id_projet` = \'$className\'");';
 $add_file_general .= "\n";
@@ -159,15 +183,17 @@ $add_file_general .= 'header("Access-Control-Allow-Origin: *");';
 $add_file_general .= "\n";
 $add_file_general .= '$servername = "localhost";';
 $add_file_general .= "\n";
-$add_file_general .= 'require_once "Class/dbCheck.php";';
+$add_file_general .= 'require_once "../../Class/dbCheck.php";';
 $add_file_general .= "\n";
-$add_file_general .= 'require_once "Class/Give_url.php";';
+$add_file_general .= 'require_once "../../Class/Give_url.php";';
 $add_file_general .= "\n";
-$add_file_general .= 'require_once "Class/DatabaseHandler.php";';
+$add_file_general .= 'require_once "../../Class/DatabaseHandler.php";';
 $add_file_general .= "\n";
-$add_file_general .= 'require_once "Class/AsciiConverter.php";';
+$add_file_general .= 'require_once "../../Class/AsciiConverter.php";';
 $add_file_general .= "\n";
 $add_file_general .= '$title = $_SESSION["title"] ;';
+$add_file_general .= "\n"; 
+$add_file_general .= '$option = $_SESSION["option"] ;';
 $add_file_general .= "\n";
 $add_file_general .= '$className = $_SESSION["className"] ;';
 $add_file_general .= "\n";
@@ -176,6 +202,19 @@ $add_file_general .=
 $databaseHandler = new DatabaseHandler($dbname, $username);
 PHP;
 $add_file_general .= "\n";
+
+$add_file_general .= '// $_SESSION["index"] = array($dbname_, $username_);';
+
+$add_file_general .= "\n";
+
+$add_file_general .= 'if($option=="index"){
+echo "test ok" ; 
+}';
+
+$add_file_general .= "\n";
+
+
+
 $add_file_general .= <<<PHP
 \$req_sql = "SELECT * FROM `$mainTableName` WHERE `\$className` = '\$title'";
 \$databaseHandler->getDataFromTable(\$req_sql, \$className);
@@ -218,7 +257,9 @@ $add_file_general .= "<script>";
 $add_file_general .= "\n";
 $add_file_general .= '    function ' . $mainTableName . '_remove(_this) {
         var ok = new Information("function/remove/' . $mainTableName . '"); // création de la classe 
-        ok.add("title", _this.title); // ajout de l\'information pour lenvoi 
+        ok.add("title", _this.title); // ajout de l\'information pour lenvoi
+        
+         
         ok.add("className", _this.className); // ajout de l\'information pour lenvoi 
         console.log(ok.info());  
         ok.push(); // envoie l\'information au code php 
@@ -226,7 +267,9 @@ $add_file_general .= '    function ' . $mainTableName . '_remove(_this) {
 $add_file_general .= "\n";
 $add_file_general .= '    function ' . $mainTableName . '_remove_r(_this) {
         var ok = new Information("function/remove/' . $mainTableName . '_remove"); // création de la classe 
-         ok.add("title", _this.title); // ajout de l\'information pour lenvoi 
+        ok.add("title", _this.title); // ajout de l\'information pour lenvoi
+        
+         
         ok.add("className", _this.className); // ajout de l\'information pour lenvoi 
         console.log(ok.info());  
         ok.push(); // envoie l\'information au code php 
@@ -269,16 +312,27 @@ $add_file_general .= "<script>";
 $add_file_general .= "\n";
 $add_file_general .= '    function ' . $mainTableName . '(_this) {
         var ok = new Information("function/add/' . $mainTableName . '.php"); // création de la classe 
-       ok.add("title", _this.title); // ajout de l\'information pour lenvoi 
+        const classes = Array.from(_this.classList);       
+        const classes0 = classes[0];
+        const classes1 = classes[1]; 
+        ok.add("title", _this.title); // ajout de l\'information pour lenvoi 
+        ok.add("className", classes0); // ajout de l\'information pour lenvoi         
+        ok.add("option", classes1); // ajout de l\'information pour lenvoi
         console.log(ok.info());  
-        ok.push(); // envoie l\'information au code php 
+        ok.push(); // envoie l\'information au code php  
+    
     }';
 $add_file_general .= "\n";
 $add_file_general .= '    function ' . $mainTableName . '_r(_this) {
         var ok = new Information("function/add/' . $mainTableName . '.php"); // création de la classe 
+        const classes = Array.from(_this.classList);       
+        const classes0 = classes[0];
+        const classes1 = classes[1]; 
         ok.add("title", _this.title); // ajout de l\'information pour lenvoi 
+        ok.add("className", classes0); // ajout de l\'information pour lenvoi         
+        ok.add("option", classes1); // ajout de l\'information pour lenvoi
         console.log(ok.info());  
-        ok.push(); // envoie l\'information au code php
+        ok.push(); // envoie l\'information au code php 
         const myTimeout = setTimeout(r, 250);
 function r() {
   location.reload(); 
@@ -318,16 +372,26 @@ $add_file_general .= "<script>";
 $add_file_general .= "\n";
 $add_file_general .= '    function ' . $mainTableName . '(_this) {
         var ok = new Information("function/update/' . $mainTableName . '.php"); // création de la classe 
-       ok.add("title", _this.title); // ajout de l\'information pour lenvoi 
+        const classes = Array.from(_this.classList);       
+        const classes0 = classes[0];
+        const classes1 = classes[1]; 
+        ok.add("title", _this.title); // ajout de l\'information pour lenvoi 
+        ok.add("className", classes0); // ajout de l\'information pour lenvoi         
+        ok.add("option", classes1); // ajout de l\'information pour lenvoi
         console.log(ok.info());  
         ok.push(); // envoie l\'information au code php 
     }';
 $add_file_general .= "\n";
 $add_file_general .= '    function ' . $mainTableName . '_r(_this) {
         var ok = new Information("function/update/' . $mainTableName . '.php"); // création de la classe 
+        const classes = Array.from(_this.classList);       
+        const classes0 = classes[0];
+        const classes1 = classes[1]; 
         ok.add("title", _this.title); // ajout de l\'information pour lenvoi 
+        ok.add("className", classes0); // ajout de l\'information pour lenvoi         
+        ok.add("option", classes1); // ajout de l\'information pour lenvoi
         console.log(ok.info());  
-        ok.push(); // envoie l\'information au code php
+        ok.push(); // envoie l\'information au code php 
         const myTimeout = setTimeout(r, 250);
 function r() {
   location.reload(); 
@@ -362,7 +426,7 @@ if ($file) {
 }
 //                                               UPDATE JS
 // 
-$src_general = $source_file[6];
+$src_general = "../../Class/";
 $add_file_general = "";
 $add_file_general .=  "<?php";
 $add_file_general .=  "\n";
@@ -453,6 +517,9 @@ $add_file_general .= 'require_once $src_general."dbCheck.php";';
 $add_file_general .= "\n";
 $add_file_general .= '$title = $_POST["title"] ;';
 $add_file_general .= "\n";
+
+$add_file_general .= '$option =$_POST["option"] ;';
+$add_file_general .= "\n";
 $add_file_general .= '$className = $_POST["className"] ;';
 $add_file_general .=
     <<<'PHP'
@@ -501,18 +568,23 @@ $add_file_general .= 'header("Access-Control-Allow-Origin: *");';
 $add_file_general .= "\n";
 $add_file_general .= '$servername = "localhost";';
 $add_file_general .= "\n";
-$add_file_general .= 'require_once "Class/dbCheck.php";';
+$add_file_general .= 'require_once "../../Class/dbCheck.php";';
 $add_file_general .= "\n";
-$add_file_general .= 'require_once "Class/Give_url.php";';
+$add_file_general .= 'require_once "../../Class/Give_url.php";';
 $add_file_general .= "\n";
-$add_file_general .= 'require_once "Class/DatabaseHandler.php";';
+$add_file_general .= 'require_once "../../Class/DatabaseHandler.php";';
 $add_file_general .= "\n";
-$add_file_general .= 'require_once "Class/AsciiConverter.php";';
+$add_file_general .= 'require_once "../../Class/AsciiConverter.php";';
 $add_file_general .= "\n";
-$add_file_general .= '$title = $_SESSION["title"] ;';
+$add_file_general .= '$title = $_SESSION["title"] ;'; 
+$add_file_general .= "\n";
+$add_file_general .= '$option = $_SESSION["option"] ;';
 $add_file_general .= "\n";
 $add_file_general .= '$className = $_SESSION["className"] ;';
 $add_file_general .= "\n";
+$add_file_general .= '// $_SESSION["index"] = array($dbname_, $username_);';
+$add_file_general .= "\n";
+
 $add_file_general .= <<<PHP
 \$req_sql = "SELECT * FROM `$mainTableName` WHERE `\$className` = '\$title'";
 PHP;
@@ -560,4 +632,21 @@ if ($file) {
 } else {
     echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
