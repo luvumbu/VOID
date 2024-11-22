@@ -24,4 +24,10 @@ include "function/add/option_projet_js.php" ;
 include "function/add/comment_projet_js.php" ;
 ?><?php
 include "function/add/group_projet_js.php" ;
+?><?php
+include "function/add/nom_table____js.php" ;
+?><?php
+include "function/add/dsdsd_ok_js.php" ;
+?><?php
+include "function/add/nom_table_js.php" ;
 ?>
