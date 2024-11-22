@@ -73,8 +73,6 @@ $add_file_general .= "\n";
 $add_file_general .= 'require_once $src_general."DatabaseHandler.php";';
 $add_file_general .= "\n";
 $add_file_general .= 'require_once $src_general."AsciiConverter.php";';
-
-
 $add_file_general .= "\n";
 $add_file_general .= '$title = $_POST["title"] ;';
 
@@ -139,7 +137,93 @@ if ($file) {
 
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//                                                              UPDATE
 
+
+$add_file_general = "<?php \n";
+$add_file_general .= "\n";
+$add_file_general .= "session_start();";
+$add_file_general .= "\n";
+$add_file_general .= 'header("Access-Control-Allow-Origin: *");';
+$add_file_general .= "\n";
+$add_file_general .= '$servername = "localhost";';
+$add_file_general .= "\n";
+
+$add_file_general .= 'require_once "src_general.php";';
+$add_file_general .= "\n";
+$add_file_general .= 'require_once $src_general."dbCheck.php";';
+$add_file_general .= "\n";
+$add_file_general .= 'require_once $src_general."Give_url.php";';
+$add_file_general .= "\n";
+$add_file_general .= 'require_once $src_general."DatabaseHandler.php";';
+$add_file_general .= "\n";
+$add_file_general .= 'require_once $src_general."AsciiConverter.php";';
+$add_file_general .= "\n";
+$add_file_general .= '$title = $_POST["title"] ;';
+
+$add_file_general .= "\n";
+
+
+$add_file_general .= '$className = $_POST["className"] ;';
+$add_file_general .= "\n";
+$add_file_general .=
+    <<<'PHP'
+ 
+$databaseHandler = new DatabaseHandler($dbname, $username);
+PHP;
+$add_file_general .= "\n";
+ 
+$add_file_general .= '$databaseHandler->action_sql("UPDATE `projet` SET `' . $mainTableName . '` = \'$className\' WHERE `id_projet` = \'$className\'");';
+
+
+$add_file_general .= "\n";
+$add_file_general .= "?>";
+
+
+
+ 
+$filePath =  "../function/update/".$mainTableName . '.php';
+
+
+
+// Extraire le chemin du dossier (sans le nom du fichier)
+$directoryPath = dirname($filePath);
+
+// Vérifier si le dossier existe, sinon le créer
+if (!is_dir($directoryPath)) {
+    // Créer le dossier avec les permissions appropriées (0777 par défaut, vous pouvez ajuster)
+    if (mkdir($directoryPath, 0777, true)) {
+        echo "Le dossier a été créé avec succès.<br/>";
+      //  array_push($source_file_array,$filePath );
+    } else {
+        echo "Impossible de créer le dossier.<br/>";
+    }
+}
+
+// Ajouter le chemin du fichier à la liste des inclusions
+ 
+
+// Créer ou ouvrir le fichier en mode écriture
+$file = fopen($filePath, 'w');
+
+// Vérifier si le fichier a bien été ouvert
+if ($file) {
+    // Écrire le contenu dans le fichier
+    fwrite($file, $add_file_general);
+
+    // Fermer le fichier après l'écriture
+    fclose($file);
+    echo "Le fichier a été créé avec succès.<br/>";
+    array_push($source_file_array,$filePath );
+} else {
+    echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
+}
+
+
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+//                                                              UPDATE
 $add_file_general = "<?php \n";
 $add_file_general .= "\n";
 $add_file_general .= "session_start();";
@@ -395,7 +479,92 @@ if ($file) {
 
 
 
+//                                              UPDATE   JS
 
+
+$add_file_general = "";
+
+
+$add_file_general .= "\n";
+$add_file_general .= "<script>";
+$add_file_general .= "\n";
+$add_file_general .= '    function ' . $mainTableName . '(_this) {
+        var ok = new Information("function/update/' . $mainTableName . '.php"); // création de la classe 
+       ok.add("title", _this.title); // ajout de l\'information pour lenvoi 
+        console.log(ok.info());  
+        ok.push(); // envoie l\'information au code php 
+    }';
+$add_file_general .= "\n";
+$add_file_general .= '    function ' . $mainTableName . '_r(_this) {
+        var ok = new Information("function/update/' . $mainTableName . '.php"); // création de la classe 
+        ok.add("title", _this.title); // ajout de l\'information pour lenvoi 
+        console.log(ok.info());  
+        ok.push(); // envoie l\'information au code php
+        const myTimeout = setTimeout(r, 250);
+function r() {
+  location.reload(); 
+}
+    } </script>';
+
+
+
+
+
+
+
+
+// Définir le chemin et le nom du fichier à créer
+$filePath = "../function/update/" . $mainTableName . '_js.php';
+ 
+
+// Extraire le chemin du dossier (sans le nom du fichier)
+$directoryPath = dirname($filePath);
+
+// Vérifier si le dossier existe, sinon le créer
+if (!is_dir($directoryPath)) {
+    // Créer le dossier avec les permissions appropriées (0777 par défaut, vous pouvez ajuster)
+    if (mkdir($directoryPath, 0777, true)) {
+        echo "Le dossier a été créé avec succès.<br/>";
+        array_push($source_file_array,$filePath );
+    } else {
+        echo "Impossible de créer le dossier.<br/>";
+    }
+}
+
+ 
+
+// Créer ou ouvrir le fichier en mode écriture
+$file = fopen($filePath, 'w');
+
+// Vérifier si le fichier a bien été ouvert
+if ($file) {
+    // Écrire le contenu dans le fichier
+    fwrite($file, $add_file_general);
+
+    // Fermer le fichier après l'écriture
+    fclose($file);
+    echo "Le fichier a été créé avec succès.<br/>";
+    array_push($source_file_array,$filePath );
+} else {
+    echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//                                               UPDATE JS
 
 
 
@@ -719,13 +888,13 @@ $add_file_general .= 'header("Access-Control-Allow-Origin: *");';
 $add_file_general .= "\n";
 $add_file_general .= '$servername = "localhost";';
 $add_file_general .= "\n";
-$add_file_general .= 'require_once "../../Class/dbCheck.php";';
+$add_file_general .= 'require_once "Class/dbCheck.php";';
 $add_file_general .= "\n";
-$add_file_general .= 'require_once "../../Class/Give_url.php";';
+$add_file_general .= 'require_once "Class/Give_url.php";';
 $add_file_general .= "\n";
-$add_file_general .= 'require_once "../../Class/DatabaseHandler.php";';
+$add_file_general .= 'require_once "Class/DatabaseHandler.php";';
 $add_file_general .= "\n";
-$add_file_general .= 'require_once "../../Class/AsciiConverter.php";';
+$add_file_general .= 'require_once "Class/AsciiConverter.php";';
 
 
 $add_file_general .= "\n";
