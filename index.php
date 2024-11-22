@@ -19,8 +19,6 @@ session_start();
   <?php
   // Inclusion des fichiers de classe PHP nécessaires
   require_once 'Class/path_general_class.php';
- 
-
   // Example usage
   $path = "Class/dbCheck.php";
   if (checkFileExists($path)) {
@@ -29,9 +27,6 @@ session_start();
 
     if ($databaseHandler->verif != 1) {
       require_once 'view/verifyConnection.php';
-
-
-
       if (file_exists($path)) {
         // Tente de supprimer le fichier
         if (unlink($path)) {
@@ -47,17 +42,12 @@ session_start();
     }
 
 
-    } else {
-
-     
+    } else {     
       // require_once 'view/form_creation_table_bdd.php';
-
       //  require_once 'view/test.php';
-
-
       if (isset($_SESSION["index"])) {
         require_once 'view/home.php' ;
-        echo give_url() ; 
+   
 ?>
 
 <a href="req/session_destroy.php">
