@@ -1,18 +1,10 @@
 <?php 
- 
- session_start() ; 
- 
- require_once '../Class/give_url.php';
- 
+ session_start() ;  
+ require_once '../Class/give_url.php'; 
  require_once '../Class/path_config.php';
  require_once '../Class/DatabaseHandler.php';
- 
-
  ?>
- <style>
-   
- </style>
- <!DOCTYPE html>
+  <!DOCTYPE html>
  <html lang="fr">
  <head>
    <meta charset="UTF-8">
@@ -28,23 +20,12 @@
        margin: 0;
        padding: 0;
      }
-   </style>
- 
+   </style> 
  <?php 
-  
-  
- 
-  
   $SERVER_NAME = $_SERVER['SERVER_NAME'] ;
- 
-  $_SESSION["session_general"][0] = $_POST["nom_user"] ;
-  
+  $_SESSION["session_general"][0] = $_POST["nom_user"] ;  
  echo "session_general : ".$_SESSION["session_general"][0] ;
- echo "<br/>" ; 
-  
-  
- 
-  
+ echo "<br/>" ;   
  // Adresse e-mail de destination
  $to = $_POST["nom_user"]; // Remplacer par l'adresse du nouvel utilisateur
  
@@ -137,46 +118,16 @@
  // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
  $headers = 'MIME-Version: 1.0' . "\r\n";
  $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
- 
- // En-têtes supplémentaires (facultatif)
+  // En-têtes supplémentaires (facultatif)
  $headers .= 'From: support@' .$SERVER_NAME."\r\n";
  $headers .= 'Reply-To: support@' .$SERVER_NAME."\r\n";
- 
- 
- 
- 
- 
-  
- // Envoi de l'e-mail
+  // Envoi de l'e-mail
  if(mail($to, $subject, $message, $headers)) {
      echo 'E-mail envoyé avec succès.';
  } else {
      echo 'Échec de l\'envoi de l\'e-mail.';
  }
- 
- 
- 
- 
-  
- 
-  
- 
- 
- 
- 
- 
- 
- 
- 
-  
  ?>
- 
- 
- 
- 
  <meta http-equiv="refresh" content="0;URL=../index.php">
- 
- 
- 
  </body>
  </html>
