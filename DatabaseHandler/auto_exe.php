@@ -229,7 +229,7 @@ PHP;
 
 
 
-$add_file_general .= 'if($option=="index") {
+$add_file_general .= 'if($option!="index") {
 '.$add_file_general_1.'
 
 }
@@ -662,7 +662,7 @@ $add_file_general .= "\n";
 
 
 
-$add_file_general .= 'if($option=="index") {
+$add_file_general .= 'if($option!="index") {
 '.$add_file_general_1.'
 
 }

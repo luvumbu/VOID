@@ -1,11 +1,8 @@
 <?php 
 require_once '../class/DatabaseHandler.php'; 
-require_once '../class/dbCheck.php'; 
-
- 
+require_once '../class/dbCheck.php';  
 $input_1= $dbname; 
 $input_2= $username; 
-
 $databaseHandler = new DatabaseHandler($input_1,$input_2); 
 $databaseHandler->set_column_names("id_user");
 $databaseHandler->set_column_names("id_sha1_user");

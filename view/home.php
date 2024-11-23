@@ -1,16 +1,11 @@
 <h1>HELLO </h1>
 <?php 
+$_SESSION["className"] ="nom_user" ;
+include_once 'function/select/root.php' ;   
 
-//include_once 'function/select/root.php' ;
- 
+  
 
-$_SESSION["option"] = "index" ; 
-include_once 'function/select/root.php' ; 
-
- 
- 
 ?>
-
 <div class="parent_projet" >
     <div class="parent_projet0">
         <div class="parent_projet1">
@@ -27,7 +22,6 @@ include_once 'function/select/root.php' ;
             </p>
         </div>
     </div>
-
 </div>
 
 <div class="id_sha1_user" title="jes un deklddzkdhjsdhjshd" onclick="root(this)"> HOME</div>

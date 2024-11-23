@@ -6,17 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Créer une Table</title>
-
-    
-
-
-    <?php 
-
-
-?>
-    <style>
-      
-        body {
+     <style>
+         body {
             font-family: Arial, sans-serif;
             background-color: #f4f7fa;
             color: #333;
@@ -126,11 +117,9 @@
     </style>
 </head>  
     <h1>Créer une nouvelle table dans la base de données</h1>
-
     <form action="config/config_form_creation_table_bdd.php" method="POST">
         <label for="main_table_name">Nom de la table :</label>
         <input type="text" id="main_table_name" name="main_table_name" required><br><br>
-
         <div id="columns">
             <div class="column">
                 <label for="column_name_1">Nom de la colonne :</label>
@@ -145,16 +134,13 @@
     <option value="FLOAT">FLOAT</option>
     <option value="DOUBLE">DOUBLE</option>
     <option value="DECIMAL(10,2)">DECIMAL(10,2)</option>
-
     <!-- Types de chaînes de caractères -->
     <option value="VARCHAR(255) NOT NULL">VARCHAR(255) NOT NULL</option>
     <option value="CHAR(100) NOT NULL">CHAR(100) NOT NULL</option>
     <option value="TEXT NOT NULL">TEXT NOT NULL</option>
     <option value="LONGTEXT NOT NULL">LONGTEXT NOT NULL</option>
     <option value="BLOB">BLOB</option>
-
     <!-- Plusieurs tailles de VARCHAR -->
-
     <option value="VARCHAR(100)">VARCHAR(100)</option>
     <option value="VARCHAR(200)">VARCHAR(200)</option>
     <option value="VARCHAR(300)">VARCHAR(300)</option>
@@ -165,7 +151,6 @@
     <option value="VARCHAR(800)">VARCHAR(800)</option>
     <option value="VARCHAR(900)">VARCHAR(900)</option>
     <option value="VARCHAR(1000)">VARCHAR(1000)</option>
-
     <!-- Types de date et heure -->
     <option value="DATE">DATE</option>
     <option value="DATETIME">DATETIME</option>
@@ -176,15 +161,11 @@
     <option value="YEAR">YEAR</option>
 </select>
 <br><br>
-
             </div>
-        </div>
-
+</div>
         <button type="button" id="addColumnBtn">Ajouter une colonne</button><br><br>
-
         <input type="submit" value="Créer la table">
     </form>
-
     <script>
         document.getElementById("addColumnBtn").addEventListener("click", function() {
             var columnDiv = document.createElement("div");
@@ -232,19 +213,15 @@
                 { value: "TIME", text: "TIME" },
                 { value: "YEAR", text: "YEAR" }
             ];
-
             types.forEach(function(type) {
                 var option = document.createElement("option");
                 option.value = type.value;
                 option.textContent = type.text;
                 selectType.appendChild(option);
             });
-
             columnDiv.appendChild(selectType);
-
             columnDiv.appendChild(document.createElement("br"));
             columnDiv.appendChild(document.createElement("br"));
-
             // Ajouter le nouveau champ à la liste
             document.getElementById("columns").appendChild(columnDiv);
         });
