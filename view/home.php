@@ -2,9 +2,6 @@
 <?php 
 $_SESSION["className"] ="nom_user" ;
 include_once 'function/select/root.php' ;   
-
-  
-
 ?>
 <div class="parent_projet" >
     <div class="parent_projet0">
@@ -23,15 +20,7 @@ include_once 'function/select/root.php' ;
         </div>
     </div>
 </div>
-
 <div class="id_sha1_user" title="jes un deklddzkdhjsdhjshd" onclick="root(this)"> HOME</div>
-<?php 
- 
-
-
-  
-
-?>
 <style>
  img {
     width: 100px;
