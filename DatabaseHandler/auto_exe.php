@@ -1,7 +1,6 @@
 <?php
 date_default_timezone_set('Europe/Paris');
 if(isset($_POST["column_name"])){        
-    
     $column_name =$_POST["column_name"] ;  
     $column_type =$_POST["column_type"] ;  
     $mainTableName = $_POST["main_table_name"] ;
@@ -222,13 +221,6 @@ $add_file_general_2 = <<<PHP
 \$databaseHandler->getDataFromTable(\$req_sql, \$className);
 \$$mainTableName = \$databaseHandler->tableList_info;
 PHP;
-
-
-
-
-
-
-
 $add_file_general .= 'if($option!="index") {
 '.$add_file_general_1.'
 
@@ -237,13 +229,6 @@ else {
 '.$add_file_general_2.'
 }
 ';
-
-
-
-
-
-
-
 $add_file_general .= "\n";
 $add_file_general .= "?>";
 // Définir le chemin et le nom du fichier à créer
@@ -541,25 +526,9 @@ $add_file_general .= 'require_once $src_general."dbCheck.php";';
 $add_file_general .= "\n";
 $add_file_general .= '$title = $_POST["title"] ;';
 $add_file_general .= "\n";
-
 $add_file_general .= '$option =$_POST["option"] ;';
 $add_file_general .= "\n";
 $add_file_general .= '$className = $_POST["className"] ;';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $add_file_general .=
     <<<'PHP'
 $databaseHandler = new DatabaseHandler($dbname, $username);
@@ -597,8 +566,7 @@ if ($file) {
 } else {
     echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
 }
- 
- 
+  
 $add_file_general = "<?php \n";
 $add_file_general .= "\n";
 $add_file_general .= "session_start();";
@@ -614,14 +582,6 @@ $add_file_general .= "\n";
 $add_file_general .= 'require_once "../../Class/DatabaseHandler.php";';
 $add_file_general .= "\n";
 $add_file_general .= 'require_once "../../Class/AsciiConverter.php";';
-$add_file_general .= "\n";
-
-
-
-
-
- 
-
 $add_file_general .= "\n";
 $add_file_general .= '$title = $_SESSION["title"] ;';
 $add_file_general .= "\n"; 
@@ -654,14 +614,7 @@ $add_file_general_2 = <<<PHP
 \$databaseHandler->getDataFromTable(\$req_sql, \$className);
 \$$mainTableName = \$databaseHandler->tableList_info;
 PHP;
-
-
-
 $add_file_general .= "\n";
-
-
-
-
 $add_file_general .= 'if($option!="index") {
 '.$add_file_general_1.'
 
@@ -670,21 +623,6 @@ else {
 '.$add_file_general_2.'
 }
 ';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $add_file_general .= '$title = $_SESSION["title"] ;'; 
 $add_file_general .= "\n";
 $add_file_general .= '$option = $_SESSION["option"] ;';
@@ -741,21 +679,4 @@ if ($file) {
 } else {
     echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
