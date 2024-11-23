@@ -15,7 +15,6 @@
         </div>
     </div>
 </div>
-<div class="id_sha1_user" title="jes un deklddzkdhjsdhjshd" onclick="root(this)"> HOME</div>
 <style>
  img {
     width: 100px;

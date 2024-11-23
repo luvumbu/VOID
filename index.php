@@ -3,7 +3,6 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +14,6 @@ session_start();
     display: none;
   }
 </style>
-
 <body>
   <?php
   // Inclusion des fichiers de classe PHP nécessaires
@@ -46,11 +44,7 @@ session_start();
       //  require_once 'view/test.php';
       if (isset($_SESSION["index"])) {
         require_once 'view/home.php';
-        ?>
-        <a href="req/session_destroy.php">
-          <img width="100" height="100" src="https://img.icons8.com/fluency/100/switch-off.png" alt="switch-off" />
-        </a>
-  <?php
+  
         if ($_SESSION["index"][0] == $dbname && $_SESSION["index"][1]  == $username) {
 
           echo '<div class="display_none">';
