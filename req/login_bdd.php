@@ -58,10 +58,12 @@ else {
 
 
         require_once '../Class/dbCheck.php'; 
+      
+
    
 
 
-
+        
 
 
 
@@ -124,6 +126,7 @@ $databaseHandler->action_sql("INSERT INTO `$dbname` (nom_user,password_user) VAL
 }
 
  
-    
+require_once '../config/table_auto.php'; 
+// creation des table automatiquement et des methodes egalement 
 
  ?>

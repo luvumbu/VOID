@@ -30,4 +30,7 @@ if($id_user[0]!=""){
        $_SESSION["index"] = array($dbname_, $username_,$id_user[0]);
 }
  
+
+
+ 
 ?>

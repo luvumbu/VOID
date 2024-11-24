@@ -314,7 +314,7 @@ $' . $info . ' = $databaseHandler->tableList_info;';
     }
 }
 
-
+$add_file_general__ .= "\n";
 $add_file_general__ .= "?>";
 $filePath =  $path_general . $mainTableName2 . ".php";
 // Extraire le chemin du dossier (sans le nom du fichier)
