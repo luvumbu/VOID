@@ -72,7 +72,7 @@ session_start();
   // require_once 'log/log.php';
   // requare all 
   ?>
-  <div id="dowload_file" class="display_none">
+  <div id="dowload_file" class="display_nonce">
     <?php
     require_once 'view/dowload_file.php';
 
