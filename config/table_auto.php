@@ -29,8 +29,6 @@ $databaseHandler->set_column_types("TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDAT
 $databaseHandler->add_table($dbname);
 $mainTableName = $dbname ; 
 $mainTableName2 = $dbname ;
-$dbname ="root" ; 
-$username ="root" ; 
 require 'auto_exe.php' ; 
 $databaseHandler = new DatabaseHandler($dbname,$username); 
 $databaseHandler->set_column_names("id_projet");
