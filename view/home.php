@@ -13,7 +13,7 @@
  
 ?>
 <div class="display_flex">
-    <div class="id_user_projet black" title="<?php echo $_SESSION["index"][2] ;?>" onclick="projet(this)">
+    <div class="id_general 123 black"  title="function/projet_insert.php" onclick="general_js_r(this)">
         ADD
     </div>
     <a href="req/session_destroy.php">
