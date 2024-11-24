@@ -72,14 +72,5 @@ session_start();
   // require_once 'log/log.php';
   // requare all 
   ?>
-  <div id="dowload_file" class="display_nonce">
-    <?php
-    require_once 'view/dowload_file.php';
-
-
-
-
-
-    // cette log permet de charger toute les fuction ont peut les deselectionner pour choissir cel qui conviens 
-    ?>
+ 
   </div>

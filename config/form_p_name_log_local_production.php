@@ -1,6 +1,4 @@
- 
-
-<?php
+ <?php
 function validateEmail($email) {
     // Expression régulière pour vérifier le format d'une adresse e-mail
     $emailRegex = '/^[^\s@]+@[^\s@]+\.[^\s@]+$/';
