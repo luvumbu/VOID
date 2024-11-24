@@ -1,19 +1,14 @@
 <?php
-
-
 $path_general = "../function/";
 $databaseHandler = new DatabaseHandler($dbname, $username);
 $nomBaseDeDonnees = $username;
 // Récupérer la liste des tables
 $databaseHandler->getTables($nomBaseDeDonnees);
-
 // Obtenir la liste des tables
 $tables = $databaseHandler->getListOfTables();
 // Afficher les noms des colonnes
 //   var_dump($databaseHandler->tableList_child);
-
 $add_file_general__ = "<?php \n";
-
 $add_file_general__ .= '$servername = "localhost";';
 $add_file_general__ .= "\n";
 $add_file_general__ .= 'require_once "Class/dbCheck.php";';
@@ -23,7 +18,6 @@ $add_file_general__ .= "\n";
 $add_file_general__ .= 'require_once "Class/DatabaseHandler.php";';
 $add_file_general__ .= "\n";
 $add_file_general__ .= 'require_once "Class/AsciiConverter.php";';
-
 $add_file_general__ .= "\n";
 $add_file_general__ .= '$option0 =$_SESSION["option0"] ;';
 $add_file_general__ .= "\n";
@@ -61,7 +55,6 @@ echo "<br/>";
 echo "......................................................................</br>/";
 echo $mainTableName;
 echo "......................................................................</br>/";
-
 echo "<br/>";
 echo "<br/>";
 echo "<br/>";
@@ -73,9 +66,7 @@ echo "<br/>";
 echo "<br/>";
 echo "<br/>";
 for ($a = 0; $a < count($tables); $a++) {
-
     $databaseHandler = new DatabaseHandler($dbname, $username);
-
     // Récupérer la liste des tables
     $databaseHandler->getTables($nomBaseDeDonnees);
     $databaseHandler->getListOfTables_Child($mainTableName);
@@ -98,8 +89,6 @@ for ($a = 0; $a < count($tables); $a++) {
     $add_file_general .= "\n";
     $add_file_general .= 'require_once $src_general."AsciiConverter.php";';
     $add_file_general .= "\n";
-
-
     $add_file_general .= '$_SESSION["option0"] =$_POST["option0"] ;';
     $add_file_general .= "\n";
     $add_file_general .= '$_SESSION["option1"] =$_POST["option1"] ;';
@@ -109,10 +98,8 @@ for ($a = 0; $a < count($tables); $a++) {
     $add_file_general .= '$_SESSION["option3"] =$_POST["option3"] ;';
     $add_file_general .= "\n";
     $add_file_general .= '$_SESSION["option4"] =$_POST["option4"] ;';
-
     $add_file_general .= "\n";
     $add_file_general .= '$option0 =$_POST["option0"] ;';
-
     $add_file_general .= "\n";
     $add_file_general .= '$option1 =$_POST["option1"] ;';
     $add_file_general .= "\n";
@@ -121,7 +108,6 @@ for ($a = 0; $a < count($tables); $a++) {
     $add_file_general .= '$option3 =$_POST["option3"] ;';
     $add_file_general .= "\n";
     $add_file_general .= '$option4 =$_POST["option4"] ;';
-
     $add_file_general .=
         <<<'PHP'
  
@@ -130,9 +116,7 @@ PHP;
     $add_file_general .= "\n";
     $add_file_general .= '// $_SESSION["index"] = array($dbname_, $username_);';
     $add_file_general .= "\n";
-
     $add_file_general .= '$databaseHandler->action_sql("INSERT INTO `' . $mainTableName . '` ($option0) VALUES (\'$option1\')");';
-
     $add_file_general .= "\n";
     $add_file_general .= "?>";
     $filePath =  $path_general . $mainTableName . "_insert.php";
@@ -187,8 +171,6 @@ PHP;
     $add_file_general .= "\n";
     $add_file_general .= 'require_once $src_general."AsciiConverter.php";';
     $add_file_general .= "\n";
-
-
     $add_file_general .= '$_SESSION["option0"] =$_POST["option0"] ;';
     $add_file_general .= "\n";
     $add_file_general .= '$_SESSION["option1"] =$_POST["option1"] ;';
@@ -208,7 +190,6 @@ PHP;
     $add_file_general .= '$option3 =$_POST["option3"] ;';
     $add_file_general .= "\n";
     $add_file_general .= '$option4 =$_POST["option4"] ;';
-
     $add_file_general .=
         <<<'PHP'
 
@@ -217,13 +198,7 @@ PHP;
     $add_file_general .= "\n";
     $add_file_general .= '// $_SESSION["index"] = array($dbname_, $username_);';
     $add_file_general .= "\n";
-
-
     $add_file_general .= '$databaseHandler->action_sql("UPDATE  ' . $mainTableName . ' SET `$option0` = \'$option1\' WHERE  `$option2` =\'$option3\'") ;';
-
-
-
-
     $add_file_general .= "\n";
     $add_file_general .= "?>";
     $filePath =  $path_general . $mainTableName . "_update.php";
@@ -253,67 +228,18 @@ PHP;
     } else {
         // echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
     }
-
-
-
-
-
-
-    echo "<br/>";
-    echo "<br/>";
-    echo "<br/>";
-    echo "<br/>";
-    echo "<br/>";
-    echo "<br/>";
-    echo "<br/>";
-    echo "<br/>";
-    echo "<br/>";
-    echo "<br/>";
-
-    echo "......................................................................</br>/";
-    echo $mainTableName;
-    echo "......................................................................</br>/";
-
-    echo "<br/>";
-    echo "<br/>";
-    echo "<br/>";
-    echo "<br/>";
-    echo "<br/>";
-    echo "<br/>";
-    echo "<br/>";
-    echo "<br/>";
-    echo "<br/>";
-    echo "<br/>";
-
-
-
-
-
     for ($b = 0; $b < count($databaseHandler->tableList_child); $b++) {
-
-
-
-        echo $databaseHandler->tableList_child[$b] . '<br/>';
-
         $info = $databaseHandler->tableList_child[$b];
         $add_file_general__ .= "\n";
-
         // Instancier l'objet DatabaseHandler
         $add_file_general__ .= "$$info=" . "'$info';";
         $add_file_general__ .= "\n";
-
-
-
-        $add_file_general__ .= "\n";
-
-
         $add_file_general__ .= '
 $databaseHandler = new DatabaseHandler($dbname, $username);
 $databaseHandler->getDataFromTable($req_sql, "' . $info . '");
 $' . $info . ' = $databaseHandler->tableList_info;';
     }
 }
-
 $add_file_general__ .= "\n";
 $add_file_general__ .= "?>";
 $filePath =  $path_general . $mainTableName2 . ".php";
@@ -343,30 +269,13 @@ if ($file) {
 } else {
     // echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $add_file_general = "";
 $add_file_general .= "\n";
 $add_file_general .= "<script>";
 $add_file_general .= "\n";
 $add_file_general .= '    function  general_js(_this) {
         var ok = new Information(_this.title); // création de la classe 
-       
+      
         const option = Array.from(_this.classList);       
         const option0 = option[0];
         const option1 = option[1]; 
@@ -374,7 +283,6 @@ $add_file_general .= '    function  general_js(_this) {
         const option3 = option[3];
         const option4 = option[4];
 
-         
         ok.add("option0", option0); // ajout de l\'information pour lenvoi
         ok.add("option1", option1); // ajout de l\'information pour lenvoi
         ok.add("option2", option2); // ajout de l\'information pour lenvoi
@@ -388,14 +296,13 @@ $add_file_general .= '    function  general_js(_this) {
 $add_file_general .= "\n";
 $add_file_general .= '    function  general_js_r(_this) {
         var ok = new Information(_this.title); // création de la classe 
-       
+     
         const option = Array.from(_this.classList);       
         const option0 = option[0];
         const option1 = option[1]; 
         const option2 = option[2];
         const option3 = option[3];
         const option4 = option[4];
-
          
         ok.add("option0", option0); // ajout de l\'information pour lenvoi
         ok.add("option1", option1); // ajout de l\'information pour lenvoi
@@ -405,18 +312,13 @@ $add_file_general .= '    function  general_js_r(_this) {
         console.log(ok.info());  
         ok.push(); // envoie l\'information au code php  
 
-
         const myTimeout = setTimeout(r, 250);
             function r() {
          location.reload() ; 
-            }
-    
+            }    
     }';
 $add_file_general .= "\n";
-
 $add_file_general .= "</script>";
-
-
 // Définir le chemin et le nom du fichier à créer
 $filePath = $path_general .  'general_js.php';
 // Extraire le chemin du dossier (sans le nom du fichier)
@@ -445,25 +347,11 @@ if ($file) {
     //  echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
 }
 // 
-
-
-
-
-
-
 $add_file_general = "<?php";
 $add_file_general .= "\n";
-
 $add_file_general .= '$src_general="../Class/";';
 $add_file_general .= "\n";
-
-
 $add_file_general .= "?>";
-
-
-
-
-
 // Définir le chemin et le nom du fichier à créer
 $filePath = $path_general .  'src_general.php';
 // Extraire le chemin du dossier (sans le nom du fichier)
@@ -492,3 +380,4 @@ if ($file) {
     //  echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
 }
 // 
+?>
