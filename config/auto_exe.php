@@ -219,7 +219,7 @@ PHP;
     $add_file_general .= "\n";
 
 
-    $add_file_general .= '$databaseHandler->action_sql("UPDATE  ' . $mainTableName . ' SET `$option1` = \'$option2\' WHERE  `$option3` =\'$option4\'") ;';
+    $add_file_general .= '$databaseHandler->action_sql("UPDATE  ' . $mainTableName . ' SET `$option0` = \'$option1\' WHERE  `$option2` =\'$option3\'") ;';
 
 
 

@@ -22,6 +22,13 @@
         </div>
     </a>
 </div>
+
+
+
+
+<div class="id_user_projet XXXYY id_projet 20 black"  title="function/projet_update.php" onclick="general_js(this)">
+        UPDATE
+    </div>
 <?php
 require_once "home_nom_user.php";
 ?>
