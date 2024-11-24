@@ -3,6 +3,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,10 +15,16 @@ session_start();
     display: none;
   }
 </style>
+
 <body>
   <?php
   // Inclusion des fichiers de classe PHP nécessaires
   require_once 'Class/path_general_class.php';
+  $path_general_js = "function/general_js.php";
+  if (file_exists($path_general_js)) {
+    require_once $path_general_js;
+  }
+
   // Example usage
   $path = "Class/dbCheck.php";
   if (checkFileExists($path)) {
@@ -32,7 +39,7 @@ session_start();
           echo "Le fichier '$path' a été supprimé avec succès.";
   ?>
           <meta http-equiv="refresh" content="0"> <!-- Rafraîchit toutes les 5 secondes -->
-        <?php
+  <?php
         } else {
           echo "Erreur : Impossible de supprimer le fichier '$path'.";
         }
@@ -44,7 +51,7 @@ session_start();
       //  require_once 'view/test.php';
       if (isset($_SESSION["index"])) {
         require_once 'view/home.php';
-  
+
         if ($_SESSION["index"][0] == $dbname && $_SESSION["index"][1]  == $username) {
 
           echo '<div class="display_none">';
@@ -68,6 +75,11 @@ session_start();
   <div id="dowload_file" class="display_none">
     <?php
     require_once 'view/dowload_file.php';
+
+
+
+
+
     // cette log permet de charger toute les fuction ont peut les deselectionner pour choissir cel qui conviens 
     ?>
   </div>

@@ -23,12 +23,11 @@ $databaseHandler = new DatabaseHandler($dbname, $username);
 $databaseHandler->getDataFromTable($req_sql, "id_user");
 $id_user = $databaseHandler->tableList_info;
  
-
-echo $id_user[0]; 
+ 
 
 
 if($id_user[0]!=""){
-       $_SESSION["index"] = array($dbname_, $username_);
+       $_SESSION["index"] = array($dbname_, $username_,$id_user[0]);
 }
  
 ?>

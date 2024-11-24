@@ -23,7 +23,7 @@
     .parent_projet1,
     .parent_projet2 {
 
-        width: 300px;
+        width: 100px;
         margin: auto;
 
     }
@@ -45,14 +45,14 @@
 
     .parent_projet0 {
         border: 1px solid rgba(0, 0, 0, 0.3);
-        width: 300px;
+        width: 100px;
     
         margin: auto;
     }
 
     .parent_projet0 {
         border: 1px solid rgba(0, 0, 0, 0.3);
-        width: 300px;
+        width: 100px;
         padding: 15px;
     
         margin: auto;

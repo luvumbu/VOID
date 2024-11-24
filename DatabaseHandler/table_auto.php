@@ -64,6 +64,7 @@ $databaseHandler->add_table($dbname);
 
 
 $mainTableName = $dbname ; 
+$mainTableName2 = $dbname ;
 $dbname ="root" ; 
 $username ="root" ; 
 
@@ -88,6 +89,8 @@ $databaseHandler = new DatabaseHandler($dbname,$username);
 
 
 $databaseHandler->set_column_names("id_projet");
+$databaseHandler->set_column_names("id_general");
+
 $databaseHandler->set_column_names("id_user_projet");
 
 $databaseHandler->set_column_names("id_sha1_projet");
@@ -144,6 +147,8 @@ $databaseHandler->set_column_types("INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY")
 
  
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
+$databaseHandler->set_column_types("LONGTEXT NOT NULL");
+
 
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
@@ -190,11 +195,14 @@ $databaseHandler->add_table("projet");
 
 
 $mainTableName = "projet" ; 
+$mainTableName2 = $mainTableName  ;
 require 'auto_exe.php' ; 
 
 
 $databaseHandler = new DatabaseHandler($dbname,$username); 
 $databaseHandler->set_column_names("id_projet_img_auto");
+$databaseHandler->set_column_names("id_general");
+
 $databaseHandler->set_column_names("id_sha1_projet_img");
 
 
@@ -207,6 +215,8 @@ $databaseHandler->set_column_names("date_inscription_projet_img");
 
 $databaseHandler->set_column_types("INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY");
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
+$databaseHandler->set_column_types("LONGTEXT NOT NULL");
+
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
 
@@ -221,6 +231,7 @@ $databaseHandler->add_table("projet_img");
 
 
 $mainTableName = "projet_img" ; 
+$mainTableName2 = $mainTableName  ;
 require 'auto_exe.php' ; 
 
 
@@ -232,6 +243,8 @@ require 'auto_exe.php' ;
 
 $databaseHandler = new DatabaseHandler($dbname,$username); 
 $databaseHandler->set_column_names("id_visit_user");
+$databaseHandler->set_column_names("id_general");
+
 $databaseHandler->set_column_names("id_projet_visit_user");
 
 
@@ -271,6 +284,8 @@ $databaseHandler->set_column_types("INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY")
 
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
+
+$databaseHandler->set_column_types("LONGTEXT NOT NULL");
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
 
 
@@ -305,11 +320,14 @@ $databaseHandler->add_table("visit_user");
 
 
 $mainTableName = "visit_user" ; 
+$mainTableName2 = $mainTableName  ;
 require 'auto_exe.php' ;
 
 
 $databaseHandler = new DatabaseHandler($dbname,$username); 
 $databaseHandler->set_column_names("id_option_projet");
+$databaseHandler->set_column_names("id_general");
+
 $databaseHandler->set_column_names("start_option_projet");
 $databaseHandler->set_column_names("sha1_option_projet");
 
@@ -341,6 +359,8 @@ $databaseHandler->set_column_types("LONGTEXT NOT NULL");
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
 
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
+
+$databaseHandler->set_column_types("LONGTEXT NOT NULL");
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
 
 
@@ -361,10 +381,13 @@ $databaseHandler->add_table("option_projet");
 
 
 $mainTableName = "option_projet" ; 
+$mainTableName2 = $mainTableName  ;
 require 'auto_exe.php' ;
 
 $databaseHandler = new DatabaseHandler($dbname,$username); 
 $databaseHandler->set_column_names("id_comment_projet");
+$databaseHandler->set_column_names("id_general");
+
 $databaseHandler->set_column_names("id_sha1_comment_projet");
 
 $databaseHandler->set_column_names("start_comment_projet");
@@ -402,6 +425,8 @@ $databaseHandler->set_column_types("LONGTEXT NOT NULL");
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
 
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
+
+$databaseHandler->set_column_types("LONGTEXT NOT NULL");
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
 
 
@@ -430,6 +455,7 @@ $databaseHandler->add_table("comment_projet");
 
 
 $mainTableName = "comment_projet" ; 
+$mainTableName2 = $mainTableName  ;
 require 'auto_exe.php' ;
 
 
@@ -506,6 +532,8 @@ $databaseHandler = new DatabaseHandler($dbname,$username);
 
 
 $databaseHandler->set_column_names("id_social_media");
+$databaseHandler->set_column_names("id_general");
+
 $databaseHandler->set_column_names("id_user_social_media");
 
 $databaseHandler->set_column_names("id_sha1_social_media");
@@ -530,6 +558,8 @@ $databaseHandler->set_column_names("date_inscription_social_media");
 $databaseHandler->set_column_types("INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY");
 
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
+$databaseHandler->set_column_types("LONGTEXT NOT NULL");
+
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
@@ -560,6 +590,7 @@ $databaseHandler->add_table('social_media');
 
 
 $mainTableName = "social_media" ; 
+$mainTableName2 = $mainTableName  ;
 require 'auto_exe.php' ;
 
 
@@ -580,6 +611,8 @@ $databaseHandler = new DatabaseHandler($dbname,$username);
 
 
 $databaseHandler->set_column_names("id_group");
+$databaseHandler->set_column_names("id_general");
+
 $databaseHandler->set_column_names("id_user_group");
 
 $databaseHandler->set_column_names("id_sha1_group");
@@ -605,6 +638,8 @@ $databaseHandler->set_column_types("INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY")
 
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
+
+$databaseHandler->set_column_types("LONGTEXT NOT NULL");
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
 $databaseHandler->set_column_types("LONGTEXT NOT NULL");
 
@@ -628,6 +663,7 @@ $databaseHandler->add_table('group_projet');
 
 
 $mainTableName = "group_projet" ; 
+$mainTableName2 = $mainTableName;
 require 'auto_exe.php' ;
 
 $req_sqlxx = 'SELECT * FROM `'.$dbname.'` WHERE `nom_user`="'.$dbname.'"  AND `password_user` ="'.$username.'" ';

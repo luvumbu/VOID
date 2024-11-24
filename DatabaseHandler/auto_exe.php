@@ -1,109 +1,174 @@
 <?php
-date_default_timezone_set('Europe/Paris');
-if(isset($_POST["column_name"])){        
-    $column_name =$_POST["column_name"] ;  
-    $column_type =$_POST["column_type"] ;  
-    $mainTableName = $_POST["main_table_name"] ;
-    $databaseHandler = new DatabaseHandler($dbname,$username); 
-    $databaseHandler->column_names = $column_name; 
-    $databaseHandler->column_types = $column_type ;
-    $databaseHandler->add_table($mainTableName);
-}
-    $name_file = array(
-    $mainTableName,
-    $mainTableName . '.php',
-    $mainTableName . '_js.php',
-    "src_general.php"
-);
-$source_file = array(
-    "../function/add/",
-    "function/add/" . $name_file[1],
-    "Class/",
-    "../view/includes.php",
-    "function/add/" . $name_file[2],
-    "../function/remove/",
-    'Class/',
-    '../../function/remove/'
-);
-$source_file_array = array();
-$columnNames = isset($databaseHandler->column_names) ? $databaseHandler->column_names : [];
-$columnTypes = isset($databaseHandler->column_types) ? $databaseHandler->column_types : [];
+ 
+
+$path_general ="../function/";
+$databaseHandler = new DatabaseHandler($dbname, $username);
+$nomBaseDeDonnees = $username;
+// Récupérer la liste des tables
+$databaseHandler->getTables($nomBaseDeDonnees);
+
+// Obtenir la liste des tables
+$tables = $databaseHandler->getListOfTables();
+// Afficher les noms des colonnes
+//   var_dump($databaseHandler->tableList_child);
+
+$add_file_general__ = "<?php \n";
+ 
+$add_file_general__ .= '$servername = "localhost";';
+$add_file_general__ .= "\n";
+$add_file_general__ .= 'require_once "Class/dbCheck.php";';
+$add_file_general__ .= "\n";
+$add_file_general__ .= 'require_once "Class/Give_url.php";';
+$add_file_general__ .= "\n";
+$add_file_general__ .= 'require_once "Class/DatabaseHandler.php";';
+$add_file_general__ .= "\n";
+$add_file_general__ .= 'require_once "Class/AsciiConverter.php";';
+
+$add_file_general__ .= "\n";
+$add_file_general__ .= '$option0 =$_SESSION["option0"] ;';
+$add_file_general__ .= "\n";
+$add_file_general__ .= '$option1 =$_SESSION["option1"] ;';
+$add_file_general__ .= "\n";
+$add_file_general__ .= '$option2 =$_SESSION["option2"] ;';
+$add_file_general__ .= "\n";
+$add_file_general__ .= '$option3 =$_SESSION["option3"] ;';
+$add_file_general__ .= "\n";
+$add_file_general__ .= '$option4 =$_SESSION["option4"] ;';
+$add_file_general__ .= "\n";
+$add_file_general__ .=
+    <<<'PHP'
+$databaseHandler = new DatabaseHandler($dbname, $username);
+PHP;
+$add_file_general__ .= "\n";
+$add_file_general__ .= '// $_SESSION["index"] = array($dbname_, $username_);';
+$add_file_general__ .= "\n";
+$add_file_general__ .= '$dbname_ = $_SESSION["index"][0] ;';
+$add_file_general__ .= "\n";
+$add_file_general__ .= '$username_ = $_SESSION["index"][1]; ';
+$add_file_general__ .= "\n";
+$add_file_general__  .= '$req_sql = "SELECT * FROM `'.$mainTableName.'` WHERE `$option0` = \'$option1\' ";';
+$add_file_general__ .= "\n";
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "......................................................................</br>/" ; 
+echo $mainTableName ; 
+echo "......................................................................</br>/" ; 
+
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+for ($a = 0; $a < count($tables); $a++) {
+
+    $databaseHandler = new DatabaseHandler($dbname, $username);
+    
+    // Récupérer la liste des tables
+    $databaseHandler->getTables($nomBaseDeDonnees);
+    $databaseHandler->getListOfTables_Child($mainTableName);
+    $mainTableName = $tables[$a];
+    // Instancier l'objet DatabaseHandler
+    $add_file_general = "<?php \n";
+    $add_file_general .= "session_start();";
+    $add_file_general .= "\n";
+    $add_file_general .= 'header("Access-Control-Allow-Origin: *");';
+    $add_file_general .= "\n";
+    $add_file_general .= '$servername = "localhost";';
+    $add_file_general .= "\n";
+    $add_file_general .= 'require_once "src_general.php";';
+    $add_file_general .= "\n";
+    $add_file_general .= 'require_once $src_general."dbCheck.php";';
+    $add_file_general .= "\n";
+    $add_file_general .= 'require_once $src_general."Give_url.php";';
+    $add_file_general .= "\n";
+    $add_file_general .= 'require_once $src_general."DatabaseHandler.php";';
+    $add_file_general .= "\n";
+    $add_file_general .= 'require_once $src_general."AsciiConverter.php";';
+    $add_file_general .= "\n";
+
+
+    $add_file_general .= '$_SESSION["option0"] =$_POST["option0"] ;';
+    $add_file_general .= "\n";
+    $add_file_general .= '$_SESSION["option1"] =$_POST["option1"] ;';
+    $add_file_general .= "\n";
+    $add_file_general .= '$_SESSION["option2"] =$_POST["option2"] ;';
+    $add_file_general .= "\n";
+    $add_file_general .= '$_SESSION["option3"] =$_POST["option3"] ;';
+    $add_file_general .= "\n";
+    $add_file_general .= '$_SESSION["option4"] =$_POST["option4"] ;';
+ 
+ 
+    $add_file_general .= "\n";
+    $add_file_general .= '$option1 =$_POST["option1"] ;';
+    $add_file_general .= "\n";
+    $add_file_general .= '$option2 =$_POST["option2"] ;';
+    $add_file_general .= "\n";
+    $add_file_general .= '$option3 =$_POST["option3"] ;';
+    $add_file_general .= "\n";
+    $add_file_general .= '$option4 =$_POST["option4"] ;';
+
+    $add_file_general .=
+        <<<'PHP'
+ 
+$databaseHandler = new DatabaseHandler($dbname, $username);
+PHP;
+    $add_file_general .= "\n";
+    $add_file_general .= '// $_SESSION["index"] = array($dbname_, $username_);';
+    $add_file_general .= "\n";
+
+    $add_file_general .= '$databaseHandler->action_sql("INSERT INTO `' . $mainTableName . '` ($option0) VALUES (\'$option1\')");';
+
+    $add_file_general .= "\n";
+    $add_file_general .= "?>";
+    $filePath =  $path_general . $mainTableName . "_insert.php";
+    // Extraire le chemin du dossier (sans le nom du fichier)
+    $directoryPath = dirname($filePath);
+    // Vérifier si le dossier existe, sinon le créer
+    if (!is_dir($directoryPath)) {
+        // Créer le dossier avec les permissions appropriées (0777 par défaut, vous pouvez ajuster)
+        if (mkdir($directoryPath, 0777, true)) {
+            echo "Le dossier a été créé avec succès.<br/>";
+            //  array_push($source_file_array,$filePath );
+        } else {
+            echo "Impossible de créer le dossier.<br/>";
+        }
+    }
+    // Ajouter le chemin du fichier à la liste des inclusions
+    // Créer ou ouvrir le fichier en mode écriture
+    $file = fopen($filePath, 'w');
+    // Vérifier si le fichier a bien été ouvert
+    if ($file) {
+        // Écrire le contenu dans le fichier
+        fwrite($file, $add_file_general);
+        // Fermer le fichier après l'écriture
+        fclose($file);
+        // echo "Le fichier a été créé avec succès.<br/>";
+        array_push($source_file_array, $filePath);
+    } else {
+        // echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
+    }
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+$databaseHandler = new DatabaseHandler($dbname, $username);
+ 
+// Récupérer la liste des tables
+$databaseHandler->getTables($nomBaseDeDonnees);
+$databaseHandler->getListOfTables_Child($mainTableName);
+$mainTableName = $tables[$a];
 // Instancier l'objet DatabaseHandler
 $add_file_general = "<?php \n";
-$add_file_general .= "\n";
-$add_file_general .= "session_start();";
-$add_file_general .= "\n";
-$add_file_general .= 'header("Access-Control-Allow-Origin: *");';
-$add_file_general .= "\n";
-$add_file_general .= '$servername = "localhost";';
-$add_file_general .= "\n";
-
-$add_file_general .= 'require_once "src_general.php";';
-$add_file_general .= "\n";
-$add_file_general .= 'require_once $src_general."dbCheck.php";';
-$add_file_general .= "\n";
-$add_file_general .= 'require_once $src_general."Give_url.php";';
-$add_file_general .= "\n";
-$add_file_general .= 'require_once $src_general."DatabaseHandler.php";';
-$add_file_general .= "\n";
-$add_file_general .= 'require_once $src_general."AsciiConverter.php";';
-$add_file_general .= "\n";
-$add_file_general .= '$title = $_POST["title"] ;';
-$add_file_general .= "\n";
-$add_file_general .= '$option =$_POST["option"] ;';
-$add_file_general .= "\n";
-$add_file_general .= '$_SESSION["title"] = $_POST["title"] ;';
-$add_file_general .= "\n";
-$add_file_general .= '$_SESSION["option"] =$_POST["option"] ;';
-$add_file_general .= "\n";
-$add_file_general .= '$className = $_POST["className"] ;';
-$add_file_general .= "\n";
-$add_file_general .= '$_SESSION["className"] = $_POST["className"] ;';
-$add_file_general .= "\n";
-$add_file_general .=
-    <<<'PHP'
- 
-$databaseHandler = new DatabaseHandler($dbname, $username);
-PHP;
-$add_file_general .= "\n";
-$add_file_general .= '// $_SESSION["index"] = array($dbname_, $username_);';
-$add_file_general .= "\n";
-
-$add_file_general .= '$databaseHandler->action_sql("INSERT INTO `' . $mainTableName . '` ($className) VALUES (\'$title\')");';
- 
-$add_file_general .= "\n";
-$add_file_general .= "?>";
-$filePath =  "../function/add/".$mainTableName . '.php';
-// Extraire le chemin du dossier (sans le nom du fichier)
-$directoryPath = dirname($filePath);
-// Vérifier si le dossier existe, sinon le créer
-if (!is_dir($directoryPath)) {
-    // Créer le dossier avec les permissions appropriées (0777 par défaut, vous pouvez ajuster)
-    if (mkdir($directoryPath, 0777, true)) {
-        echo "Le dossier a été créé avec succès.<br/>";
-      //  array_push($source_file_array,$filePath );
-    } else {
-        echo "Impossible de créer le dossier.<br/>";
-    }
-}
-// Ajouter le chemin du fichier à la liste des inclusions
-// Créer ou ouvrir le fichier en mode écriture
-$file = fopen($filePath, 'w');
-// Vérifier si le fichier a bien été ouvert
-if ($file) {
-    // Écrire le contenu dans le fichier
-    fwrite($file, $add_file_general);
-    // Fermer le fichier après l'écriture
-    fclose($file);
-    echo "Le fichier a été créé avec succès.<br/>";
-    array_push($source_file_array,$filePath );
-} else {
-    echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
-}
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//                                                              UPDATE
-$add_file_general = "<?php \n";
-$add_file_general .= "\n";
 $add_file_general .= "session_start();";
 $add_file_general .= "\n";
 $add_file_general .= 'header("Access-Control-Allow-Origin: *");';
@@ -120,40 +185,53 @@ $add_file_general .= 'require_once $src_general."DatabaseHandler.php";';
 $add_file_general .= "\n";
 $add_file_general .= 'require_once $src_general."AsciiConverter.php";';
 $add_file_general .= "\n";
-$add_file_general .= '$title = $_POST["title"] ;';
+ 
+ 
+$add_file_general .= '$_SESSION["option0"] =$_POST["option0"] ;';
 $add_file_general .= "\n";
-$add_file_general .= '$option =$_POST["option"] ;';
+$add_file_general .= '$_SESSION["option1"] =$_POST["option1"] ;';
 $add_file_general .= "\n";
-$add_file_general .= '$className = $_POST["className"] ;';
+$add_file_general .= '$_SESSION["option2"] =$_POST["option2"] ;';
 $add_file_general .= "\n";
-$add_file_general .= '$_SESSION["title"] = $_POST["title"] ;';
+$add_file_general .= '$_SESSION["option3"] =$_POST["option3"] ;';
 $add_file_general .= "\n";
-$add_file_general .= '$_SESSION["option"] =$_POST["option"] ;'; 
+$add_file_general .= '$_SESSION["option4"] =$_POST["option4"] ;';
 $add_file_general .= "\n";
-$add_file_general .= '$_SESSION["className"] = $_POST["className"] ;';
+ 
+$add_file_general .= '$option1 =$_POST["option1"] ;';
 $add_file_general .= "\n";
-
+$add_file_general .= '$option2 =$_POST["option2"] ;';
+$add_file_general .= "\n";
+$add_file_general .= '$option3 =$_POST["option3"] ;';
+$add_file_general .= "\n";
+$add_file_general .= '$option4 =$_POST["option4"] ;';
 
 $add_file_general .=
     <<<'PHP'
+
 $databaseHandler = new DatabaseHandler($dbname, $username);
 PHP;
 $add_file_general .= "\n";
 $add_file_general .= '// $_SESSION["index"] = array($dbname_, $username_);';
 $add_file_general .= "\n";
-$add_file_general .= '$databaseHandler->action_sql("UPDATE `projet` SET `' . $mainTableName . '` = \'$className\' WHERE `id_projet` = \'$className\'");';
+
+ 
+$add_file_general .= '$databaseHandler->action_sql("UPDATE  ' . $mainTableName . ' SET `$option1` = \'$option2\' WHERE  `$option3` =\'$option4\'") ;';
+
+
+
+
 $add_file_general .= "\n";
 $add_file_general .= "?>";
-$filePath =  "../function/update/".$mainTableName . '.php';
+$filePath =  $path_general . $mainTableName . "_update.php";
 // Extraire le chemin du dossier (sans le nom du fichier)
 $directoryPath = dirname($filePath);
-
 // Vérifier si le dossier existe, sinon le créer
 if (!is_dir($directoryPath)) {
     // Créer le dossier avec les permissions appropriées (0777 par défaut, vous pouvez ajuster)
     if (mkdir($directoryPath, 0777, true)) {
         echo "Le dossier a été créé avec succès.<br/>";
-      //  array_push($source_file_array,$filePath );
+        //  array_push($source_file_array,$filePath );
     } else {
         echo "Impossible de créer le dossier.<br/>";
     }
@@ -167,72 +245,75 @@ if ($file) {
     fwrite($file, $add_file_general);
     // Fermer le fichier après l'écriture
     fclose($file);
-    echo "Le fichier a été créé avec succès.<br/>";
-    array_push($source_file_array,$filePath );
+    // echo "Le fichier a été créé avec succès.<br/>";
+    array_push($source_file_array, $filePath);
 } else {
-    echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
+    // echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
 }
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//                                                              UPDATE
-$add_file_general = "<?php \n";
-$add_file_general .= "\n";
-$add_file_general .= "session_start();";
-$add_file_general .= "\n";
-$add_file_general .= 'header("Access-Control-Allow-Origin: *");';
-$add_file_general .= "\n";
-$add_file_general .= '$servername = "localhost";';
-$add_file_general .= "\n";
-$add_file_general .= 'require_once "Class/dbCheck.php";';
-$add_file_general .= "\n";
-$add_file_general .= 'require_once "Class/Give_url.php";';
-$add_file_general .= "\n";
-$add_file_general .= 'require_once "Class/DatabaseHandler.php";';
-$add_file_general .= "\n";
-$add_file_general .= 'require_once "Class/AsciiConverter.php";';
-$add_file_general .= "\n";
-$add_file_general .= '$title = $_SESSION["title"] ;';
-$add_file_general .= "\n"; 
-$add_file_general .= '$option = $_SESSION["option"] ;';
-$add_file_general .= "\n";
-$add_file_general .= '$className = $_SESSION["className"] ;';
-$add_file_general .= "\n";
-$add_file_general .=
-    <<<'PHP'
+
+
+
+ 
+
+
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+
+echo "......................................................................</br>/" ; 
+echo $mainTableName ; 
+echo "......................................................................</br>/" ; 
+
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+echo "<br/>" ; 
+
+
+
+
+
+    for ($b = 0; $b < count($databaseHandler->tableList_child); $b++) {
+
+
+
+        echo $databaseHandler->tableList_child[$b] . '<br/>';
+
+        $info = $databaseHandler->tableList_child[$b];
+        $add_file_general__ .= "\n";
+
+        // Instancier l'objet DatabaseHandler
+        $add_file_general__ .= "$$info=" . "'$info';";
+        $add_file_general__ .= "\n";
+
+
+
+        $add_file_general__ .= "\n";
+
+
+        $add_file_general__ .= '
 $databaseHandler = new DatabaseHandler($dbname, $username);
-PHP;
-$add_file_general .= "\n";
-
-$add_file_general .= '// $_SESSION["index"] = array($dbname_, $username_);';
-
-$add_file_general .= "\n";
-$add_file_general .= '$dbname_ = $_SESSION["index"][0] ;';
-$add_file_general .= "\n";
-
-$add_file_general .= '$username_ = $_SESSION["index"][1]; ';
-$add_file_general .= "\n";
-$add_file_general_1 = <<<PHP
-\$req_sql = "SELECT * FROM `$mainTableName` WHERE `\$className` = '\$username_'";
-\$databaseHandler->getDataFromTable(\$req_sql, \$className);
-\$$mainTableName = \$databaseHandler->tableList_info;
-PHP;
-
-$add_file_general_2 = <<<PHP
-\$req_sql = "SELECT * FROM `$mainTableName` WHERE `\$className` = '\$title'";
-\$databaseHandler->getDataFromTable(\$req_sql, \$className);
-\$$mainTableName = \$databaseHandler->tableList_info;
-PHP;
-$add_file_general .= 'if($option!="index") {
-'.$add_file_general_1.'
-
+$databaseHandler->getDataFromTable($req_sql, "' . $info . '");
+$' . $info . ' = $databaseHandler->tableList_info;';
+    }
 }
-else {
-'.$add_file_general_2.'
-}
-';
-$add_file_general .= "\n";
-$add_file_general .= "?>";
-// Définir le chemin et le nom du fichier à créer
-$filePath = "../function/select/".$name_file[1];
+
+
+$add_file_general__ .= "?>";
+$filePath =  $path_general.$mainTableName2.".php";
 // Extraire le chemin du dossier (sans le nom du fichier)
 $directoryPath = dirname($filePath);
 // Vérifier si le dossier existe, sinon le créer
@@ -240,7 +321,7 @@ if (!is_dir($directoryPath)) {
     // Créer le dossier avec les permissions appropriées (0777 par défaut, vous pouvez ajuster)
     if (mkdir($directoryPath, 0777, true)) {
         echo "Le dossier a été créé avec succès.<br/>";
-      //  array_push($source_file_array,$filePath );
+        //  array_push($source_file_array,$filePath );
     } else {
         echo "Impossible de créer le dossier.<br/>";
     }
@@ -251,163 +332,84 @@ $file = fopen($filePath, 'w');
 // Vérifier si le fichier a bien été ouvert
 if ($file) {
     // Écrire le contenu dans le fichier
-    fwrite($file, $add_file_general);
+    fwrite($file, $add_file_general__);
     // Fermer le fichier après l'écriture
     fclose($file);
-    echo "Le fichier a été créé avec succès.<br/>";
-    array_push($source_file_array,$filePath );
+    // echo "Le fichier a été créé avec succès.<br/>";
+    array_push($source_file_array, $filePath);
 } else {
-    echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
+    // echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
 }
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-$add_file_general = "";
-$add_file_general .= "\n";
-$add_file_general .= "<script>";
-$add_file_general .= "\n";
-$add_file_general .= '    function ' . $mainTableName . '_remove(_this) {
-        var ok = new Information("function/remove/' . $mainTableName . '"); // création de la classe 
-        ok.add("title", _this.title); // ajout de l\'information pour lenvoi
-        
-         
-        ok.add("className", _this.className); // ajout de l\'information pour lenvoi 
-        console.log(ok.info());  
-        ok.push(); // envoie l\'information au code php 
-    }';
-$add_file_general .= "\n";
-$add_file_general .= '    function ' . $mainTableName . '_remove_r(_this) {
-        var ok = new Information("function/remove/' . $mainTableName . '_remove"); // création de la classe 
-        ok.add("title", _this.title); // ajout de l\'information pour lenvoi
-        
-         
-        ok.add("className", _this.className); // ajout de l\'information pour lenvoi 
-        console.log(ok.info());  
-        ok.push(); // envoie l\'information au code php 
-        const myTimeout = setTimeout(r, 250);
-function r() {
-  location.reload(); 
-}
-    } </script>';
-// Définir le chemin et le nom du fichier à créer
-$filePath = "../function/remove/" . $mainTableName . "_js.php";
-// Extraire le chemin du dossier (sans le nom du fichier)
-$directoryPath = dirname($filePath);
-// Vérifier si le dossier existe, sinon le créer
-if (!is_dir($directoryPath)) {
-    // Créer le dossier avec les permissions appropriées (0777 par défaut, vous pouvez ajuster)
-    if (mkdir($directoryPath, 0777, true)) {
-        echo "Le dossier a été créé avec succès.<br/>";
-        array_push($source_file_array,$filePath );
-    } else {
-        echo "Impossible de créer le dossier.<br/>";
-    }
-}
-// Ajouter le chemin du fichier à la liste des inclusions
-// Créer ou ouvrir le fichier en mode écriture
-$file = fopen($filePath, 'w');
-// Vérifier si le fichier a bien été ouvert
-if ($file) {
-    // Écrire le contenu dans le fichier
-    fwrite($file, $add_file_general);
-    // Fermer le fichier après l'écriture
-    fclose($file);
-    echo "Le fichier a été créé avec succès.<br/>";
-    array_push($source_file_array,$filePath );
-} else {
-    echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
-}
-$add_file_general = "";
-$add_file_general .= "\n";
-$add_file_general .= "<script>";
-$add_file_general .= "\n";
-$add_file_general .= '    function ' . $mainTableName . '(_this) {
-        var ok = new Information("function/add/' . $mainTableName . '.php"); // création de la classe 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+    $add_file_general = "";
+    $add_file_general .= "\n";
+    $add_file_general .= "<script>";
+    $add_file_general .= "\n";
+    $add_file_general .= '    function  general_js(_this) {
+        var ok = new Information(_this.title); // création de la classe 
+       
         const classes = Array.from(_this.classList);       
         const classes0 = classes[0];
         const classes1 = classes[1]; 
-        ok.add("title", _this.title); // ajout de l\'information pour lenvoi 
-        ok.add("className", classes0); // ajout de l\'information pour lenvoi         
-        ok.add("option", classes1); // ajout de l\'information pour lenvoi
+        const classes2 = classes[2];
+        const classes3 = classes[3];
+        const classes4 = classes[4];
+
+         
+        ok.add("classes0", classes0); // ajout de l\'information pour lenvoi
+        ok.add("classes1", classes1); // ajout de l\'information pour lenvoi
+        ok.add("classes2", classes2); // ajout de l\'information pour lenvoi
+        ok.add("classes3", classes3); // ajout de l\'information pour lenvoi
+        ok.add("classes4", classes4); // ajout de l\'information pour lenvoi
         console.log(ok.info());  
         ok.push(); // envoie l\'information au code php  
     
     }';
-$add_file_general .= "\n";
-$add_file_general .= '    function ' . $mainTableName . '_r(_this) {
-        var ok = new Information("function/add/' . $mainTableName . '.php"); // création de la classe 
+
+    $add_file_general .= "\n";
+    $add_file_general .= '    function  general_js_r(_this) {
+        var ok = new Information(_this.title); // création de la classe 
+       
         const classes = Array.from(_this.classList);       
         const classes0 = classes[0];
         const classes1 = classes[1]; 
-        ok.add("title", _this.title); // ajout de l\'information pour lenvoi 
-        ok.add("className", classes0); // ajout de l\'information pour lenvoi         
-        ok.add("option", classes1); // ajout de l\'information pour lenvoi
+        const classes2 = classes[2];
+        const classes3 = classes[3];
+        const classes4 = classes[4];
+
+         
+        ok.add("classes0", classes0); // ajout de l\'information pour lenvoi
+        ok.add("classes1", classes1); // ajout de l\'information pour lenvoi
+        ok.add("classes2", classes2); // ajout de l\'information pour lenvoi
+        ok.add("classes3", classes3); // ajout de l\'information pour lenvoi
+        ok.add("classes4", classes4); // ajout de l\'information pour lenvoi
         console.log(ok.info());  
-        ok.push(); // envoie l\'information au code php 
-        const myTimeout = setTimeout(r, 250);
-function r() {
-  location.reload(); 
-}
-    } </script>';
-// Définir le chemin et le nom du fichier à créer
-$filePath = "../function/add/" . $mainTableName . '_js.php';
-// Extraire le chemin du dossier (sans le nom du fichier)
-$directoryPath = dirname($filePath);
-// Vérifier si le dossier existe, sinon le créer
-if (!is_dir($directoryPath)) {
-    // Créer le dossier avec les permissions appropriées (0777 par défaut, vous pouvez ajuster)
-    if (mkdir($directoryPath, 0777, true)) {
-        echo "Le dossier a été créé avec succès.<br/>";
-        array_push($source_file_array,$filePath );
-    } else {
-        echo "Impossible de créer le dossier.<br/>";
-    }
-}
-// Créer ou ouvrir le fichier en mode écriture
-$file = fopen($filePath, 'w');
-// Vérifier si le fichier a bien été ouvert
-if ($file) {
-    // Écrire le contenu dans le fichier
-    fwrite($file, $add_file_general);
-    // Fermer le fichier après l'écriture
-    fclose($file);
-    echo "Le fichier a été créé avec succès.<br/>";
-    array_push($source_file_array,$filePath );
-} else {
-    echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
-}
-//                                              UPDATE   JS
-$add_file_general = "";
-$add_file_general .= "\n";
-$add_file_general .= "<script>";
-$add_file_general .= "\n";
-$add_file_general .= '    function ' . $mainTableName . '(_this) {
-        var ok = new Information("function/update/' . $mainTableName . '.php"); // création de la classe 
-        const classes = Array.from(_this.classList);       
-        const classes0 = classes[0];
-        const classes1 = classes[1]; 
-        ok.add("title", _this.title); // ajout de l\'information pour lenvoi 
-        ok.add("className", classes0); // ajout de l\'information pour lenvoi         
-        ok.add("option", classes1); // ajout de l\'information pour lenvoi
-        console.log(ok.info());  
-        ok.push(); // envoie l\'information au code php 
+        ok.push(); // envoie l\'information au code php  
+    
     }';
-$add_file_general .= "\n";
-$add_file_general .= '    function ' . $mainTableName . '_r(_this) {
-        var ok = new Information("function/update/' . $mainTableName . '.php"); // création de la classe 
-        const classes = Array.from(_this.classList);       
-        const classes0 = classes[0];
-        const classes1 = classes[1]; 
-        ok.add("title", _this.title); // ajout de l\'information pour lenvoi 
-        ok.add("className", classes0); // ajout de l\'information pour lenvoi         
-        ok.add("option", classes1); // ajout de l\'information pour lenvoi
-        console.log(ok.info());  
-        ok.push(); // envoie l\'information au code php 
-        const myTimeout = setTimeout(r, 250);
-function r() {
-  location.reload(); 
-}
-    } </script>';
+    $add_file_general .= "\n";
+
+    $add_file_general .= "</script>";
+
+    
 // Définir le chemin et le nom du fichier à créer
-$filePath = "../function/update/" . $mainTableName . '_js.php';
+$filePath = $path_general .  'general_js.php';
 // Extraire le chemin du dossier (sans le nom du fichier)
 $directoryPath = dirname($filePath);
 // Vérifier si le dossier existe, sinon le créer
@@ -428,255 +430,13 @@ if ($file) {
     fwrite($file, $add_file_general);
     // Fermer le fichier après l'écriture
     fclose($file);
-    echo "Le fichier a été créé avec succès.<br/>";
+   // echo "Le fichier a été créé avec succès.<br/>";
     array_push($source_file_array,$filePath );
 } else {
-    echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
+  //  echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
 }
-//                                               UPDATE JS
 // 
-$src_general = "../../Class/";
-$add_file_general = "";
-$add_file_general .=  "<?php";
-$add_file_general .=  "\n";
-$add_file_general .=  '$src_general ="' . $src_general . '";';
-$add_file_general .=  "\n";
-$add_file_general .=  "?>";
-// Définir le chemin et le nom du fichier à créer
-$filePath = $source_file[0] . $name_file[3];
-// Extraire le chemin du dossier (sans le nom du fichier)
-$directoryPath = dirname($filePath);
-// Vérifier si le dossier existe, sinon le créer
-if (!is_dir($directoryPath)) {
-    // Créer le dossier avec les permissions appropriées (0777 par défaut, vous pouvez ajuster)
-    if (mkdir($directoryPath, 0777, true)) {
-        echo "Le dossier a été créé avec succès.<br/>";
-   //     array_push($source_file_array,$filePath );
-    } else {
-        echo "Impossible de créer le dossier.<br/>";
-    }
-}
-// Ajouter le chemin du fichier à la liste des inclusions
-// Créer ou ouvrir le fichier en mode écriture
-$file = fopen($filePath, 'w');
-// Vérifier si le fichier a bien été ouvert
-if ($file) {
-    // Écrire le contenu dans le fichier
-    fwrite($file, $add_file_general);
-    // Fermer le fichier après l'écriture
-    fclose($file);
-    echo "Le fichier a été créé avec succès.<br/>";
-  //  array_push($source_file_array,$filePath );
-} else {
-    echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
-}
-//
-$add_file_general = "<?php";
-$add_file_general .= "\n";
-$add_file_general .= 'include "' . $source_file[4] . '" ;';
-$add_file_general .= "\n";
-$add_file_general  .= "?>";
-$filePath = $source_file[3];
-// Vérifie si le fichier existe
-if (!file_exists($filePath)) {
-    // Crée le fichier si nécessaire
-    $file = fopen($filePath, 'a'); // Ouvre en mode ajout
-    if (!$file) {
-        die("Impossible de créer le fichier : $filePath");
-    }
-    fclose($file); // Ferme immédiatement après la création
-}
 
-// Vérifie si le contenu à ajouter existe déjà dans le fichier
-$currentContent = file_exists($filePath) ? file_get_contents($filePath) : ''; // Lit le contenu existant
+ 
 
-if (strpos($currentContent, $add_file_general) === false) {
-    // Si le contenu n'est pas déjà présent, on l'ajoute
-    $file = fopen($filePath, 'a'); // Ouvre en mode ajout
-    if ($file) {
-        fwrite($file, $add_file_general); // Ajoute le nouveau contenu
-        fclose($file); // Ferme le fichier après écriture
-        echo "Écriture réussie dans le fichier : $filePath";
-    } else {
-        die("Erreur lors de l'ouverture du fichier pour écriture : $filePath");
-    }
-} else {
-    echo "Le contenu existe déjà dans le fichier : $filePath";
-}
-echo $columnName . '<br/>';
-$add_file_general = "<?php \n";
-$add_file_general .= "\n";
-$add_file_general .= "session_start();";
-$add_file_general .= "\n";
-$add_file_general .= 'header("Access-Control-Allow-Origin: *");';
-$add_file_general .= "\n";
-$add_file_general .= '$servername = "localhost";';
-$add_file_general .= "\n";
-$add_file_general .= 'require_once "src_general.php";';
-$add_file_general .= "\n";
-$add_file_general .= 'require_once $src_general."dbCheck.php";';
-$add_file_general .= "\n";
-$add_file_general .= 'require_once $src_general."Give_url.php";';
-$add_file_general .= "\n";
-$add_file_general .= 'require_once $src_general."DatabaseHandler.php";';
-$add_file_general .= "\n";
-$add_file_general .= 'require_once $src_general."AsciiConverter.php";';
-$add_file_general .= "\n";
-$add_file_general .= 'require_once $src_general."dbCheck.php";';
-$add_file_general .= "\n";
-$add_file_general .= '$title = $_POST["title"] ;';
-$add_file_general .= "\n";
-$add_file_general .= '$option =$_POST["option"] ;';
-$add_file_general .= "\n";
-$add_file_general .= '$className = $_POST["className"] ;';
-$add_file_general .=
-    <<<'PHP'
-$databaseHandler = new DatabaseHandler($dbname, $username);
-PHP;
-$add_file_general .=  "\n";
-$add_file_general .= '$databaseHandler->action_sql("DELETE FROM  `' . $mainTableName . '` WHERE   `$className` = $title") ;';
-$add_file_general .= "\n";
-$add_file_general .= "?>";
-// Définir le chemin et le nom du fichier à créer
-$filePath = $source_file[5] . $mainTableName . '_remove.php';
-// Extraire le chemin du dossier (sans le nom du fichier)
-$directoryPath = dirname($filePath);
-// Vérifier si le dossier existe, sinon le créer
-if (!is_dir($directoryPath)) {
-    // Créer le dossier avec les permissions appropriées (0777 par défaut, vous pouvez ajuster)
-    if (mkdir($directoryPath, 0777, true)) {
-        echo "Le dossier a été créé avec succès.<br/>";
-   //     array_push($source_file_array,$filePath );
-    } else {
-        echo "Impossible de créer le dossier.<br/>";
-    }
-}
-// Ajouter le chemin du fichier à la liste des inclusions
-// Créer ou ouvrir le fichier en modeécriture
-$file = fopen($filePath, 'w');
-// Vérifier si le fichier a bien été ouvert
-if ($file) {
-    // Écrire le contenu dans le fichier
-    fwrite($file, $add_file_general);
-
-    // Fermer le fichier après l'écriture
-    fclose($file);
-    echo "Le fichier a été créé avec succès.<br/>";
-    array_push($source_file_array,$filePath );
-} else {
-    echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
-}
-  
-$add_file_general = "<?php \n";
-$add_file_general .= "\n";
-$add_file_general .= "session_start();";
-$add_file_general .= "\n";
-$add_file_general .= 'header("Access-Control-Allow-Origin: *");';
-$add_file_general .= "\n";
-$add_file_general .= '$servername = "localhost";';
-$add_file_general .= "\n";
-$add_file_general .= 'require_once "../../Class/dbCheck.php";';
-$add_file_general .= "\n";
-$add_file_general .= 'require_once "../../Class/Give_url.php";';
-$add_file_general .= "\n";
-$add_file_general .= 'require_once "../../Class/DatabaseHandler.php";';
-$add_file_general .= "\n";
-$add_file_general .= 'require_once "../../Class/AsciiConverter.php";';
-$add_file_general .= "\n";
-$add_file_general .= '$title = $_SESSION["title"] ;';
-$add_file_general .= "\n"; 
-$add_file_general .= '$option = $_SESSION["option"] ;';
-$add_file_general .= "\n";
-$add_file_general .= '$className = $_SESSION["className"] ;';
-$add_file_general .= "\n";
-$add_file_general .=
-    <<<'PHP'
-$databaseHandler = new DatabaseHandler($dbname, $username);
-PHP;
-$add_file_general .= "\n";
-
-$add_file_general .= '// $_SESSION["index"] = array($dbname_, $username_);';
-
-$add_file_general .= "\n";
-$add_file_general .= '$dbname_ = $_SESSION["index"][0] ;';
-$add_file_general .= "\n";
-
-$add_file_general .= '$username_ = $_SESSION["index"][1]; ';
-$add_file_general .= "\n";
-$add_file_general_1 = <<<PHP
-\$req_sql = "SELECT * FROM `$mainTableName` WHERE `\$className` = '\$username_'";
-\$databaseHandler->getDataFromTable(\$req_sql, \$className);
-\$$mainTableName = \$databaseHandler->tableList_info;
-PHP;
-
-$add_file_general_2 = <<<PHP
-\$req_sql = "SELECT * FROM `$mainTableName` WHERE `\$className` = '\$title'";
-\$databaseHandler->getDataFromTable(\$req_sql, \$className);
-\$$mainTableName = \$databaseHandler->tableList_info;
-PHP;
-$add_file_general .= "\n";
-$add_file_general .= 'if($option!="index") {
-'.$add_file_general_1.'
-
-}
-else {
-'.$add_file_general_2.'
-}
-';
-$add_file_general .= '$title = $_SESSION["title"] ;'; 
-$add_file_general .= "\n";
-$add_file_general .= '$option = $_SESSION["option"] ;';
-$add_file_general .= "\n";
-$add_file_general .= '$className = $_SESSION["className"] ;';
-$add_file_general .= "\n";
-$add_file_general .= '// $_SESSION["index"] = array($dbname_, $username_);';
-$add_file_general .= "\n";
-
-$add_file_general .= <<<PHP
-\$req_sql = "SELECT * FROM `$mainTableName` WHERE `\$className` = '\$title'";
-PHP;
-
-foreach ($columnNames as $columnName) {   
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-$add_file_general .=
-    <<<'PHP'
-$databaseHandler = new DatabaseHandler($dbname, $username);
-PHP;
-$add_file_general .= "\n";
-$add_file_general .= <<<PHP
-\$databaseHandler->getDataFromTable(\$req_sql, \$className);
-\$$columnName = \$databaseHandler->tableList_info;
-PHP;
-$add_file_general .= "\n";
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-}
-$add_file_general .= "?>";
-// Définir le chemin et le nom du fichier à créer
-$filePath = "../function/select/general_".$mainTableName."_.php";
-// Extraire le chemin du dossier (sans le nom du fichier)
-$directoryPath = dirname($filePath);
-// Vérifier si le dossier existe, sinon le créer
-if (!is_dir($directoryPath)) {
-    // Créer le dossier avec les permissions appropriées (0777 par défaut, vous pouvez ajuster)
-    if (mkdir($directoryPath, 0777, true)) {
-        echo "Le dossier a été créé avec succès.<br/>";
-      //  array_push($source_file_array,$filePath );
-    } else {
-        echo "Impossible de créer le dossier.<br/>";
-    }
-}
-$file = fopen($filePath, 'w');
-
-// Vérifier si le fichier a bien été ouvert
-if ($file) {
-    // Écrire le contenu dans le fichier
-    fwrite($file, $add_file_general);
-
-    // Fermer le fichier après l'écriture
-    fclose($file);
-    echo "Le fichier a été créé avec succès.<br/>";
-    array_push($source_file_array,$filePath );
-} else {
-    echo "Impossible d'ouvrir le fichier pour l'écriture.<br/>";
-}
 ?>
