@@ -1,6 +1,6 @@
 <?php 
  session_start() ;  
- require_once '../Class/give_url.php'; 
+ require_once '../Class/Give_url.php'; 
  require_once '../Class/path_config.php';
  require_once '../Class/DatabaseHandler.php';
  ?>

@@ -23,6 +23,12 @@ $add_file_general__ .= 'require_once $src_general."DatabaseHandler.php";';
 $add_file_general__ .= "\n";
 $add_file_general__ .= 'require_once $src_general."AsciiConverter.php";';
 $add_file_general__ .= "\n";
+
+$add_file_general__ .=
+    <<<'PHP'
+$databaseHandler = new DatabaseHandler($dbname, $username);
+PHP;
+$add_file_general__ .= "\n";
 $add_file_general__ .= '$option0 =$_SESSION["option0"] ;';
 $add_file_general__ .= "\n";
 $add_file_general__ .= '$option1 =$_SESSION["option1"] ;';
@@ -67,16 +73,21 @@ $add_file_general__start .= 'require_once $src_general."DatabaseHandler.php";';
 $add_file_general__start .= "\n";
 $add_file_general__start .= 'require_once $src_general."AsciiConverter.php";';
 $add_file_general__start .= "\n";
-$add_file_general__start .= '$option0 =$_SESSION["option0"] ;';
+ 
+ 
+$add_file_general__start .=
+    <<<'PHP'
+ $url = new Give_url();
+$url->split_basename('__');
+
+
+$option0 =$url->get_elements()[0];
+$option1 =$url->get_elements()[1];
+PHP;
+
 $add_file_general__start .= "\n";
-$add_file_general__start .= '$option1 =$_SESSION["option1"] ;';
-$add_file_general__start .= "\n";
-$add_file_general__start .= '$option2 =$_SESSION["option2"] ;';
-$add_file_general__start .= "\n";
-$add_file_general__start .= '$option3 =$_SESSION["option3"] ;';
-$add_file_general__start .= "\n";
-$add_file_general__start .= '$option4 =$_SESSION["option4"] ;';
-$add_file_general__start .= "\n";
+
+
 $add_file_general__start .=
     <<<'PHP'
 $databaseHandler = new DatabaseHandler($dbname, $username);

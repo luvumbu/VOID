@@ -1,21 +1,52 @@
-<?php 
-function give_url(){
-    // url == $_SERVER['PHP_SELF'] ; 
-    $reverse_el =strrev($_SERVER['PHP_SELF'])  ; 
-    $val_final ="" ; 
-     for($a = 0 ; $a<strlen($_SERVER['PHP_SELF']) ; $a ++){
-       
-     
-        if($reverse_el[$a]=="/"){
-            break ; 
-        } 
-        else {
-            $val_final = $val_final.$reverse_el[$a] ; 
+<?php
+class Give_url {
+    // Propriété pour stocker le nom de base du fichier
+    public $basename;
+    // Propriété pour stocker le tableau des éléments séparés
+    public $elements = [];
+
+    // Constructeur pour initialiser la propriété avec $_SERVER['PHP_SELF'] par défaut
+    public function __construct($basename = null) {
+        // Si aucune valeur n'est passée, utiliser $_SERVER['PHP_SELF']
+        if ($basename === null) {
+            $this->basename = basename($_SERVER['PHP_SELF']);
+        } else {
+            $this->basename = $basename;
         }
-     }
-    
-     $val_final =strrev($val_final)  ; 
-     return  $val_final ; 
-  }  
-  //echo give_url() ;
-  ?>
+    }
+
+    // Méthode pour définir la valeur de basename
+    public function set_basename($basename) {
+        $this->basename = $basename;
+    }
+
+    // Méthode pour récupérer la valeur de basename
+    public function get_basename() {
+        return $this->basename;
+    }
+
+    // Nouvelle méthode pour séparer la chaîne en utilisant un séparateur donné et stocker dans un tableau
+    public function split_basename($separator) {
+        // On utilise explode pour séparer le basename avec le séparateur
+        $this->elements = explode($separator, $this->basename);
+    }
+
+    // Méthode pour récupérer le tableau des éléments séparés
+    public function get_elements() {
+        return $this->elements;
+    }
+}
+
+
+
+/*
+// Création d'une instance de la classe, avec $_SERVER['PHP_SELF'] par défaut
+$url = new Give_url();
+// Afficher le nom du fichier actuel
+echo "Le nom du fichier actuel est : " . $url->get_basename() . "\n";
+// Utilisation de la méthode split_basename pour séparer par "_"
+$url->split_basename('_');
+var_dump($url->get_elements()) ; 
+
+*/
+?>
