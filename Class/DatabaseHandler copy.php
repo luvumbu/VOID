@@ -13,9 +13,7 @@ class DatabaseHandler
     public $tableList = array();
     public $tableList_child = array();
     public $tableList_child2 = array();
-    public $tableList_info = array();
-    public $tableList_info2 =[];  
-
+    public $tableList_info = array();  
     public $column_names = array();
     public $column_types = array();
     function __construct($username, $password)
@@ -113,14 +111,10 @@ class DatabaseHandler
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     array_push($this->tableList_child, $row['Field']);
-
-                    
                 }
             }
             $this->connection_child->close();
         }
-
- 
     }
 
     function getListOfTables_Child2($tableName)
@@ -142,7 +136,6 @@ class DatabaseHandler
     }
     function getDataFromTable($sql, $info_recherche)
     {
-        $this->tableList_info = array();
         if ($this->verif) {
             $this->connection_child = new mysqli($this->servername,  $this->username, $this->password, $this->username);
             if ($this->connection_child->connect_error) {
@@ -160,24 +153,50 @@ class DatabaseHandler
             }
             $this->connection_child->close();
         }
-        $this->tableList_info2[] = $this->tableList_info;
-        
     }
 
 
-    function getDataFromTable2X($sql)
+    function getDataFromTable2($sql)
     {
-        foreach ($this->tableList_child as $row) {
+        if ($this->verif) {
+            $this->connection_child = new mysqli($this->servername,  $this->username, $this->password, $this->username);
+            if ($this->connection_child->connect_error) {
+                die("Connection failed: " . $this->connection_child->connect_error);
+            }
+            $result = $this->connection_child->query($sql);
+            if ($result->num_rows > 0) {
+                $data = array();
+                while ($row = $result->fetch_assoc()) {
+                    $data[] = $row;
+                }
+                
+           //     $this->getListOfTables_Child2("root");
+
+            //    var_dump($this->tableList_child);
+
+
+
+                foreach ($data as $row) {
                     
 
- 
-            $this->getDataFromTable($sql, $row);       
-           
-          }
-          
 
-          
+         
 
+                    $provisoir = array() ;
+                    
+                    array_push($provisoir, $row["id_user"]);
+                    array_push($provisoir, $row["id_sha1_user"]);
+                    array_push($provisoir, $row["id_parent_user"]);
+                    array_push($provisoir, $row["description_user"]);
+                    array_push($provisoir, $row["title_user"]);
+                    array_push($provisoir, $row["date_inscription_user"]);
+
+                    $this->tableList_info[] = $provisoir ;
+
+                }
+            }
+            $this->connection_child->close();
+        }
     }
     function action_sql($sql)
     {
@@ -371,21 +390,41 @@ $databaseHandler->action_sql("INSERT INTO `undeuxtroisquatre` (nom) VALUES ('nom
 
 
  
- 
+
+ /*
 
 // Initialisation de la classe avec un utilisateur et un mot de passe
 
- 
+
+    $nomBaseDeDonnees = "root";
+
+    // Récupérer la liste des tables
+    $databaseHandler->getTables($nomBaseDeDonnees);
+
+    // Obtenir la liste des tables
+    $tables = $databaseHandler->getListOfTables();
+
+        var_dump($tables) ;
 
 $username = "root";
-$password = "root";
-$nom_table = "group_projet" ; 
-
+$password = "root"; // Remplacez par votre mot de passe
 $databaseHandler = new DatabaseHandler($username, $password);
-$databaseHandler->getListOfTables_Child("root");
-$req_sql ="SELECT * FROM `$nom_table` WHERE 1" ; 
 
-$databaseHandler->getListOfTables_Child($nom_table) ;
-$databaseHandler->getDataFromTable2X($req_sql) ; 
-var_dump($databaseHandler->tableList_info2) ;
-//var_dump($databaseHandler->tableList_child) ; 
+        $databaseHandler->getListOfTables_Child("root");
+
+        // Afficher les noms des colonnes
+        var_dump($databaseHandler->tableList_child);
+ 
+ */
+
+  $req_sql ="SELECT * FROM `root` WHERE 1" ; 
+  $databaseHandler = new DatabaseHandler("root", "root");
+  //$databaseHandler->getListOfTables_Child2("root") ; 
+  
+  
+  var_dump($databaseHandler->tableList_child2) ;
+
+
+
+
+ 

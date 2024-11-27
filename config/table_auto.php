@@ -1,6 +1,8 @@
 <?php
 require_once '../Class/DatabaseHandler.php'; 
 require_once '../Class/dbCheck.php'; 
+require_once '../Class/FileHandler.php'; 
+
 $databaseHandler = new DatabaseHandler($dbname,$username); 
 $databaseHandler->set_column_names("id_user");
 $databaseHandler->set_column_names("id_sha1_user");
@@ -29,7 +31,7 @@ $databaseHandler->set_column_types("TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDAT
 $databaseHandler->add_table($dbname);
 $mainTableName = $dbname ; 
 $mainTableName2 = $dbname ;
-require 'auto_exe.php' ; 
+ require 'auto_exe.php' ; 
 $databaseHandler = new DatabaseHandler($dbname,$username); 
 $databaseHandler->set_column_names("id_projet");
 $databaseHandler->set_column_names("id_general");
@@ -86,7 +88,7 @@ $databaseHandler->set_column_types("TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDAT
 $databaseHandler->add_table("projet");
 $mainTableName = "projet" ; 
 $mainTableName2 = $mainTableName  ;
-require 'auto_exe.php' ; 
+//require 'auto_exe.php' ; 
 $databaseHandler = new DatabaseHandler($dbname,$username); 
 $databaseHandler->set_column_names("id_projet_img_auto");
 $databaseHandler->set_column_names("id_general");
@@ -105,7 +107,7 @@ $databaseHandler->set_column_types("TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDAT
 $databaseHandler->add_table("projet_img");
 $mainTableName = "projet_img" ; 
 $mainTableName2 = $mainTableName  ;
-require 'auto_exe.php' ; 
+//require 'auto_exe.php' ; 
 $databaseHandler = new DatabaseHandler($dbname,$username); 
 $databaseHandler->set_column_names("id_visit_user");
 $databaseHandler->set_column_names("id_general");
@@ -144,7 +146,7 @@ $databaseHandler->set_column_types("TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDAT
 $databaseHandler->add_table("visit_user");
 $mainTableName = "visit_user" ; 
 $mainTableName2 = $mainTableName  ;
-require 'auto_exe.php' ;
+//require 'auto_exe.php' ;
 $databaseHandler = new DatabaseHandler($dbname,$username); 
 $databaseHandler->set_column_names("id_option_projet");
 $databaseHandler->set_column_names("id_general");
@@ -177,7 +179,7 @@ $databaseHandler->set_column_types("TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDAT
 $databaseHandler->add_table("option_projet");
 $mainTableName = "option_projet" ; 
 $mainTableName2 = $mainTableName  ;
-require 'auto_exe.php' ;
+//require 'auto_exe.php' ;
 $databaseHandler = new DatabaseHandler($dbname,$username); 
 $databaseHandler->set_column_names("id_comment_projet");
 $databaseHandler->set_column_names("id_general");
@@ -216,7 +218,7 @@ $databaseHandler->set_column_types("TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDAT
 $databaseHandler->add_table("comment_projet");
 $mainTableName = "comment_projet" ; 
 $mainTableName2 = $mainTableName  ;
-require 'auto_exe.php' ;
+//require 'auto_exe.php' ;
 $databaseHandler = new DatabaseHandler($dbname,$username); 
 $databaseHandler->set_column_names("id_social_media");
 $databaseHandler->set_column_names("id_general");
@@ -249,7 +251,7 @@ $databaseHandler->set_column_types("TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDAT
 $databaseHandler->add_table('social_media');
 $mainTableName = "social_media" ; 
 $mainTableName2 = $mainTableName  ;
-require 'auto_exe.php' ;
+//require 'auto_exe.php' ;
 $databaseHandler = new DatabaseHandler($dbname,$username); 
 $databaseHandler->set_column_names("id_group");
 $databaseHandler->set_column_names("id_general");
@@ -282,7 +284,7 @@ $databaseHandler->set_column_types("TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDAT
 $databaseHandler->add_table('group_projet');
 $mainTableName = "group_projet" ; 
 $mainTableName2 = $mainTableName;
-require 'auto_exe.php' ;
+//require 'auto_exe.php' ;
 $req_sqlxx = 'SELECT * FROM `'.$dbname.'` WHERE `nom_user`="'.$dbname.'"  AND `password_user` ="'.$username.'" ';
 $databaseHandlerxx = new DatabaseHandler($dbname, $username);
 $databaseHandlerxx->getDataFromTable($req_sqlxx, "nom_user");

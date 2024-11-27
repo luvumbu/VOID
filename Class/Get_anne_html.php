@@ -1,7 +1,4 @@
 <?php
-
-
- 
 class Get_anne
 {
     public $name;
