@@ -1,6 +1,4 @@
 <?php
-
-
 error_reporting(E_ERROR | E_PARSE);
 class DatabaseHandler
 {
@@ -14,7 +12,7 @@ class DatabaseHandler
     public $tableList_child = array();
     public $tableList_child2 = array();
     public $tableList_info = array();
-    public $tableList_info2 =[];  
+    public $tableList_info2 = [];
 
     public $column_names = array();
     public $column_types = array();
@@ -38,8 +36,6 @@ class DatabaseHandler
             // Create database
             $sql = "CREATE DATABASE $name_bdd";
             if ($conn->query($sql) === TRUE) {
-
-       
             } else {
                 //  echo "Error creating database: " . $conn->error;
             }
@@ -113,14 +109,10 @@ class DatabaseHandler
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     array_push($this->tableList_child, $row['Field']);
-
-                    
                 }
             }
             $this->connection_child->close();
         }
-
- 
     }
 
     function getListOfTables_Child2($tableName)
@@ -161,23 +153,17 @@ class DatabaseHandler
             $this->connection_child->close();
         }
         $this->tableList_info2[] = $this->tableList_info;
-        
     }
 
 
     function getDataFromTable2X($sql)
     {
         foreach ($this->tableList_child as $row) {
-                    
 
- 
-            $this->getDataFromTable($sql, $row);       
-           
-          }
-          
 
-          
 
+            $this->getDataFromTable($sql, $row);
+        }
     }
     function action_sql($sql)
     {
@@ -278,6 +264,47 @@ class DatabaseHandler
     {
         return $this->tableList_info;
     }
+
+    function get_dynamicVariables()
+    {
+        global $dynamicVariables; // Rend la variable accessible globalement
+        $dynamicVariables = []; // Initialisation
+
+        foreach ($this->tableList_child as $index => $nom) {
+            if (isset($this->tableList_info2[$index])) {
+                $dynamicVariables[strtolower($nom)] = $this->tableList_info2[$index];
+            }
+        }
+
+        /*
+       // exemple utilisation 
+        $databaseHandler->get_dynamicVariables();
+        // Utilisation des données dynamiques
+       // global $dynamicVariables;
+       // var_dump($dynamicVariables['id_sha1_user']);
+
+        */
+
+
+
+
+        /*
+
+        // autre méthode 
+// Création des variables dynamiques
+foreach ($databaseHandler->tableList_child as $index => $nom) {
+    if (isset($databaseHandler->tableList_info2[$index])) { // Vérifie si un fruit existe à cet index
+        ${strtolower($nom)} = $databaseHandler->tableList_info2[$index]; // Crée une variable avec le nom en minuscule
+    }
+}
+
+
+
+
+var_dump($id_sha1_user );
+
+*/
+    }
 }
 
 
@@ -370,22 +397,84 @@ $databaseHandler->action_sql("INSERT INTO `undeuxtroisquatre` (nom) VALUES ('nom
 // fonction ok 22/07/2024  X0_
 
 
- 
- 
+
+
 
 // Initialisation de la classe avec un utilisateur et un mot de passe
 
- 
+
 
 $username = "root";
 $password = "root";
-$nom_table = "group_projet" ; 
+$nom_table = "projet";
 
 $databaseHandler = new DatabaseHandler($username, $password);
-$databaseHandler->getListOfTables_Child("root");
-$req_sql ="SELECT * FROM `$nom_table` WHERE 1" ; 
 
-$databaseHandler->getListOfTables_Child($nom_table) ;
-$databaseHandler->getDataFromTable2X($req_sql) ; 
-var_dump($databaseHandler->tableList_info2) ;
+$req_sql = "SELECT * FROM `$nom_table` WHERE 1";
+
+$databaseHandler->getListOfTables_Child($nom_table);
+$databaseHandler->getDataFromTable2X($req_sql);
+//var_dump($databaseHandler->tableList_info2) ;
 //var_dump($databaseHandler->tableList_child) ; 
+
+/*
+var_dump($databaseHandler->tableList_info2) ;
+*/
+
+/*
+foreach ($databaseHandler->tableList_child as $row) {
+    
+    echo "<br/>" ; 
+
+    echo $row ; 
+
+    $variableName =  $row; // Construction du nom de la variable
+    $$variableName = "Valeur de la variable $a"; // Création d'une variable dynamique
+    echo "$variableName : " . $$variableName . "<br>";
+}
+*/
+
+
+
+
+
+
+
+/*
+// Création des variables dynamiques
+foreach ($databaseHandler->tableList_child as $index => $nom) {
+    if (isset($databaseHandler->tableList_info2[$index])) { // Vérifie si un fruit existe à cet index
+        ${strtolower($nom)} = $databaseHandler->tableList_info2[$index]; // Crée une variable avec le nom en minuscule
+    }
+}
+
+
+
+
+var_dump($id_sha1_user );
+
+*/
+
+$databaseHandler->get_dynamicVariables();
+// Utilisation des données dynamiques
+//global $dynamicVariables;
+
+
+/*
+if (isset($dynamicVariables['id_sha1_user'])) {
+    var_dump($dynamicVariables['id_sha1_user']);
+} else {
+    echo "La variable 'id_sha1_user' n'existe pas.";
+}
+
+
+if (isset($dynamicVariables['id_user'])) {
+    var_dump($dynamicVariables['id_user']);
+} else {
+    echo "La variable 'id_user' n'existe pas.";
+}
+*/
+
+
+
+var_dump($dynamicVariables['id_sha1_projet']);
