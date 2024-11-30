@@ -13,8 +13,19 @@ class DatabaseHandler
     public $tableList_child2 = array();
     public $tableList_info = array();
     public $tableList_info2 = [];
+    public $table_name_and_child;
+
+    public $table_name_general;
+    public $sql_general;
+
+    public $mysql_general;
+    public $table_general;
+
+
+
 
     public $column_names = array();
+
     public $column_types = array();
     function __construct($username, $password)
     {
@@ -44,6 +55,41 @@ class DatabaseHandler
         }
     }
 
+    function function_affiche_all()
+    {
+      
+
+ 
+   
+    }
+
+    function set_mysql_general($mysql_general)
+    {
+
+        $this->mysql_general = $mysql_general;
+    }
+
+    function set_table_general($table_general)
+    {
+        $this->table_general = $table_general;
+    }
+
+    function set_table_name_general($table_name_general)
+    {
+        $this->table_name_general = $table_name_general;
+        return $this->table_name_general;
+    }
+    function get_table_name_general()
+    {
+
+        return $this->table_name_general;
+    }
+
+    function set_sql_general($sql_general)
+    {
+
+        $this->sql_general  = $sql_general;
+    }
 
 
 
@@ -66,18 +112,19 @@ class DatabaseHandler
 
         // Vérification du résultat
         if ($resultat->num_rows > 0) {
-            return 1;
+            return "1";
         } else {
-            return 0;
+            return "0";
         }
 
         // Fermeture de la connexion
         $connexion->close();
     }
-    function getTables($database)
+
+    function getTables()
     {
         if ($this->verif) {
-            $this->connection->select_db($database);
+            $this->connection->select_db($this->username);
             if ($this->connection->error) {
                 return;
             }
@@ -92,10 +139,25 @@ class DatabaseHandler
             }
             $this->connection->close();
         }
+
+        return $this->tableList;
     }
     function getListOfTables()
     {
+
+        // Donne la liste de tables dans la Bdd
+        // ont peut faire aussi
+        //var_dump($this->tableList) ;
+
         return $this->tableList;
+    }
+
+
+    function general_dynamique()
+    {
+        $this->getListOfTables_Child($this->table_general);
+        $this->getDataFromTable2X($this->mysql_general);
+        $this->get_dynamicVariables();
     }
     function getListOfTables_Child($tableName)
     {
@@ -113,6 +175,27 @@ class DatabaseHandler
             }
             $this->connection_child->close();
         }
+
+        return $this->tableList_child;
+    }
+
+
+    function test()
+    {
+
+
+
+
+
+
+
+
+        /*
+        getListOfTables_Child
+        getDataFromTable2X
+        get_dynamicVariables
+
+        */
     }
 
     function getListOfTables_Child2($tableName)
@@ -159,9 +242,6 @@ class DatabaseHandler
     function getDataFromTable2X($sql)
     {
         foreach ($this->tableList_child as $row) {
-
-
-
             $this->getDataFromTable($sql, $row);
         }
     }
@@ -305,6 +385,19 @@ var_dump($id_sha1_user );
 
 */
     }
+
+
+    function get_dynamicVariables_general()
+    {
+        global $dynamicVariables; // Rend la variable accessible globalement
+        $dynamicVariables = []; // Initialisation
+
+        foreach ($this->tableList_child as $index => $nom) {
+            if (isset($this->tableList_info2[$index])) {
+                $dynamicVariables[strtolower($nom)] = $this->tableList_info2[$index];
+            }
+        }
+    }
 }
 
 
@@ -401,19 +494,6 @@ $databaseHandler->action_sql("INSERT INTO `undeuxtroisquatre` (nom) VALUES ('nom
 
 
 // Initialisation de la classe avec un utilisateur et un mot de passe
-
-
-
-$username = "root";
-$password = "root";
-$nom_table = "projet";
-
-$databaseHandler = new DatabaseHandler($username, $password);
-
-$req_sql = "SELECT * FROM `$nom_table` WHERE 1";
-
-$databaseHandler->getListOfTables_Child($nom_table);
-$databaseHandler->getDataFromTable2X($req_sql);
 //var_dump($databaseHandler->tableList_info2) ;
 //var_dump($databaseHandler->tableList_child) ; 
 
@@ -449,13 +529,10 @@ foreach ($databaseHandler->tableList_child as $index => $nom) {
 }
 
 
-
-
 var_dump($id_sha1_user );
 
 */
 
-$databaseHandler->get_dynamicVariables();
 // Utilisation des données dynamiques
 //global $dynamicVariables;
 
@@ -477,4 +554,184 @@ if (isset($dynamicVariables['id_user'])) {
 
 
 
+
+
+
+/*
+$username = "root";
+$password = "root";
+$nom_table = "projet";
+
+$databaseHandler = new DatabaseHandler($username, $password);
+
+$req_sql = "SELECT * FROM `$nom_table` WHERE 1";
+
+$databaseHandler->getListOfTables_Child($nom_table);
+$databaseHandler->getDataFromTable2X($req_sql);
+$databaseHandler->get_dynamicVariables();
 var_dump($dynamicVariables['id_sha1_projet']);
+
+*/
+
+
+
+
+/*
+
+// Exemple d'utilisation n°1 
+ // Initialisation
+$handler = new DatabaseHandler('root', 'root');
+
+// Vérifier la connexion
+if (!$handler->get_verif()) {
+    echo "Échec de connexion au serveur MySQL.";
+}
+else {
+ // affiche message de succes ici 
+ // exemple echo 'connexion reussi' ;    
+}
+ 
+*/
+
+/*
+// Exemple d'utilisation n°2 
+$handler = new DatabaseHandler('root', 'root');
+echo $handler->verif;
+*/
+// si $handler->verif; ==1 connexion reussi si non echec de la connexion 
+// une fois connecter nous pouvons utiliser les fonction de class 
+
+
+
+/* 
+// Exemple d'utilisation n°3
+$handler = new DatabaseHandler('root', 'root');
+$existance_table_ = $handler->existance_table("root");
+echo  $existance_table_ ; 
+// Pour cette methode elle retourne une valeur 0 ou 1 
+*/
+
+
+/* 
+// Exemple d'utilisation n°4
+$handler = new DatabaseHandler('root', 'root'); 
+$getTables_ =  $handler->getTables() ;
+//exemple n°4.1 echo var_dump($getTables_) ;  
+// Boucle sur la variable 
+foreach ($getTables_  as $key ) {
+   // echo $key.'<br/>' ; 
+}
+//exemple n°4.2 echo var_dump($getTables_)  bouble avec un for ;  
+for ($i=0; $i <count($getTables_ ) ; $i++) { 
+   echo $getTables_[$i] ; 
+   echo '<br/>' ; 
+}
+*/
+
+
+/*
+// Exemple d'utilisation n°5
+$handler = new DatabaseHandler('root', 'root'); 
+$getListOfTables_Child =  $handler->getListOfTables_Child("root") ;
+//exemple n°4.1 echo var_dump($getListOfTables_Child) ;  
+// Boucle sur la variable 
+foreach ($getListOfTables_Child  as $key ) {
+    echo $key.'<br/>' ; 
+}
+//exemple n°4.2 echo var_dump($getListOfTables_Child)  bouble avec un for ;  
+for ($i=0; $i <count($getListOfTables_Child ) ; $i++) { 
+   echo $getListOfTables_Child[$i] ; 
+   echo '<br/>' ; 
+}
+*/
+
+
+
+
+/*
+// Exemple d'utilisation n°6
+// Nom de la table 
+// puis de la colllone qu'on voudrais afficher
+$nom_table = "root";
+// nom de la table
+
+$databaseHandler = new DatabaseHandler("root", "root");
+
+$req_sql = "SELECT * FROM `$nom_table` WHERE 1";
+
+$databaseHandler->getListOfTables_Child($nom_table);
+$databaseHandler->getDataFromTable2X($req_sql);
+$databaseHandler->get_dynamicVariables();
+var_dump($dynamicVariables['id_sha1_user']);
+
+// cet exemple permet de voir la liste total des element efant 
+// avec la valeur detaille sans perte de performance 
+ 
+ */
+
+
+
+
+
+
+
+// Exemple d'utilisation n°6
+// Nom de la table 
+// puis de la colllone qu'on voudrais afficher
+// nom de la table
+
+$databaseHandler = new DatabaseHandler("root", "root");
+
+$req_sql = "SELECT * FROM `root` WHERE 1";
+
+/*
+ 
+$databaseHandler->getListOfTables_Child($nom_table);
+$databaseHandler->getDataFromTable2X($req_sql);
+$databaseHandler->get_dynamicVariables();
+ 
+ */
+
+
+
+
+
+/*
+ // Exemple d'utilisation n°7 
+ // cet exemple pemmet de dnner le nom d'une table et de faire une boucle 
+ // demad
+$databaseHandler->set_mysql_general("projet_img");
+// nom table + mysql+ connoles demande
+
+$databaseHandler->set_table_general("SELECT * FROM `projet_img` WHERE 1");
+
+
+$databaseHandler->general_dynamique();
+var_dump($dynamicVariables['id_projet_img_auto']);
+ 
+// cet exemple permet de voir la liste total des element efant 
+// avec la valeur detaille sans perte de performance 
+
+*/
+
+
+
+
+
+// Exemple d'utilisation n°8
+// cet exemple pemmet de dnner le nom d'une table et de faire une boucle 
+// demad
+$databaseHandler->set_mysql_general("SELECT * FROM `root` WHERE 1");
+// nom table + mysql+ connoles demande
+
+$databaseHandler->set_table_general("root");
+
+
+$databaseHandler->general_dynamique();
+var_dump($dynamicVariables['id_user']);
+ 
+
+
+
+ 
+ 
