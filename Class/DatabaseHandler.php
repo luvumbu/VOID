@@ -716,20 +716,22 @@ var_dump($dynamicVariables['id_projet_img_auto']);
 
 
 
-
+/*
 
 // Exemple d'utilisation n°8
 // cet exemple pemmet de dnner le nom d'une table et de faire une boucle 
 // demad
 $databaseHandler->set_mysql_general("SELECT * FROM `root` WHERE 1");
 // nom table + mysql+ connoles demande
-
 $databaseHandler->set_table_general("root");
-
-
 $databaseHandler->general_dynamique();
+
 var_dump($dynamicVariables['id_user']);
- 
+var_dump($dynamicVariables['id_sha1_user']);
+var_dump($dynamicVariables['id_parent_user']);
+var_dump($dynamicVariables['description_user']);
+
+ */
 
 
 

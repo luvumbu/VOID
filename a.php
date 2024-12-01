@@ -1,15 +1,38 @@
 <?php 
-$servername = "localhost";
-$src_general1 = "../Class/";
-require_once $src_general1."dbCheck.php";
-require_once $src_general1."Give_url.php";
-require_once $src_general1."DatabaseHandler.php";
-require_once $src_general1."AsciiConverter.php";
-$databaseHandler = new DatabaseHandler($dbname, $username);
-$option0 =$_SESSION["option0"] ;
-$option1 =$_SESSION["option1"] ;
-$option2 =$_SESSION["option2"] ;
-$option3 =$_SESSION["option3"] ;
-$option4 =$_SESSION["option4"] ;
+
+require_once "Class/js.php" ; 
+
 
 ?>
+
+
+<script>
+    
+var ok = new Information("function/add_general.php"); // création de la classe 
+ok.add("option0_1", "root"); // ajout de l'information pour lenvoi 
+ok.add("option0_2", "1"); // ajout de l'information pour lenvoi 
+ok.add("option1_1", "id_sha1_user"); // ajout de l'information pour lenvoi 
+ok.add("option1_2", "123456789"); // ajout de l'information pour lenvoi 
+ 
+ 
+
+ 
+
+
+ 
+ 
+
+ 
+ 
+ 
+
+
+
+
+console.log(ok.info()); // demande l'information dans le tableau
+ok.push(); // envoie l'information au code pkp 
+
+
+
+
+</script>
