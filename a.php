@@ -1,10 +1,12 @@
 
 <?php
 require_once "function/general.php";
-  var_dump($dynamicVariables['id_sha1_user']);
+var_dump($dynamicVariables['id_sha1_user']);
 
 
- 
+//http://localhost/ndenga/a.php/root__id_sha1_user__123
+
+
 // Exemple d'utilisation n°6
 // Nom de la table 
 // puis de la colllone qu'on voudrais afficher
@@ -39,3 +41,4 @@ var_dump($url->get_elements()) ;
 
  */
 ?>
+ 

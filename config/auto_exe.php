@@ -308,6 +308,8 @@ ok.push(); // envoie l'information au code pkp
         $databaseHandler->getListOfTables_Child($nom_table);
         $databaseHandler->getDataFromTable2X($req_sql);
         $databaseHandler->get_dynamicVariables();
+
+        //   var_dump($url->get_elements()) ; 
        // var_dump($dynamicVariables['id_sha1_user']);
         // cet exemple permet de voir la liste total des element efant 
         // avec la valeur detaille sans perte de performance  
@@ -320,6 +322,96 @@ PHP;
 $filePath =  $path_general1 . "/general.php";
 $source_file_array = [];
 $fileHandler = new FileHandler($filePath, $add_file_general1, $source_file_array);
+$fileHandler->processFile();
+// Afficher les fichiers ajoutés
+//print_r($source_file_array);
+
+
+
+
+$add_file_general0 = "<?php \n";
+$add_file_general0 .=
+    <<<'PHP'
+
+require_once "general_start.php";
+$servername = "localhost";
+
+if(isset($_POST["option00"])){
+ $src_general1 = "../Class/";
+ $path_bool  =0; 
+}
+else {
+$src_general1 = "Class/";
+ $path_bool  =1; 
+
+}
+ 
+require_once $src_general1."dbCheck.php";
+require_once $src_general1."Give_url.php";
+require_once $src_general1."DatabaseHandler.php";
+require_once $src_general1."AsciiConverter.php";
+$databaseHandler = new DatabaseHandler($dbname, $username);
+
+PHP;
+
+
+
+
+$add_file_general2 = $add_file_general0;
+$add_file_general2 .=     <<<'PHP'
+
+$option1_1 =$_SESSION["option1_1"] ;
+$option1_2 =$_SESSION["option1_2"] ; 
+$option2_1 =$_SESSION["option2_1"] ;
+$option2_2 =$_SESSION["option2_2"] ; 
+$option3_1 =$_SESSION["option3_1"] ;
+$option3_2 =$_SESSION["option3_2"] ; 
+
+switch ($_SESSION["option0_1"]) {
+  case "session_1":
+
+// Exemple d'utilisation n°6
+// Nom de la table 
+// puis de la colllone qu'on voudrais afficher
+$nom_table = $dbname;
+// nom de la table
+$req_sql = "SELECT * FROM `$nom_table` WHERE $option1_1 = '$option1_2'" ;
+$databaseHandler->getListOfTables_Child($nom_table);
+$databaseHandler->getDataFromTable2X($req_sql);
+$databaseHandler->get_dynamicVariables();
+
+    
+    break;
+  case "session_2":
+
+// Exemple d'utilisation n°6
+// Nom de la table 
+// puis de la colllone qu'on voudrais afficher
+$nom_table = $dbname;
+// nom de la table
+$req_sql = "SELECT * FROM `$nom_table` WHERE $option1_1 = '$option1_2' AND $option2_1 = '$option2_2'" ;
+$databaseHandler->getListOfTables_Child($nom_table);
+$databaseHandler->getDataFromTable2X($req_sql);
+$databaseHandler->get_dynamicVariables();
+
+ 
+    break; 
+}
+
+// var_dump($url->get_elements()) ; 
+// var_dump($dynamicVariables['id_sha1_user']);
+// cet exemple permet de voir la liste total des element efant 
+// avec la valeur detaille sans perte de performance  
+
+PHP;
+
+
+ 
+
+
+$filePath =  $path_general1 . "/session.php";
+$source_file_array = [];
+$fileHandler = new FileHandler($filePath, $add_file_general2, $source_file_array);
 $fileHandler->processFile();
 // Afficher les fichiers ajoutés
 //print_r($source_file_array);
