@@ -679,12 +679,12 @@ var_dump($dynamicVariables['id_sha1_user']);
 // Nom de la table 
 // puis de la colllone qu'on voudrais afficher
 // nom de la table
-
+ /*
 $databaseHandler = new DatabaseHandler("root", "root");
 
 $req_sql = "SELECT * FROM `root` WHERE 1";
 
-/*
+
  
 $databaseHandler->getListOfTables_Child($nom_table);
 $databaseHandler->getDataFromTable2X($req_sql);

@@ -17,6 +17,39 @@ session_start();
 </style>
 
 <body>
+<?php
+ 
+// Récupérer l'URL complète
+$requestUri = $_SERVER['REQUEST_URI'];
+
+// Extraire la partie après "index.php/"
+$urlPath = parse_url($requestUri, PHP_URL_PATH);
+$urlParams = str_replace('index.php/', '', $urlPath);
+
+// Vérifier si des paramètres existent
+if (!empty($urlParams)) {
+    // Séparer les paires clé=valeur
+    $pairs = explode(',', $urlParams);
+    $postData = [];
+
+    // Parcourir chaque paire clé=valeur
+    foreach ($pairs as $pair) {
+        list($key, $value) = explode('=', $pair, 2);
+        $postData[$key] = $value;
+    }
+
+    // Utilisation des valeurs récupérées
+    foreach ($postData as $key => $value) {
+        echo "Clé : $key, Valeur : $value<br>";
+    }
+} else {
+    echo "Aucun paramètre trouvé dans l'URL.";
+}
+?>
+
+
+
+
   <?php
   // Inclusion des fichiers de classe PHP nécessaires
   require_once 'Class/path_general_class.php';
@@ -74,3 +107,6 @@ session_start();
   ?>
  
   </div>
+
+
+  
