@@ -1,7 +1,8 @@
 
 <?php
-require_once "function/general.php";
-var_dump($dynamicVariables['id_sha1_user']);
+require_once "function/session.php";
+
+ var_dump($dynamicVariables['id_sha1_user']);
 
 
 //http://localhost/ndenga/a.php/root__id_sha1_user__123

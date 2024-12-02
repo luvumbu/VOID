@@ -329,37 +329,26 @@ $fileHandler->processFile();
 
 
 
-$add_file_general0 = "<?php \n";
-$add_file_general0 .=
-    <<<'PHP'
+ 
 
+
+
+
+ 
+$add_file_general2 =     <<<'PHP'
+<?php 
 require_once "general_start.php";
 $servername = "localhost";
 
-if(isset($_POST["option00"])){
- $src_general1 = "../Class/";
- $path_bool  =0; 
-}
-else {
-$src_general1 = "Class/";
- $path_bool  =1; 
-
-}
- 
+$src_general1 = "Class/" ; 
 require_once $src_general1."dbCheck.php";
 require_once $src_general1."Give_url.php";
 require_once $src_general1."DatabaseHandler.php";
 require_once $src_general1."AsciiConverter.php";
 $databaseHandler = new DatabaseHandler($dbname, $username);
 
-PHP;
-
-
-
-
-$add_file_general2 = $add_file_general0;
-$add_file_general2 .=     <<<'PHP'
-
+$option0_1 =$_SESSION["option0_1"] ;
+$option0_2 =$_SESSION["option0_2"] ;
 $option1_1 =$_SESSION["option1_1"] ;
 $option1_2 =$_SESSION["option1_2"] ; 
 $option2_1 =$_SESSION["option2_1"] ;
@@ -367,22 +356,22 @@ $option2_2 =$_SESSION["option2_2"] ;
 $option3_1 =$_SESSION["option3_1"] ;
 $option3_2 =$_SESSION["option3_2"] ; 
 
-switch ($_SESSION["option0_1"]) {
-  case "session_1":
+switch ($option0_1) {
+  case "1":
 
 // Exemple d'utilisation n°6
 // Nom de la table 
 // puis de la colllone qu'on voudrais afficher
 $nom_table = $dbname;
 // nom de la table
-$req_sql = "SELECT * FROM `$nom_table` WHERE $option1_1 = '$option1_2'" ;
-$databaseHandler->getListOfTables_Child($nom_table);
+$req_sql = "SELECT * FROM `$option0_2` WHERE $option1_1 = '$option1_2'" ;
+$databaseHandler->getListOfTables_Child($option0_2);
 $databaseHandler->getDataFromTable2X($req_sql);
 $databaseHandler->get_dynamicVariables();
 
     
     break;
-  case "session_2":
+  case "2":
 
 // Exemple d'utilisation n°6
 // Nom de la table 
@@ -394,15 +383,41 @@ $databaseHandler->getListOfTables_Child($nom_table);
 $databaseHandler->getDataFromTable2X($req_sql);
 $databaseHandler->get_dynamicVariables();
 
- 
-    break; 
-}
-
-// var_dump($url->get_elements()) ; 
+ // var_dump($url->get_elements()) ; 
 // var_dump($dynamicVariables['id_sha1_user']);
 // cet exemple permet de voir la liste total des element efant 
 // avec la valeur detaille sans perte de performance  
+/*
+ var_dump($dynamicVariables['id_sha1_user']);
+<script>
+    
+        var ok = new Information("function/general.php"); // création de la classe 
+        ok.add("option00", "root"); // ajout de l'information pour lenvoi 
+        ok.add("option0_1", "root"); // ajout de l'information pour lenvoi 
+        ok.add("option0_2", "add_3"); // ajout de l'information pour lenvoi 
 
+        ok.add("option1_1", "id_sha1_user"); // ajout de l'information pour lenvoi 
+        ok.add("option1_2", "xXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); // ajout de l'information pour lenvoi 
+        
+        ok.add("option2_1", "id_parent_user"); // ajout de l'information pour lenvoi 
+        ok.add("option2_2", "test ok"); // ajout de l'information pour lenvoi
+
+        ok.add("option3_1", "description_user"); // ajout de l'information pour lenvoi 
+        ok.add("option3_2", "test ok description_user"); // ajout de l'information pour lenvoi
+
+        console.log(ok.info()); // demande l'information dans le tableau
+        ok.push(); // envoie l'information au code pkp 
+
+
+</script>
+
+*/
+
+    break; 
+}
+
+
+?>
 PHP;
 
 
