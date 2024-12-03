@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Fonctionnalités du Projet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            color: #444;
+        }
+
+        code {
+            background: #eef;
+            padding: 3px 5px;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        pre {
+            background: #333;
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section-header {
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+            margin-bottom: 10px;
+        }
+
+        .note {
+            background: #e7f5ff;
+            border-left: 5px solid #007bff;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Documentation - Fonctionnalités et Structure</h1>
+
+    <div class="section">
+        <h2 class="section-header">1. HTML Structure</h2>
+        <p>Le code HTML contient deux sections principales :</p>
+        <ul>
+            <li>Un lien pour la déconnexion.</li>
+            <li>Un bouton <code>ADD</code> configuré dynamiquement avec une classe contenant plusieurs segments d'informations.</li>
+        </ul>
+        <pre>
+&lt;div class="test1"&gt;
+    &lt;div&gt;
+        &lt;a href="Class/log_off.php"&gt;Déconnexion&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;div 
+        id="" 
+        onclick="general_send(this)" 
+        class="add_1__root__id_sha1_user__&lt;?php echo htmlspecialchars($_SESSION['index'][2]); ?&gt;"&gt;
+        ADD
+    &lt;/div&gt;
+&lt;/div&gt;
+        </pre>
+    </div>
+
+    <div class="section">
+        <h2 class="section-header">2. PHP - Dynamisation</h2>
+        <p>Le code PHP génère dynamiquement une partie de la classe de l'élément HTML à partir des données de session.</p>
+        <pre>
+&lt;?php 
+// Structure des classes dans la propriété 'class' :
+// 1. Action : Ex. add_1
+// 2. Type d'entité ciblée : Ex. root, projet
+// 3. Identifiant utilisateur (SHA1) : $_SESSION['index'][2]
+
+// Exemple de sortie attendue : add_1__root__id_sha1_user__valeurSHA1
+var_dump($_SESSION["index"]);
+?&gt;
+        </pre>
+    </div>
+
+    <div class="section">
+        <h2 class="section-header">3. CSS - Style</h2>
+        <p>Le style vise à offrir un affichage clair et interactif :</p>
+        <ul>
+            <li>Affichage en grille des options.</li>
+            <li>Transitions fluides sur les survols.</li>
+            <li>Une palette simple : fond noir, texte vert/blanc, liens rouges.</li>
+        </ul>
+        <pre>
+.test1 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;
+    transition: 1s all;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.test1 div {
+    padding: 15px;
+    color: green;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 5px;
+    transition: 0.3s all;
+}
+
+.test1 div:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+.test1 a {
+    color: red;
+    text-decoration: none;
+    transition: 0.3s;
+}
+        </pre>
+    </div>
+
+    <div class="section">
+        <h2 class="section-header">4. JavaScript - Gestion des Actions</h2>
+        <p>Le script JavaScript gère l'extraction et l'envoi des informations dynamiques depuis les classes HTML.</p>
+        <h3>Fonctions principales :</h3>
+        <ul>
+            <li><code>afficherValeursFormattees(chaine)</code> : Sépare les segments dans une chaîne de classe.</li>
+            <li><code>general_send(_this)</code> : Prépare les données pour l'envoi au serveur.</li>
+        </ul>
+        <pre>
+/**
+ * Fonction pour diviser une classe en segments formatés.
+ * @param {string} chaine - La chaîne de classe.
+ * @returns {Array} - Tableau des segments.
+ */
+function afficherValeursFormattees(chaine) {
+    return chaine.split("__");
+}
+
+/**
+ * Fonction pour gérer les actions dynamiques sur les éléments HTML.
+ * @param {HTMLElement} _this - Élément déclencheur.
+ */
+function general_send(_this) {
+    // Récupération des segments de la classe
+    const texteFormatte = afficherValeursFormattees(_this.className);
+    console.log("Valeurs extraites :", texteFormatte);
+
+    // Initialisation de la classe Information
+    const ok = new Information("function/general.php");
+
+    // Ajout des segments au tableau
+    texteFormatte.forEach((valeur, index) => {
+        ok.add(\`option\${Math.floor(index / 2)}_\${index % 2 + 1}\`, valeur || "");
+    });
+
+    console.log("Données préparées :", ok.info());
+
+    // Envoi des données au serveur
+    ok.push();
+}
+        </pre>
+        <h3>Autres caractéristiques :</h3>
+        <ul>
+            <li><strong>Classe Information</strong> : Permet de préparer et d'envoyer les données vers le serveur.</li>
+            <li><strong>Logs</strong> : Les valeurs extraites et les données préparées sont affichées dans la console pour le débogage.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2 class="section-header">5. Notes et Améliorations</h2>
+        <div class="note">
+            <strong>Note :</strong> La classe utilisée dans l'élément HTML doit être strictement conforme au format attendu pour éviter les erreurs.
+        </div>
+        <div class="note">
+            <strong>Amélioration :</strong> Ajouter des vérifications supplémentaires pour les valeurs vides ou non définies avant l'envoi au serveur.
+        </div>
+    </div>
+</body>
+</html>

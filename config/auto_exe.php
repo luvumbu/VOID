@@ -13,10 +13,37 @@ $mainTableName = $tables[$a];
 $add_file_general0 = "<?php \n";
 $add_file_general0 .=
     <<<'PHP'
-
 require_once "general_start.php";
-$servername = "localhost";
 
+
+if(isset($_POST["option0_1"])){
+    $option0_1 =$_POST["option0_1"] ;
+}
+if(isset($_POST["option0_2"])){
+    $option0_2 =$_POST["option0_2"] ;
+}        
+if(isset($_POST["option1_1"])){
+    $option1_1 =$_POST["option1_1"] ;
+}
+if(isset($_POST["option1_2"])){
+    $option1_2 =$_POST["option1_2"] ;
+}
+if(isset($_POST["option2_1"])){
+    $option2_1 =$_POST["option2_1"] ;
+}
+if(isset($_POST["option2_2"])){
+    $option2_2 =$_POST["option2_2"] ;
+}
+if(isset($_POST["option3_1"])){
+    $option3_1 =$_POST["option3_1"] ;
+}
+if(isset($_POST["option3_2"])){
+    $option3_2 =$_POST["option3_2"] ;
+}
+
+
+$servername = "localhost";
+$option0_2 = $_POST["option0_2"];
 if(isset($_POST["option00"])){
  $src_general1 = "../Class/";
  $path_bool  =0; 
@@ -41,25 +68,91 @@ PHP;
 $add_file_general1 = $add_file_general0;
 $add_file_general1 .=     <<<'PHP'
 
-
+ 
 $url = new Give_url();
 $url->split_basename('__');
 
 $count_url = count($url->get_elements()) ; 
-if(isset($_POST["option0_1"])){
-$option0_1 = $_POST["option0_1"];
-}
-if(isset($_POST["option0_2"])){
-    $option0_2 = $_POST["option0_2"];
-}
+ 
 
- switch ($option0_2) {
+
+/*
+// model exemple d'utilisation coté utilisateur
+<script>
+    function afficherValeursFormattees(chaine) {
+        // Diviser la chaîne par le caractère "_"
+        const valeurs = chaine.split("__");
+        // Retourner les valeurs dans un tableau
+        return valeurs;
+    }
+
+
+
+
+
+    function general_send(_this) {
+
+ 
+
+   // <div id="" onclick="general_send(this)" class="add_1__projet__id_sha1_user__<?php echo $_SESSION["index"][2] ?>">
+   //     ADD
+   //  </div>
+
+    
+
+
+        // Exemple d'utilisation
+
+        const texteFormatte = afficherValeursFormattees(_this.className);
+        console.log(texteFormatte);
+
+
+
+        var ok = new Information("function/general.php"); // création de la classe 
+
+
+        ok.add("option00", ""); // ajout de l'information pour lenvoi 
+        if (texteFormatte[0] != undefined) {
+            ok.add("option0_1", texteFormatte[0]); // ajout de l'information pour lenvoi 
+        }
+        if (texteFormatte[1] != undefined) {
+            ok.add("option0_2", texteFormatte[1]); // ajout de l'information pour lenvoi
+        }
+        if (texteFormatte[2] != undefined) {
+            ok.add("option1_1", texteFormatte[2]); // ajout de l'information pour lenvoi 
+        }
+        if (texteFormatte[3] != undefined) {
+            ok.add("option1_2", texteFormatte[3]); // ajout de l'information pour lenvoi 
+        }
+        if (texteFormatte[4] != undefined) {
+            ok.add("option2_1", texteFormatte[4]); // ajout de l'information pour lenvoi 
+        }
+        if (texteFormatte[5] != undefined) {
+            ok.add("option2_2", texteFormatte[5]); // ajout de l'information pour lenvoi 
+        }
+        if (texteFormatte[6] != undefined) {
+            ok.add("option3_1", texteFormatte[6]); // ajout de l'information pour lenvoi 
+        }
+        if (texteFormatte[7] != undefined) {
+            ok.add("option3_2", texteFormatte[7]); // ajout de l'information pour lenvoi 
+        }
+        console.log(ok.info()); // demande l'information dans le tableau
+        ok.push(); // envoie l'information au code pkp 
+
+    }
+</script>
+
+
+*/
+
+
+
+ switch ($option0_1) {
     case 'add_1':
 
-        $option1_1 =$_POST["option1_1"] ;
-        $option1_2 =$_POST["option1_2"] ; 
 
-        $databaseHandler->action_sql("INSERT INTO `$option0_1` ($option1_1) VALUES ('$option1_2')") ;
+
+        $databaseHandler->action_sql("INSERT INTO `$option0_2` ($option1_1) VALUES ('$option1_2')") ;
 
 // exemple d'utilisation 
 
@@ -86,178 +179,40 @@ ok.push(); // envoie l'information au code pkp
 
     case 'add_2':
 
-        $option1_1 =$_POST["option1_1"] ;
-        $option1_2 =$_POST["option1_2"] ; 
-
-        $option2_1 =$_POST["option2_1"] ;
-        $option2_2 =$_POST["option2_2"] ;
-
-        $databaseHandler->action_sql("INSERT INTO `$option0_1` ($option1_1,$option2_1) VALUES ('$option1_2','$option2_2')") ;
+       $databaseHandler->action_sql("INSERT INTO `$option0_1` ($option1_1,$option2_1) VALUES ('$option1_2','$option2_2')") ;
 
 
 
-// exemple d'utilisation
-/*        <script>
-    
-            var ok = new Information("function/general.php"); // création de la classe 
-            ok.add("option00", "root"); // ajout de l'information pour lenvoi 
-            ok.add("option0_1", "root"); // ajout de l'information pour lenvoi 
-            ok.add("option0_2", "add_2"); // ajout de l'information pour lenvoi 
 
-            ok.add("option1_1", "id_sha1_user"); // ajout de l'information pour lenvoi 
-            ok.add("option1_2", "xXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); // ajout de l'information pour lenvoi 
-            
-            ok.add("option2_1", "id_parent_user"); // ajout de l'information pour lenvoi 
-            ok.add("option2_2", "test ok"); // ajout de l'information pour lenvoi 
-            console.log(ok.info()); // demande l'information dans le tableau
-            ok.push(); // envoie l'information au code pkp 
 
-            </script>
-
-*/
         break;
 
     case 'add_3':
 
-        $option1_1 =$_POST["option1_1"] ;
-        $option1_2 =$_POST["option1_2"] ; 
-
-        $option2_1 =$_POST["option2_1"] ;
-        $option2_2 =$_POST["option2_2"] ;
-
-        $option3_1 =$_POST["option3_1"] ;
-        $option3_2 =$_POST["option3_2"] ;
-
         $databaseHandler->action_sql("INSERT INTO `$option0_1` ($option1_1,$option2_1,$option3_1) VALUES ('$option1_2','$option2_2','$option3_2')") ;
 
         break;
-// exemple dutilisation 
-/*
-<script>
-    
-        var ok = new Information("function/general.php"); // création de la classe 
-        ok.add("option00", "root"); // ajout de l'information pour lenvoi 
-        ok.add("option0_1", "root"); // ajout de l'information pour lenvoi 
-        ok.add("option0_2", "add_3"); // ajout de l'information pour lenvoi 
 
-        ok.add("option1_1", "id_sha1_user"); // ajout de l'information pour lenvoi 
-        ok.add("option1_2", "xXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); // ajout de l'information pour lenvoi 
-        
-        ok.add("option2_1", "id_parent_user"); // ajout de l'information pour lenvoi 
-        ok.add("option2_2", "test ok"); // ajout de l'information pour lenvoi
-
-        ok.add("option3_1", "description_user"); // ajout de l'information pour lenvoi 
-        ok.add("option3_2", "test ok description_user"); // ajout de l'information pour lenvoi
-
-        console.log(ok.info()); // demande l'information dans le tableau
-        ok.push(); // envoie l'information au code pkp 
-
-
-</script>
-*/
     case 'remove_1':
 
-        $option1_1 =$_POST["option1_1"] ;
-        $option1_2 =$_POST["option1_2"] ; 
-
-        $databaseHandler->action_sql("DELETE FROM  `$option0_1` WHERE   `$option1_1` = '$option1_2'") ;
-
-
-        // exemple d'utilisation 
-/*
-                <script>
-            
-        var ok = new Information("function/general.php"); // création de la classe 
-        ok.add("option00", "root"); // ajout de l'information pour lenvoi 
-        ok.add("option0_1", "root"); // ajout de l'information pour lenvoi 
-        ok.add("option0_2", "remove_1"); // ajout de l'information pour lenvoi 
-
-        ok.add("option1_1", "id_sha1_user"); // ajout de l'information pour lenvoi 
-        ok.add("option1_2", "xXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"); // ajout de l'information pour lenvoi 
+        $databaseHandler->action_sql("DELETE FROM  `$option0_2` WHERE   `$option1_1` = '$option1_2'") ;
  
-        console.log(ok.info()); // demande l'information dans le tableau
-        ok.push(); // envoie l'information au code pkp 
-
-
-        </script>
-
-*/
         break;        
 
     case 'update_1':
-
-        $option1_1 =$_POST["option1_1"] ;
-        $option1_2 =$_POST["option1_2"] ; 
-
-        $option2_1 =$_POST["option2_1"] ;
-        $option2_2 =$_POST["option2_2"] ;
-
-        $databaseHandler->action_sql("UPDATE  `$option0_1` SET `$option1_1` = '`$option1_2`'   WHERE  `$option2_1` ='$option2_2' ");
-
-
-        /*
-<script>
-    
-        var ok = new Information("function/general.php"); // création de la classe 
-        ok.add("option00", "root"); // ajout de l'information pour lenvoi 
-        ok.add("option0_1", "root"); // ajout de l'information pour lenvoi 
-        ok.add("option0_2", "update_1"); // ajout de l'information pour lenvoi 
-
-        ok.add("option1_1", "id_user"); // ajout de l'information pour lenvoi 
-        ok.add("option1_2", "0"); // ajout de l'information pour lenvoi 
-        // valeur de recherche dans la table 
-
-
-        ok.add("option2_1", "id_sha1_user"); // ajout de l'information pour lenvoi 
-        ok.add("option2_2", "SET_666"); // ajout de l'information pour lenvoi 
-        
-        console.log(ok.info()); // demande l'information dans le tableau
-        ok.push(); // envoie l'information au code pkp 
-
-
-        </script>
-        */
-        break;
+ 
+       $databaseHandler->action_sql("UPDATE  `$option0_2` SET `$option1_1` = '`$option1_2`'   WHERE  `$option2_1` ='$option2_2' ");
+         break;
 
     case 'update_2':
 
-        $option1_1 =$_POST["option1_1"] ;
-        $option1_2 =$_POST["option1_2"] ; 
+        $databaseHandler->action_sql("UPDATE  `$option0_1` SET `$option2_1` = '$option2_2', `$option3_1` = '$option3_2'   WHERE  `$option1_1` ='$option1_2' ");
 
-        $option2_1 =$_POST["option2_1"] ;
-        $option2_2 =$_POST["option2_2"] ; 
+        break; 
+    case 'update_3':
 
-        $option3_1 =$_POST["option3_1"] ;
-        $option3_2 =$_POST["option3_2"] ; 
+        $databaseHandler->action_sql("UPDATE  `$option0_1` SET `$option2_1` = '$option2_2', `$option3_1` = '$option3_2', `$option4_1` = '$option4_2'   WHERE  `$option1_1` ='$option1_2' ");
 
-        $databaseHandler->action_sql("UPDATE  `$option0_1` SET `$option2_1` = '$option2_2', `$option3_1` = '$option3_2'   WHERE  `$option1_1` ='$option1_1' ");
-
-        /*
-                <script>
-                    
-                var ok = new Information("function/general.php"); // création de la classe 
-                ok.add("option00", "root"); // ajout de l'information pour lenvoi 
-                ok.add("option0_1", "root"); // ajout de l'information pour lenvoi 
-                ok.add("option0_2", "update_2"); // ajout de l'information pour lenvoi 
-
-                ok.add("option1_1", "id_user"); // ajout de l'information pour lenvoi 
-                ok.add("option1_2", "0"); // ajout de l'information pour lenvoi 
-                // valeur de recherche dans la table 
-
-
-                ok.add("option2_1", "id_sha1_user"); // ajout de l'information pour lenvoi 
-                ok.add("option2_2", "id_sha1_user_2_2"); // ajout de l'information pour lenvoi 
-
-                ok.add("option3_1", "id_parent_user"); // ajout de l'information pour lenvoi 
-                ok.add("option3_2", "id_sha1_user_3_2"); // ajout de l'information pour lenvoi 
-                // Valeut a modifier  
-                console.log(ok.info()); // demande l'information dans le tableau
-                ok.push(); // envoie l'information au code pkp 
-
-
-                </script>
-
-*/
         break; 
 
 }
@@ -430,3 +385,32 @@ $fileHandler = new FileHandler($filePath, $add_file_general2, $source_file_array
 $fileHandler->processFile();
 // Afficher les fichiers ajoutés
 //print_r($source_file_array);
+
+
+
+ 
+
+
+$general_file =     <<<'PHP'
+<?php  
+
+
+?>
+PHP;
+
+
+
+$filePath =  $path_general1 . "/general_start.php";
+$source_file_array = [];
+$fileHandler = new FileHandler($filePath, $general_file , $source_file_array);
+$fileHandler->processFile();
+// Afficher les fichiers ajoutés
+//print_r($source_file_array);
+
+
+
+
+ 
+
+
+

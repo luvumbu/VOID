@@ -2,7 +2,7 @@
     <div>
         <a href="Class/log_off.php">Déconnexion</a>
     </div>
-    <div id="" onclick="general_send(this)" class="add_1__root__id_sha1_user__<?php echo $_SESSION["index"][2] ?>">
+    <div id="" onclick="general_send(this)" class="add_2__root__id_sha1_user__<?php echo $_SESSION["index"][2] ?>__description_user__description_user78878787">
         ADD
     </div>
 </div>

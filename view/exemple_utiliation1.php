@@ -2,25 +2,12 @@
     <div>
         <a href="Class/log_off.php">Déconnexion</a>
     </div>
-    <div id="" onclick="general_send(this)" class="add_1__root__id_sha1_user__<?php echo $_SESSION["index"][2] ?>">
+    <div id="" onclick="general_send(this)" class="add_1__projet__id_sha1_user__<?php echo $_SESSION["index"][2] ?>">
         ADD
     </div>
 </div>
 
 
-
-<?php 
-
-// add_1__projet__id_sha1_user__
-
-// element de recherche complet avec séparation de deux space __  
-// Choix de deux space car il existe deja un space dans le nom mais possible de le remplacer
-// par autre chose comme - tiré du haut  
-// n°1 add_1
-// n°2 projet
-// n°3 id_sha1_user
-// $_SESSION["index"][2] // represente le id de l'utilisateur 
-?>
 
 
 
