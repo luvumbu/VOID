@@ -50,17 +50,12 @@ $urlParams = str_replace('index.php/', '', $urlPath);
       require_once 'view/verifyConnection.php';
       if (file_exists($path)) {
         // Tente de supprimer le fichier
-        if (unlink($path)) {
-          echo "Le fichier '$path' a été supprimé avec succès.";
+        if (unlink($path)) {       
   ?>
           <meta http-equiv="refresh" content="0"> <!-- Rafraîchit toutes les 5 secondes -->
   <?php
-        } else {
-          echo "Erreur : Impossible de supprimer le fichier '$path'.";
-        }
-      } else {
-        echo "Le fichier '$path' n'existe pas.";
-      }
+        }  
+      }  
     } else {
       // require_once 'view/form_creation_table_bdd.php';
       //  require_once 'view/test.php';
