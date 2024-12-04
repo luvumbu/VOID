@@ -5,18 +5,18 @@
         <a href="Class/log_off.php">Déconnexion</a>
     </div>
     <!-- Section avec un événement 'onclick' pour déclencher la fonction 'general_send' -->
-    <div id="" onclick="general_send(this)" class="add_1__root__id_sha1_user__<?php echo $_SESSION["index"][2] ?>">
+    <div id="" onclick="general_send(this)" class="add_2__root__id_sha1_user__<?php echo $_SESSION["index"][2] ?>__id_parent_user__id_parent_user_info">
         ADD
     </div>
 </div>
 
 <?php 
 // Définition de la structure utilisée pour la classe et les valeurs à séparer
-// Exemple de structure : add_1__projet__id_sha1_user__
+// Exemple de structure : add_2__root__id_sha1_user__id_parent_user__id_parent_user_info
 
 // Commentaires détaillant les différentes parties de la chaîne utilisée
-// - n°1 : add_1
-// - n°2 : projet
+// - n°1 : add_2
+// - n°2 : root
 // - n°3 : id_sha1_user
 // $_SESSION["index"][2] représente l'identifiant de l'utilisateur actuel
 ?>
@@ -24,14 +24,15 @@
 <script>
     // Fonction pour diviser une chaîne par "__" et retourner un tableau de valeurs
     function afficherValeursFormattees(chaine) {
-        const valeurs = chaine.split("__"); // Séparation de la chaîne par "__"
-        return valeurs; // Retourne le tableau de valeurs
+        // Séparation de la chaîne par "__" en un tableau
+        const valeurs = chaine.split("__");
+        return valeurs; // Retourne le tableau des valeurs obtenues
     }
 
     // Fonction principale appelée au clic de l'élément HTML
     function general_send(_this) {
         // Exemple de la structure de l'élément sur lequel on a cliqué
-        // <div id="" onclick="general_send(this)" class="add_1__root__id_sha1_user__Valeur_a_ajouter__<?php echo $_SESSION["index"][2] ?>">
+        // <div id="" onclick="general_send(this)" class="add_2__root__id_sha1_user__id_parent_user__id_parent_user_info">
         //      ADD
         //  </div>
 

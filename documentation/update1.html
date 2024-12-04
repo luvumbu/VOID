@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation Technique du Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            color: #444;
+        }
+
+        code {
+   
+            padding: 3px 5px;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        pre {
+            background: #333;
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section-header {
+            border-left: 5px solid #007bff;
+            padding-left: 10px;
+            margin-bottom: 10px;
+        }
+
+        .note {
+          
+            border-left: 5px solid #007bff;
+            padding: 10px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Documentation Technique du Code</h1>
+        <p>Exploration détaillée des fonctionnalités et du code source</p>
+    </header>
+
+    <div class="container">
+
+        <section>
+            <h2>Introduction</h2>
+            <p>Cette documentation présente une vue d'ensemble et une description détaillée des différentes parties du code source. L'objectif est de clarifier la logique de chaque section et de fournir un guide d'utilisation et d'intégration.</p>
+        </section>
+
+        <section>
+            <h2>Fonctionnement du Code</h2>
+            <p>Le code fourni repose sur plusieurs principes et méthodes bien structurées. Ci-dessous, nous allons détailler les parties principales et leur rôle dans le processus global.</p>
+        </section>
+
+        <!-- Example of code documentation -->
+        <section class="function">
+            <h3>Classe FileSystemHelper</h3>
+            <p>La classe <code>FileSystemHelper</code> permet de gérer les fichiers et dossiers sur le système. Elle inclut des méthodes pour vérifier l'existence d'un fichier ou d'un dossier, et pour les créer si nécessaire.</p>
+
+            <pre><code>
+class FileSystemHelper {
+    public static function ensureDirectoryExists($directoryPath, $createIfNotExist = true) {
+        if (!is_dir($directoryPath)) {
+            if ($createIfNotExist) {
+                mkdir($directoryPath, 0777, true);
+                echo "Dossier créé : " . $directoryPath;
+            } else {
+                echo "Dossier non trouvé : " . $directoryPath;
+            }
+        } else {
+            echo "Le dossier existe déjà : " . $directoryPath;
+        }
+    }
+}
+            </code></pre>
+
+            <h4>Description</h4>
+            <p>La méthode <code>ensureDirectoryExists</code> vérifie si un dossier existe à l'emplacement donné. Si le dossier n'existe pas et si l'option <code>$createIfNotExist</code> est définie à <code>true</code>, le dossier sera créé.</p>
+        </section>
+
+        <section class="function">
+            <h3>Fonction DirectoryChecker</h3>
+            <p>La classe <code>DirectoryChecker</code> est utilisée pour vérifier l'existence d'un dossier et renvoyer un message selon le résultat.</p>
+
+            <pre><code>
+class DirectoryChecker {
+    public function checkDirectory($path) {
+        if (is_dir($path)) {
+            return "Le dossier existe.";
+        } else {
+            return "Le dossier n'existe pas.";
+        }
+    }
+}
+            </code></pre>
+
+            <h4>Description</h4>
+            <p>La méthode <code>checkDirectory</code> prend un chemin de dossier en paramètre et renvoie un message indiquant si le dossier existe ou non.</p>
+        </section>
+
+        <section>
+            <h2>Utilisation du Code</h2>
+            <p>Voici comment intégrer et utiliser ces classes et méthodes dans une application PHP.</p>
+
+            <pre><code>
+include 'FileSystemHelper.php';
+include 'DirectoryChecker.php';
+
+// Vérifier et créer un dossier si nécessaire
+FileSystemHelper::ensureDirectoryExists('path/to/directory');
+
+// Vérifier l'existence d'un dossier
+$checker = new DirectoryChecker();
+echo $checker->checkDirectory('path/to/directory');
+            </code></pre>
+
+            <h4>Explication</h4>
+            <p>Dans cet exemple, nous incluons les fichiers des classes <code>FileSystemHelper</code> et <code>DirectoryChecker</code>, puis nous les utilisons pour vérifier et créer des dossiers sur le système de fichiers.</p>
+        </section>
+
+        <section>
+            <h2>Conclusion</h2>
+            <p>Cette documentation couvre les principales fonctionnalités du code, notamment la gestion des fichiers et dossiers. Pour une meilleure compréhension et personnalisation, il est recommandé de tester et d'adapter les méthodes à votre propre environnement et besoins.</p>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Documentation Technique - Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>

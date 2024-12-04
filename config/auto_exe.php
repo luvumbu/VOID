@@ -152,7 +152,7 @@ $count_url = count($url->get_elements()) ;
 
 
 
-        $databaseHandler->action_sql("INSERT INTO `$option0_2` ($option1_1) VALUES ('$option1_2')") ;
+    $databaseHandler->action_sql("INSERT INTO `$option0_2` ($option1_1) VALUES ('$option1_2')") ;
 
 // exemple d'utilisation 
 
@@ -179,7 +179,7 @@ ok.push(); // envoie l'information au code pkp
 
     case 'add_2':
 
-       $databaseHandler->action_sql("INSERT INTO `$option0_1` ($option1_1,$option2_1) VALUES ('$option1_2','$option2_2')") ;
+       $databaseHandler->action_sql("INSERT INTO `$option0_2` ($option1_1,$option2_1) VALUES ('$option1_2','$option2_2')") ;
 
 
 
@@ -189,7 +189,7 @@ ok.push(); // envoie l'information au code pkp
 
     case 'add_3':
 
-        $databaseHandler->action_sql("INSERT INTO `$option0_1` ($option1_1,$option2_1,$option3_1) VALUES ('$option1_2','$option2_2','$option3_2')") ;
+        $databaseHandler->action_sql("INSERT INTO `$option0_2` ($option1_1,$option2_1,$option3_1) VALUES ('$option1_2','$option2_2','$option3_2')") ;
 
         break;
 
@@ -201,19 +201,23 @@ ok.push(); // envoie l'information au code pkp
 
     case 'update_1':
  
-       $databaseHandler->action_sql("UPDATE  `$option0_2` SET `$option1_1` = '`$option1_2`'   WHERE  `$option2_1` ='$option2_2' ");
-         break;
+     $databaseHandler->action_sql("UPDATE  `$option0_2` SET `$option1_1` = '$option1_2'   WHERE  `$option2_1` ='$option2_2' ");
+ 
+       
+       break;
 
+       /*
     case 'update_2':
 
-        $databaseHandler->action_sql("UPDATE  `$option0_1` SET `$option2_1` = '$option2_2', `$option3_1` = '$option3_2'   WHERE  `$option1_1` ='$option1_2' ");
+        $databaseHandler->action_sql("UPDATE  `$option0_2` SET `$option2_1` = '$option2_2', `$option3_1` = '$option3_2'   WHERE  `$option1_1` ='$option1_2' ");
 
         break; 
     case 'update_3':
 
-        $databaseHandler->action_sql("UPDATE  `$option0_1` SET `$option2_1` = '$option2_2', `$option3_1` = '$option3_2', `$option4_1` = '$option4_2'   WHERE  `$option1_1` ='$option1_2' ");
+        $databaseHandler->action_sql("UPDATE  `$option0_2` SET `$option2_1` = '$option2_2', `$option3_1` = '$option3_2', `$option4_1` = '$option4_2'   WHERE  `$option1_1` ='$option1_2' ");
 
         break; 
+        */
 
 }
 

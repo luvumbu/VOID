@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation du Projet</title>
+    <title>Documentation - Gestion des Classes Dynamiques</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -52,14 +52,14 @@
     </style>
 </head>
 <body>
-    <h1>Documentation du Projet</h1>
+    <h1>Documentation - Gestion des Classes Dynamiques</h1>
 
     <div class="section">
         <h2 class="section-header">1. Structure HTML</h2>
         <p>La structure HTML contient :</p>
         <ul>
-            <li>Un lien de déconnexion.</li>
-            <li>Un bouton <code>ADD</code> ayant une classe dynamique construite avec des données de session.</li>
+            <li>Un lien de déconnexion pour quitter la session en cours.</li>
+            <li>Un bouton <code>ADD</code> configuré dynamiquement avec une classe basée sur les données utilisateur.</li>
         </ul>
         <pre>
 &lt;div class="test1"&gt;
@@ -69,7 +69,7 @@
     &lt;div 
         id="" 
         onclick="general_send(this)" 
-        class="add_1__root__id_sha1_user__&lt;?php echo $_SESSION["index"][2]; ?&gt;"&gt;
+        class="remove_1__root__id_sha1_user__&lt;?php echo $_SESSION["index"][2]; ?&gt;"&gt;
         ADD
     &lt;/div&gt;
 &lt;/div&gt;
@@ -78,20 +78,21 @@
 
     <div class="section">
         <h2 class="section-header">2. PHP - Dynamisation</h2>
-        <p>Le PHP génère dynamiquement une partie de la classe du bouton <code>ADD</code> en se basant sur les données de session.</p>
-        <p>Voici les éléments clés :</p>
+        <p>Le PHP génère dynamiquement une partie de la classe du bouton <code>ADD</code> pour inclure l'identifiant utilisateur.</p>
+        <p>Les commentaires expliquent chaque segment de la chaîne de classe :</p>
         <ul>
-            <li>La classe suit une structure définie : <code>add_1__projet__id_sha1_user__</code>.</li>
-            <li>Les informations de l'utilisateur sont injectées via <code>$_SESSION["index"][2]</code>.</li>
+            <li><code>remove_1</code>: Type d'opération.</li>
+            <li><code>root</code>: Section cible.</li>
+            <li><code>id_sha1_user</code>: Identifiant SHA1 de l'utilisateur.</li>
         </ul>
         <pre>
 &lt;?php 
 // Exemple d'une classe générée dynamiquement
-// add_1__root__id_sha1_user__valeurSHA1
+// remove_1__root__id_sha1_user__valeurSHA1
 ?&gt;
 
 &lt;?php 
-// var_dump pour vérifier les données de session
+// Débogage des données de session
 var_dump($_SESSION["index"]);
 ?&gt;
         </pre>
@@ -99,11 +100,11 @@ var_dump($_SESSION["index"]);
 
     <div class="section">
         <h2 class="section-header">3. CSS - Style</h2>
-        <p>Les styles visent à améliorer l'apparence et l'interactivité de l'interface :</p>
+        <p>Les styles définis visent à améliorer l'ergonomie :</p>
         <ul>
-            <li>Un affichage flexible pour aligner les éléments.</li>
-            <li>Des transitions pour des effets fluides au survol.</li>
-            <li>Un contraste élevé pour les couleurs : noir, vert, rouge, et blanc.</li>
+            <li>Disposition flexible pour aligner les éléments.</li>
+            <li>Transitions fluides pour les effets visuels.</li>
+            <li>Couleurs contrastées pour une meilleure lisibilité.</li>
         </ul>
         <pre>
 .test1 {
@@ -150,7 +151,7 @@ function afficherValeursFormattees(chaine) {
         </pre>
 
         <h3>Fonction <code>general_send</code></h3>
-        <p>Cette fonction traite les informations dynamiques et les envoie à un script PHP via une classe appelée <code>Information</code>.</p>
+        <p>Cette fonction envoie les données formatées au serveur via une instance de la classe <code>Information</code>.</p>
         <pre>
 /**
  * Prépare les données et les envoie au serveur.
@@ -164,14 +165,9 @@ function general_send(_this) {
 
     ok.add("option00", ""); 
 
-    if (texteFormatte[0] != undefined) { ok.add("option0_1", texteFormatte[0]); }
-    if (texteFormatte[1] != undefined) { ok.add("option0_2", texteFormatte[1]); }
-    if (texteFormatte[2] != undefined) { ok.add("option1_1", texteFormatte[2]); }
-    if (texteFormatte[3] != undefined) { ok.add("option1_2", texteFormatte[3]); }
-    if (texteFormatte[4] != undefined) { ok.add("option2_1", texteFormatte[4]); }
-    if (texteFormatte[5] != undefined) { ok.add("option2_2", texteFormatte[5]); }
-    if (texteFormatte[6] != undefined) { ok.add("option3_1", texteFormatte[6]); }
-    if (texteFormatte[7] != undefined) { ok.add("option3_2", texteFormatte[7]); }
+    for (let i = 0; i &lt; texteFormatte.length; i++) {
+        ok.add(`option${Math.floor(i / 2) + 1}_${i % 2 + 1}`, texteFormatte[i]);
+    }
 
     console.log(ok.info());
     ok.push();
@@ -179,8 +175,8 @@ function general_send(_this) {
         </pre>
         <h3>Notes :</h3>
         <ul>
-            <li>La classe <code>Information</code> permet de construire et d'envoyer des données au serveur.</li>
-            <li>Chaque segment de la chaîne est ajouté à un tableau avec un identifiant unique.</li>
+            <li>Les valeurs sont extraites et ajoutées dynamiquement.</li>
+            <li>La méthode <code>push</code> envoie les données au serveur.</li>
         </ul>
     </div>
 </body>
