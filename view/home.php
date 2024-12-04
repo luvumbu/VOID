@@ -16,10 +16,7 @@
 
 </textarea>
 
-&#39
-&#39
-&#39
-&#39
+
 <?php
 // Définition de la structure utilisée pour la classe et les valeurs à séparer
 // Exemple de structure : add_1__projet__id_sha1_user__

@@ -8,8 +8,14 @@
     <div id="update_1__update_1_text01" onclick="general_send(this)" class="update_1__root__id_sha1_user__NEUTRE__id_user__5">
         ADD
     </div>
-    <input type="text" id="update_1_text01">
 </div>
+
+
+<textarea name="" id="update_1_text01">
+ Lorem ipsum dolor sit ame't consect''etur adipi"sicing""" elit. Illo sint, aliquam ut animi quasi ad asperiores distinctio debitis, recusandae nisi dolorum, excepturi molestiae eligendi quisquam corrupti in itaque necessitatibus sit.
+
+</textarea>
+
 
 <?php
 // Définition de la structure utilisée pour la classe et les valeurs à séparer
@@ -43,7 +49,7 @@
 
 
         const texteFormatte2 = afficherValeursFormattees(_this.id);
-   
+
 
 
         // Création d'une instance de la classe 'Information' pour envoyer les données
@@ -78,13 +84,35 @@
         }
         if (texteFormatte[0] != undefined) {
             ok.add("option0_1", texteFormatte[0]);
-          if(texteFormatte2[0]==texteFormatte[0]){
-           
-          ok.add("option1_2", document.getElementById(texteFormatte2[1]).value);
-    
-            } 
+            if (texteFormatte2[0] == texteFormatte[0]) {
+
+
+                var value = document.getElementById(texteFormatte2[1]).value;
+
+                value.replace("'", "&#39");
+                value.replace('"', "&quot");
+                var new_val = "";
+                for (var boucle = 0; boucle < value.length; boucle++) {
+                    
+
+                    switch (value[boucle]) {
+                        case "'":
+                           new_val = new_val+"&apos" ; 
+                            break;
+                        case '"':
+                           new_val = new_val+"&quot" ; 
+                            break;
+                        default:
+                        new_val = new_val+value[boucle] ;                         
+                    }
+
+                }
+         
+                ok.add("option1_2",new_val );
+
+            }
         }
-  
+
 
         console.log(ok.info()); // Affiche les informations collectées dans la console
         ok.push(); // Envoie les informations collectées vers le script PHP via la méthode 'push'
@@ -132,5 +160,3 @@
         /* Suppression de la décoration par défaut */
     }
 </style>
-
- 
