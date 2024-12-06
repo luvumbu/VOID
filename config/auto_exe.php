@@ -414,6 +414,27 @@ $fileHandler->processFile();
 
 
 
+
+
+$general_file =     <<<'PHP'
+<?php  
+
+
+?>
+PHP;
+
+
+
+$filePath =  $path_general1 . "/general_start.php";
+$source_file_array = [];
+$fileHandler = new FileHandler($filePath, $general_file , $source_file_array);
+$fileHandler->processFile();
+// Afficher les fichiers ajoutés
+//print_r($source_file_array);
+
+
+
+
  
 
 

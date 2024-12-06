@@ -1,6 +1,6 @@
  
     <!-- Section avec un événement 'onclick' pour déclencher la fonction 'update1' -->
-    <div id="update_1__update_1_text01" onclick="update1(this)" class="update_1__root__id_sha1_user__NEUTRE__id_user__6">
+    <div id="update_1__update_1_text01" onclick="update1(this)" class="update_1__root__id_sha1_user__NEUTRE__id_user__43">
         ADD
     </div>
  
@@ -23,7 +23,7 @@
     // Fonction principale appelée au clic de l'élément HTML
     function update1(_this) {
         // Exemple de la structure de l'élément sur lequel on a cliqué
-        // <div id="" onclick="update1(this)" class="add_1__root__id_sha1_user__Valeur_a_ajouter__<?php echo $_SESSION["index"][2] ?>">
+        // <div id="" onclick="update1(this)" class="add_1__root__id_sha1_user__Valeur_a_ajouter__43">
         //      ADD
         //  </div>
 
