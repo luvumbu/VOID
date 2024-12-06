@@ -35,6 +35,10 @@ $urlParams = str_replace('index.php/', '', $urlPath);
   <?php
   // Inclusion des fichiers de classe PHP nécessaires
   require_once 'Class/path_general_class.php';
+  require_once 'Class/path_general_class.php';
+  require_once 'Class/DivGenerator.php';
+
+
   $path_general_js = "function/general_js.php";
   if (file_exists($path_general_js)) {
     require_once $path_general_js;
