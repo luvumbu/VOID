@@ -42,46 +42,6 @@ $add_file_general1 .= <<<'PHP'
 $url = new Give_url();
 $url->split_basename('__');
 $count_url = count($url->get_elements());
-/*
-<script>
-function afficherValeursFormattees(chaine) {
-const valeurs = chaine.split("__");
-return valeurs;
-}
-function general_send(_this) {
-const texteFormatte = afficherValeursFormattees(_this.className);
-console.log(texteFormatte);
-var ok = new Information("function/general.php");
-ok.add("option00", "");
-if (texteFormatte[0] != undefined) {
-ok.add("option0_1", texteFormatte[0]);
-}
-if (texteFormatte[1] != undefined) {
-ok.add("option0_2", texteFormatte[1]);
-}
-if (texteFormatte[2] != undefined) {
-ok.add("option1_1", texteFormatte[2]);
-}
-if (texteFormatte[3] != undefined) {
-ok.add("option1_2", texteFormatte[3]);
-}
-if (texteFormatte[4] != undefined) {
-ok.add("option2_1", texteFormatte[4]);
-}
-if (texteFormatte[5] != undefined) {
-ok.add("option2_2", texteFormatte[5]);
-}
-if (texteFormatte[6] != undefined) {
-ok.add("option3_1", texteFormatte[6]);
-}
-if (texteFormatte[7] != undefined) {
-ok.add("option3_2", texteFormatte[7]);
-}
-console.log(ok.info());
-ok.push();
-}
-</script>
-*/
 switch ($option0_1) {
 case 'add_1':
 $databaseHandler->action_sql("INSERT INTO `$option0_2` ($option1_1) VALUES ('$option1_2')");

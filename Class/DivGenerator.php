@@ -30,7 +30,7 @@ class DivGenerator
         $this->type = $type;
 
     }
-    function get_input()
+    function get_input($type)
     {
 
 
@@ -42,7 +42,7 @@ echo '<style>
     }
 </style>';
 
-        if($this->type=="input"){
+        if($type=="input"){
             $divHtml = '<input id="' . $this->name .'_input" onkeyup="' . $this->function_name . '(this)" onclick="' . $this->function_name . '(this)" class="' . $this->className_array_total . '">';
         }
         else {
@@ -68,10 +68,7 @@ echo '<style>
     function className_array()
     {
 
-
-
-
-        $name = $this->function_name . $this->function_split . $this->dbname;
+       $name = $this->function_name . $this->function_split . $this->dbname;
         $count = count($this->className_array);
 
         for ($a = 0; $a < $count; $a++) {
@@ -87,7 +84,7 @@ echo '<style>
     {
 
 
-
+            $this->className_array() ;
        
         $divHtml = '<div id="' . $this->name . '" onclick="' . $this->function_name . '(this)" class="' . $this->className_array_total . '">' . $this->text . '</div>';
 
@@ -197,6 +194,25 @@ $divGenerator->className_array();
 // div_generator c'est le nom de l'identifiant qu'on va génerer 
 // add_2  nom de la
 // __ correspond  a l'element qui permet de faire la séparation entre chaque element rajoute dans les class
+
+
+
+/*
+
+// mettre a jour les elements intelligence ok 
+// METHODE  update_1 add 
+$divGenerator = new DivGenerator("root","div_generator_idedlededededed", "update_1","__",'My source');
+//
+$divGenerator->set_className("id_user", "200");
+$divGenerator->set_className("id_parent_user", "");
+// Ligne n°1 demande la ou je veux ajouter l'information 
+// Ligne n°2 demande les information la ou les cherchercherche je demande   id_user quand il est egale a 168 
+// effectuer le changement de la ligne n°1  
+ echo  $divGenerator->generateDiv(); // Cela va directement afficher le div géné
+ echo $divGenerator->get_input("text") ; 
+ // cree le input
+
+// mettre a jour les elements intelligence ok 
 
 
 ?>
