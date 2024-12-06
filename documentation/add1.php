@@ -1,25 +1,9 @@
 <!-- Section principale avec une structure flexible pour les éléments -->
-<div class="test1">
-    <!-- Lien de déconnexion -->
-    <div>
-        <a href="Class/log_off.php">Déconnexion</a>
-    </div>
-    <!-- Section avec un événement 'onclick' pour déclencher la fonction 'general_send' -->
-    <div id="" onclick="general_send(this)" class="add_1__root__id_sha1_user__<?php echo $_SESSION["index"][2] ?>">
-        ADD
-    </div>
+<div onclick="add_1(this)" class="add_1__root__id_sha1_user__<?php echo $_SESSION["index"][2] ?>">
+    ADD
 </div>
 
-<?php 
-// Définition de la structure utilisée pour la classe et les valeurs à séparer
-// Exemple de structure : add_1__projet__id_sha1_user__
 
-// Commentaires détaillant les différentes parties de la chaîne utilisée
-// - n°1 : add_1
-// - n°2 : projet
-// - n°3 : id_sha1_user
-// $_SESSION["index"][2] représente l'identifiant de l'utilisateur actuel
-?>
 
 <script>
     // Fonction pour diviser une chaîne par "__" et retourner un tableau de valeurs
@@ -29,9 +13,9 @@
     }
 
     // Fonction principale appelée au clic de l'élément HTML
-    function general_send(_this) {
+    function add_1(_this) {
         // Exemple de la structure de l'élément sur lequel on a cliqué
-        // <div id="" onclick="general_send(this)" class="add_1__root__id_sha1_user__Valeur_a_ajouter__<?php echo $_SESSION["index"][2] ?>">
+        // <div id="" onclick="add_1(this)" class="add_1__root__id_sha1_user__Valeur_a_ajouter__<?php echo $_SESSION["index"][2] ?>">
         //      ADD
         //  </div>
 
@@ -40,7 +24,7 @@
         console.log(texteFormatte); // Affichage des valeurs formatées dans la console
 
         // Création d'une instance de la classe 'Information' pour envoyer les données
-        var ok = new Information("function/general.php"); 
+        var ok = new Information("function/general.php");
 
         // Ajout de la première information (option00 est vide ici)
         ok.add("option00", "");
@@ -76,39 +60,3 @@
         ok.push(); // Envoie les informations collectées vers le script PHP via la méthode 'push'
     }
 </script>
-
-<style>
-    /* Style de la classe 'test1' qui contient les éléments flexibles */
-    .test1 {
-        display: flex;
-        justify-content: space-around; /* Espace égal entre les éléments */
-        background-color: black; /* Fond noir pour la section */
-        transition: 1s all; /* Transition fluide pour toutes les propriétés */
-    }
-
-    /* Style pour les div à l'intérieur de la classe 'test1' */
-    .test1 div {
-        padding: 15px;
-        color: green; /* Texte en vert */
-        border: 1px solid rgba(255, 255, 255, 0.6); /* Bordure semi-transparente blanche */
-    }
-
-    /* Effet au survol des éléments */
-    .test1 div:hover {
-        background-color: white; /* Fond blanc au survol */
-        transition: 1s all; /* Transition fluide */
-        color: black; /* Changement de couleur du texte en noir */
-        cursor: pointer; /* Curseur pointer pour indiquer une action */
-    }
-
-    /* Style pour le lien 'a' de la déconnexion */
-    .test1 a {
-        color: red; /* Lien rouge */
-        text-decoration: none; /* Suppression de la décoration par défaut */
-    }
-</style>
-
-<?php
-// Affichage de l'index de la session pour vérifier son contenu
-var_dump($_SESSION["index"]);
-?>
