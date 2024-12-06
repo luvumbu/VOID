@@ -27,8 +27,7 @@ $urlPath = parse_url($requestUri, PHP_URL_PATH);
 $urlParams = str_replace('index.php/', '', $urlPath);
 
   // Inclusion des fichiers de classe PHP nécessaires
-  require_once 'Class/path_general_class.php';
-  require_once 'Class/path_general_class.php';
+  require_once 'Class/path_general_class.php'; 
   require_once 'Class/DivGenerator.php';
 
 

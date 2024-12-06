@@ -10,6 +10,7 @@ $option1 =$_SESSION["option1"] ;
 $option2 =$_SESSION["option2"] ;
 $option3 =$_SESSION["option3"] ;
 $option4 =$_SESSION["option4"]  ;
+
 $databaseHandler = new DatabaseHandler($dbname, $username);
 
 if($option3!="" && $option4 !="" ){
