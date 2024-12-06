@@ -396,12 +396,7 @@ $divGenerator->className_array();
         if (texteFormatte[5] != undefined) {
             ok.add("option2_2",_this.value);
         }
-        if (texteFormatte[6] != undefined) {
-            ok.add("option3_1", texteFormatte[6]);
-        }
-        if (texteFormatte[7] != undefined) {
-            ok.add("option3_2", texteFormatte[7]);
-        }
+  
        
 
  

@@ -96,7 +96,7 @@ case 'remove_1':
 $databaseHandler->action_sql("DELETE FROM  `$option0_2` WHERE   `$option1_1` = '$option1_2'");
 break;
 case 'update_1':
-$databaseHandler->action_sql("UPDATE  `$option0_2` SET `$option1_1` = '$option1_2'   WHERE  `$option2_1` ='$option2_2'");
+ $databaseHandler->action_sql("UPDATE  `$option0_2` SET `$option2_1` = '$option2_2'   WHERE  `$option1_1` ='$option1_2'");
 break;
 }
 switch ($count_url) {
