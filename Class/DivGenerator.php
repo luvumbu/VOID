@@ -217,7 +217,9 @@ $divGenerator->set_className("id_parent_user", "");
 
 ?>
 
+*/
 
+?>
 
 <script>
     // Fonction pour diviser une chaîne par "__" et retourner un tableau de valeurs

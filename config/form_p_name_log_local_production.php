@@ -7,17 +7,10 @@ function validateEmail($email) {
     return preg_match($emailRegex, $email);
 }
 
-
-
 $activation = time() ; 
 $SERVER_NAME =  $_SERVER['SERVER_NAME'];
-
    // Adresse e-mail de destination
    $to = $input_1;
-
-
-
-
    // Exemple d'utilisation
 $emailInput = $to;
 

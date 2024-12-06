@@ -26,13 +26,6 @@ $requestUri = $_SERVER['REQUEST_URI'];
 $urlPath = parse_url($requestUri, PHP_URL_PATH);
 $urlParams = str_replace('index.php/', '', $urlPath);
 
-
-?>
-
-
-
-
-  <?php
   // Inclusion des fichiers de classe PHP nécessaires
   require_once 'Class/path_general_class.php';
   require_once 'Class/path_general_class.php';
@@ -67,7 +60,7 @@ $urlParams = str_replace('index.php/', '', $urlPath);
         require_once 'view/home.php';
 
         if ($_SESSION["index"][0] == $dbname && $_SESSION["index"][1]  == $username) {
-
+ 
           echo '<div class="display_none">';
           require_once 'view/admin_form_creation_table_bdd.php';
           echo '</div>';
